@@ -1,0 +1,488 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		14D0130C25F3AA73004C36F8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D0130B25F3AA73004C36F8 /* AppDelegate.m */; };
+		14D0130E25F3AA74004C36F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14D0130D25F3AA74004C36F8 /* Assets.xcassets */; };
+		14D0131125F3AA74004C36F8 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14D0130F25F3AA74004C36F8 /* MainMenu.xib */; };
+		14D0131425F3AA74004C36F8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D0131325F3AA74004C36F8 /* main.m */; };
+		14D0133A25F3AAC1004C36F8 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D0131D25F3AAC1004C36F8 /* libcrypto.a */; };
+		14D0133B25F3AAC1004C36F8 /* libpinyin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D0131E25F3AAC1004C36F8 /* libpinyin.a */; };
+		14D0133C25F3AAC1004C36F8 /* libglib-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D0131F25F3AAC1004C36F8 /* libglib-2.0.a */; };
+		14D0133D25F3AAC1004C36F8 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D0132025F3AAC1004C36F8 /* libssl.a */; };
+		14D0133E25F3AAC1004C36F8 /* libintl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D0132125F3AAC1004C36F8 /* libintl.a */; };
+		14D0133F25F3AAC1004C36F8 /* libdb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D0132225F3AAC1004C36F8 /* libdb.a */; };
+		14D0134025F3AAC1004C36F8 /* gb_char.bin in Resources */ = {isa = PBXBuildFile; fileRef = 14D0132425F3AAC1004C36F8 /* gb_char.bin */; };
+		14D0134125F3AAC1004C36F8 /* life.bin in Resources */ = {isa = PBXBuildFile; fileRef = 14D0132525F3AAC1004C36F8 /* life.bin */; };
+		14D0134225F3AAC1004C36F8 /* phrase_index.bin in Resources */ = {isa = PBXBuildFile; fileRef = 14D0132625F3AAC1004C36F8 /* phrase_index.bin */; };
+		14D0134325F3AAC1004C36F8 /* sport.bin in Resources */ = {isa = PBXBuildFile; fileRef = 14D0132725F3AAC1004C36F8 /* sport.bin */; };
+		14D0134425F3AAC1004C36F8 /* geology.bin in Resources */ = {isa = PBXBuildFile; fileRef = 14D0132825F3AAC1004C36F8 /* geology.bin */; };
+		14D0134525F3AAC1004C36F8 /* pinyin_index.bin in Resources */ = {isa = PBXBuildFile; fileRef = 14D0132925F3AAC1004C36F8 /* pinyin_index.bin */; };
+		14D0134625F3AAC1004C36F8 /* science.bin in Resources */ = {isa = PBXBuildFile; fileRef = 14D0132A25F3AAC1004C36F8 /* science.bin */; };
+		14D0134725F3AAC1004C36F8 /* merged.bin in Resources */ = {isa = PBXBuildFile; fileRef = 14D0132B25F3AAC1004C36F8 /* merged.bin */; };
+		14D0134825F3AAC1004C36F8 /* addon_pinyin_index.bin in Resources */ = {isa = PBXBuildFile; fileRef = 14D0132C25F3AAC1004C36F8 /* addon_pinyin_index.bin */; };
+		14D0134925F3AAC1004C36F8 /* art.bin in Resources */ = {isa = PBXBuildFile; fileRef = 14D0132D25F3AAC1004C36F8 /* art.bin */; };
+		14D0134A25F3AAC1004C36F8 /* economy.bin in Resources */ = {isa = PBXBuildFile; fileRef = 14D0132E25F3AAC1004C36F8 /* economy.bin */; };
+		14D0134B25F3AAC1004C36F8 /* people.bin in Resources */ = {isa = PBXBuildFile; fileRef = 14D0132F25F3AAC1004C36F8 /* people.bin */; };
+		14D0134C25F3AAC1004C36F8 /* opengram.bin in Resources */ = {isa = PBXBuildFile; fileRef = 14D0133025F3AAC1004C36F8 /* opengram.bin */; };
+		14D0134D25F3AAC1004C36F8 /* culture.bin in Resources */ = {isa = PBXBuildFile; fileRef = 14D0133125F3AAC1004C36F8 /* culture.bin */; };
+		14D0134E25F3AAC1004C36F8 /* history.bin in Resources */ = {isa = PBXBuildFile; fileRef = 14D0133225F3AAC1004C36F8 /* history.bin */; };
+		14D0134F25F3AAC1004C36F8 /* technology.bin in Resources */ = {isa = PBXBuildFile; fileRef = 14D0133325F3AAC1004C36F8 /* technology.bin */; };
+		14D0135025F3AAC1004C36F8 /* bigram.db in Resources */ = {isa = PBXBuildFile; fileRef = 14D0133425F3AAC1004C36F8 /* bigram.db */; };
+		14D0135125F3AAC1004C36F8 /* table.conf in Resources */ = {isa = PBXBuildFile; fileRef = 14D0133525F3AAC1004C36F8 /* table.conf */; };
+		14D0135225F3AAC1004C36F8 /* addon_phrase_index.bin in Resources */ = {isa = PBXBuildFile; fileRef = 14D0133625F3AAC1004C36F8 /* addon_phrase_index.bin */; };
+		14D0135325F3AAC1004C36F8 /* gbk_char.bin in Resources */ = {isa = PBXBuildFile; fileRef = 14D0133725F3AAC1004C36F8 /* gbk_char.bin */; };
+		14D0135425F3AAC1004C36F8 /* society.bin in Resources */ = {isa = PBXBuildFile; fileRef = 14D0133825F3AAC1004C36F8 /* society.bin */; };
+		14D0135525F3AAC1004C36F8 /* nature.bin in Resources */ = {isa = PBXBuildFile; fileRef = 14D0133925F3AAC1004C36F8 /* nature.bin */; };
+		14D0135A25F3AAE3004C36F8 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D0135825F3AADA004C36F8 /* libc++.tbd */; };
+		14D0135B25F3AAE3004C36F8 /* libc.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D0135925F3AADA004C36F8 /* libc.tbd */; };
+		14D0135E25F3AAEC004C36F8 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D0135D25F3AAE8004C36F8 /* libiconv.tbd */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		14D0130725F3AA73004C36F8 /* macos-libpinyin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "macos-libpinyin.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		14D0130A25F3AA73004C36F8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		14D0130B25F3AA73004C36F8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		14D0130D25F3AA74004C36F8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		14D0131025F3AA74004C36F8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		14D0131225F3AA74004C36F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		14D0131325F3AA74004C36F8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		14D0131525F3AA74004C36F8 /* macos_libpinyin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macos_libpinyin.entitlements; sourceTree = "<group>"; };
+		14D0131D25F3AAC1004C36F8 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
+		14D0131E25F3AAC1004C36F8 /* libpinyin.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libpinyin.a; sourceTree = "<group>"; };
+		14D0131F25F3AAC1004C36F8 /* libglib-2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libglib-2.0.a"; sourceTree = "<group>"; };
+		14D0132025F3AAC1004C36F8 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
+		14D0132125F3AAC1004C36F8 /* libintl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libintl.a; sourceTree = "<group>"; };
+		14D0132225F3AAC1004C36F8 /* libdb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libdb.a; sourceTree = "<group>"; };
+		14D0132425F3AAC1004C36F8 /* gb_char.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = gb_char.bin; sourceTree = "<group>"; };
+		14D0132525F3AAC1004C36F8 /* life.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = life.bin; sourceTree = "<group>"; };
+		14D0132625F3AAC1004C36F8 /* phrase_index.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = phrase_index.bin; sourceTree = "<group>"; };
+		14D0132725F3AAC1004C36F8 /* sport.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = sport.bin; sourceTree = "<group>"; };
+		14D0132825F3AAC1004C36F8 /* geology.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = geology.bin; sourceTree = "<group>"; };
+		14D0132925F3AAC1004C36F8 /* pinyin_index.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = pinyin_index.bin; sourceTree = "<group>"; };
+		14D0132A25F3AAC1004C36F8 /* science.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = science.bin; sourceTree = "<group>"; };
+		14D0132B25F3AAC1004C36F8 /* merged.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = merged.bin; sourceTree = "<group>"; };
+		14D0132C25F3AAC1004C36F8 /* addon_pinyin_index.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = addon_pinyin_index.bin; sourceTree = "<group>"; };
+		14D0132D25F3AAC1004C36F8 /* art.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = art.bin; sourceTree = "<group>"; };
+		14D0132E25F3AAC1004C36F8 /* economy.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = economy.bin; sourceTree = "<group>"; };
+		14D0132F25F3AAC1004C36F8 /* people.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = people.bin; sourceTree = "<group>"; };
+		14D0133025F3AAC1004C36F8 /* opengram.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = opengram.bin; sourceTree = "<group>"; };
+		14D0133125F3AAC1004C36F8 /* culture.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = culture.bin; sourceTree = "<group>"; };
+		14D0133225F3AAC1004C36F8 /* history.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = history.bin; sourceTree = "<group>"; };
+		14D0133325F3AAC1004C36F8 /* technology.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = technology.bin; sourceTree = "<group>"; };
+		14D0133425F3AAC1004C36F8 /* bigram.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = bigram.db; sourceTree = "<group>"; };
+		14D0133525F3AAC1004C36F8 /* table.conf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = table.conf; sourceTree = "<group>"; };
+		14D0133625F3AAC1004C36F8 /* addon_phrase_index.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = addon_phrase_index.bin; sourceTree = "<group>"; };
+		14D0133725F3AAC1004C36F8 /* gbk_char.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = gbk_char.bin; sourceTree = "<group>"; };
+		14D0133825F3AAC1004C36F8 /* society.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = society.bin; sourceTree = "<group>"; };
+		14D0133925F3AAC1004C36F8 /* nature.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = nature.bin; sourceTree = "<group>"; };
+		14D0135825F3AADA004C36F8 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		14D0135925F3AADA004C36F8 /* libc.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libc.tbd; path = usr/lib/libc.tbd; sourceTree = SDKROOT; };
+		14D0135D25F3AAE8004C36F8 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		14D0130425F3AA73004C36F8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14D0133D25F3AAC1004C36F8 /* libssl.a in Frameworks */,
+				14D0135A25F3AAE3004C36F8 /* libc++.tbd in Frameworks */,
+				14D0135B25F3AAE3004C36F8 /* libc.tbd in Frameworks */,
+				14D0133B25F3AAC1004C36F8 /* libpinyin.a in Frameworks */,
+				14D0133E25F3AAC1004C36F8 /* libintl.a in Frameworks */,
+				14D0133F25F3AAC1004C36F8 /* libdb.a in Frameworks */,
+				14D0135E25F3AAEC004C36F8 /* libiconv.tbd in Frameworks */,
+				14D0133C25F3AAC1004C36F8 /* libglib-2.0.a in Frameworks */,
+				14D0133A25F3AAC1004C36F8 /* libcrypto.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		14D012FE25F3AA73004C36F8 = {
+			isa = PBXGroup;
+			children = (
+				14D0132325F3AAC1004C36F8 /* data */,
+				14D0131C25F3AAC1004C36F8 /* lib */,
+				14D0130925F3AA73004C36F8 /* macos-libpinyin */,
+				14D0130825F3AA73004C36F8 /* Products */,
+				14D0135725F3AADA004C36F8 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		14D0130825F3AA73004C36F8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				14D0130725F3AA73004C36F8 /* macos-libpinyin.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		14D0130925F3AA73004C36F8 /* macos-libpinyin */ = {
+			isa = PBXGroup;
+			children = (
+				14D0130A25F3AA73004C36F8 /* AppDelegate.h */,
+				14D0130B25F3AA73004C36F8 /* AppDelegate.m */,
+				14D0130D25F3AA74004C36F8 /* Assets.xcassets */,
+				14D0130F25F3AA74004C36F8 /* MainMenu.xib */,
+				14D0131225F3AA74004C36F8 /* Info.plist */,
+				14D0131325F3AA74004C36F8 /* main.m */,
+				14D0131525F3AA74004C36F8 /* macos_libpinyin.entitlements */,
+			);
+			path = "macos-libpinyin";
+			sourceTree = "<group>";
+		};
+		14D0131C25F3AAC1004C36F8 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				14D0131D25F3AAC1004C36F8 /* libcrypto.a */,
+				14D0131E25F3AAC1004C36F8 /* libpinyin.a */,
+				14D0131F25F3AAC1004C36F8 /* libglib-2.0.a */,
+				14D0132025F3AAC1004C36F8 /* libssl.a */,
+				14D0132125F3AAC1004C36F8 /* libintl.a */,
+				14D0132225F3AAC1004C36F8 /* libdb.a */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		14D0132325F3AAC1004C36F8 /* data */ = {
+			isa = PBXGroup;
+			children = (
+				14D0132425F3AAC1004C36F8 /* gb_char.bin */,
+				14D0132525F3AAC1004C36F8 /* life.bin */,
+				14D0132625F3AAC1004C36F8 /* phrase_index.bin */,
+				14D0132725F3AAC1004C36F8 /* sport.bin */,
+				14D0132825F3AAC1004C36F8 /* geology.bin */,
+				14D0132925F3AAC1004C36F8 /* pinyin_index.bin */,
+				14D0132A25F3AAC1004C36F8 /* science.bin */,
+				14D0132B25F3AAC1004C36F8 /* merged.bin */,
+				14D0132C25F3AAC1004C36F8 /* addon_pinyin_index.bin */,
+				14D0132D25F3AAC1004C36F8 /* art.bin */,
+				14D0132E25F3AAC1004C36F8 /* economy.bin */,
+				14D0132F25F3AAC1004C36F8 /* people.bin */,
+				14D0133025F3AAC1004C36F8 /* opengram.bin */,
+				14D0133125F3AAC1004C36F8 /* culture.bin */,
+				14D0133225F3AAC1004C36F8 /* history.bin */,
+				14D0133325F3AAC1004C36F8 /* technology.bin */,
+				14D0133425F3AAC1004C36F8 /* bigram.db */,
+				14D0133525F3AAC1004C36F8 /* table.conf */,
+				14D0133625F3AAC1004C36F8 /* addon_phrase_index.bin */,
+				14D0133725F3AAC1004C36F8 /* gbk_char.bin */,
+				14D0133825F3AAC1004C36F8 /* society.bin */,
+				14D0133925F3AAC1004C36F8 /* nature.bin */,
+			);
+			path = data;
+			sourceTree = "<group>";
+		};
+		14D0135725F3AADA004C36F8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				14D0135D25F3AAE8004C36F8 /* libiconv.tbd */,
+				14D0135925F3AADA004C36F8 /* libc.tbd */,
+				14D0135825F3AADA004C36F8 /* libc++.tbd */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		14D0130625F3AA73004C36F8 /* macos-libpinyin */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 14D0131825F3AA74004C36F8 /* Build configuration list for PBXNativeTarget "macos-libpinyin" */;
+			buildPhases = (
+				14D0130325F3AA73004C36F8 /* Sources */,
+				14D0130425F3AA73004C36F8 /* Frameworks */,
+				14D0130525F3AA73004C36F8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "macos-libpinyin";
+			productName = "macos-libpinyin";
+			productReference = 14D0130725F3AA73004C36F8 /* macos-libpinyin.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		14D012FF25F3AA73004C36F8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1240;
+				TargetAttributes = {
+					14D0130625F3AA73004C36F8 = {
+						CreatedOnToolsVersion = 12.4;
+					};
+				};
+			};
+			buildConfigurationList = 14D0130225F3AA73004C36F8 /* Build configuration list for PBXProject "macos-libpinyin" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 14D012FE25F3AA73004C36F8;
+			productRefGroup = 14D0130825F3AA73004C36F8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				14D0130625F3AA73004C36F8 /* macos-libpinyin */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		14D0130525F3AA73004C36F8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14D0135525F3AAC1004C36F8 /* nature.bin in Resources */,
+				14D0134225F3AAC1004C36F8 /* phrase_index.bin in Resources */,
+				14D0134825F3AAC1004C36F8 /* addon_pinyin_index.bin in Resources */,
+				14D0134B25F3AAC1004C36F8 /* people.bin in Resources */,
+				14D0134625F3AAC1004C36F8 /* science.bin in Resources */,
+				14D0134425F3AAC1004C36F8 /* geology.bin in Resources */,
+				14D0134F25F3AAC1004C36F8 /* technology.bin in Resources */,
+				14D0135325F3AAC1004C36F8 /* gbk_char.bin in Resources */,
+				14D0134A25F3AAC1004C36F8 /* economy.bin in Resources */,
+				14D0134D25F3AAC1004C36F8 /* culture.bin in Resources */,
+				14D0130E25F3AA74004C36F8 /* Assets.xcassets in Resources */,
+				14D0131125F3AA74004C36F8 /* MainMenu.xib in Resources */,
+				14D0135125F3AAC1004C36F8 /* table.conf in Resources */,
+				14D0134725F3AAC1004C36F8 /* merged.bin in Resources */,
+				14D0135225F3AAC1004C36F8 /* addon_phrase_index.bin in Resources */,
+				14D0134E25F3AAC1004C36F8 /* history.bin in Resources */,
+				14D0134025F3AAC1004C36F8 /* gb_char.bin in Resources */,
+				14D0135025F3AAC1004C36F8 /* bigram.db in Resources */,
+				14D0134525F3AAC1004C36F8 /* pinyin_index.bin in Resources */,
+				14D0134925F3AAC1004C36F8 /* art.bin in Resources */,
+				14D0135425F3AAC1004C36F8 /* society.bin in Resources */,
+				14D0134C25F3AAC1004C36F8 /* opengram.bin in Resources */,
+				14D0134325F3AAC1004C36F8 /* sport.bin in Resources */,
+				14D0134125F3AAC1004C36F8 /* life.bin in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		14D0130325F3AA73004C36F8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14D0131425F3AA74004C36F8 /* main.m in Sources */,
+				14D0130C25F3AA73004C36F8 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		14D0130F25F3AA74004C36F8 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				14D0131025F3AA74004C36F8 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		14D0131625F3AA74004C36F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		14D0131725F3AA74004C36F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		14D0131925F3AA74004C36F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "macos-libpinyin/macos_libpinyin.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = GMJNW6P6DV;
+				ENABLE_HARDENED_RUNTIME = YES;
+				HEADER_SEARCH_PATHS = "/opt/homebrew/Cellar/libpinyin/2.6.0/include/libpinyin-without-glib";
+				INFOPLIST_FILE = "macos-libpinyin/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/lib",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "cc.inoki.inputmethod.macos-libpinyin";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		14D0131A25F3AA74004C36F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "macos-libpinyin/macos_libpinyin.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = GMJNW6P6DV;
+				ENABLE_HARDENED_RUNTIME = YES;
+				HEADER_SEARCH_PATHS = "/opt/homebrew/Cellar/libpinyin/2.6.0/include/libpinyin-without-glib";
+				INFOPLIST_FILE = "macos-libpinyin/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/lib",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "cc.inoki.inputmethod.macos-libpinyin";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		14D0130225F3AA73004C36F8 /* Build configuration list for PBXProject "macos-libpinyin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				14D0131625F3AA74004C36F8 /* Debug */,
+				14D0131725F3AA74004C36F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		14D0131825F3AA74004C36F8 /* Build configuration list for PBXNativeTarget "macos-libpinyin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				14D0131925F3AA74004C36F8 /* Debug */,
+				14D0131A25F3AA74004C36F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 14D012FF25F3AA73004C36F8 /* Project object */;
+}
