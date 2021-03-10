@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1412251025F8B3CB006D6BB2 /* LibpinyinConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1412250F25F8B3CB006D6BB2 /* LibpinyinConfig.m */; };
+		144009C825F8CD4B0023D072 /* LibpinyinFullPinyinEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 144009C725F8CD4B0023D072 /* LibpinyinFullPinyinEditor.m */; };
+		144009CC25F8D8C20023D072 /* LibpinyinProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 144009CB25F8D8C20023D072 /* LibpinyinProperties.m */; };
+		144009D025F8D96F0023D072 /* LibpinyinBackend.m in Sources */ = {isa = PBXBuildFile; fileRef = 144009CF25F8D96F0023D072 /* LibpinyinBackend.m */; };
 		14D0130C25F3AA73004C36F8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D0130B25F3AA73004C36F8 /* AppDelegate.m */; };
 		14D0130E25F3AA74004C36F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14D0130D25F3AA74004C36F8 /* Assets.xcassets */; };
 		14D0131125F3AA74004C36F8 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14D0130F25F3AA74004C36F8 /* MainMenu.xib */; };
@@ -45,6 +49,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1412250E25F8B3CB006D6BB2 /* LibpinyinConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LibpinyinConfig.h; sourceTree = "<group>"; };
+		1412250F25F8B3CB006D6BB2 /* LibpinyinConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LibpinyinConfig.m; sourceTree = "<group>"; };
+		1412251925F8C459006D6BB2 /* LibpinyinEditor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LibpinyinEditor.h; sourceTree = "<group>"; };
+		144009C625F8CD4B0023D072 /* LibpinyinFullPinyinEditor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LibpinyinFullPinyinEditor.h; sourceTree = "<group>"; };
+		144009C725F8CD4B0023D072 /* LibpinyinFullPinyinEditor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LibpinyinFullPinyinEditor.m; sourceTree = "<group>"; };
+		144009CA25F8D8C20023D072 /* LibpinyinProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LibpinyinProperties.h; sourceTree = "<group>"; };
+		144009CB25F8D8C20023D072 /* LibpinyinProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LibpinyinProperties.m; sourceTree = "<group>"; };
+		144009CE25F8D96F0023D072 /* LibpinyinBackend.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LibpinyinBackend.h; sourceTree = "<group>"; };
+		144009CF25F8D96F0023D072 /* LibpinyinBackend.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LibpinyinBackend.m; sourceTree = "<group>"; };
 		14D0130725F3AA73004C36F8 /* macos-libpinyin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "macos-libpinyin.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		14D0130A25F3AA73004C36F8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		14D0130B25F3AA73004C36F8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -135,6 +148,15 @@
 				14D0131225F3AA74004C36F8 /* Info.plist */,
 				14D0131325F3AA74004C36F8 /* main.m */,
 				14D0131525F3AA74004C36F8 /* macos_libpinyin.entitlements */,
+				1412250E25F8B3CB006D6BB2 /* LibpinyinConfig.h */,
+				1412250F25F8B3CB006D6BB2 /* LibpinyinConfig.m */,
+				1412251925F8C459006D6BB2 /* LibpinyinEditor.h */,
+				144009C625F8CD4B0023D072 /* LibpinyinFullPinyinEditor.h */,
+				144009C725F8CD4B0023D072 /* LibpinyinFullPinyinEditor.m */,
+				144009CA25F8D8C20023D072 /* LibpinyinProperties.h */,
+				144009CB25F8D8C20023D072 /* LibpinyinProperties.m */,
+				144009CE25F8D96F0023D072 /* LibpinyinBackend.h */,
+				144009CF25F8D96F0023D072 /* LibpinyinBackend.m */,
 			);
 			path = "macos-libpinyin";
 			sourceTree = "<group>";
@@ -282,7 +304,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				14D0131425F3AA74004C36F8 /* main.m in Sources */,
+				1412251025F8B3CB006D6BB2 /* LibpinyinConfig.m in Sources */,
+				144009D025F8D96F0023D072 /* LibpinyinBackend.m in Sources */,
+				144009C825F8CD4B0023D072 /* LibpinyinFullPinyinEditor.m in Sources */,
 				14D0130C25F3AA73004C36F8 /* AppDelegate.m in Sources */,
+				144009CC25F8D8C20023D072 /* LibpinyinProperties.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,11 +442,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_LINK_OBJC_RUNTIME = YES;
 				CODE_SIGN_ENTITLEMENTS = "macos-libpinyin/macos_libpinyin.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = GMJNW6P6DV;
 				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_MASTER_OBJECT_FILE = NO;
 				HEADER_SEARCH_PATHS = "/opt/homebrew/Cellar/libpinyin/2.6.0/include/libpinyin-without-glib";
 				INFOPLIST_FILE = "macos-libpinyin/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -431,6 +459,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib",
 				);
+				LINK_WITH_STANDARD_LIBRARIES = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "cc.inoki.inputmethod.macos-libpinyin";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -441,11 +470,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_LINK_OBJC_RUNTIME = YES;
 				CODE_SIGN_ENTITLEMENTS = "macos-libpinyin/macos_libpinyin.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = GMJNW6P6DV;
 				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_MASTER_OBJECT_FILE = NO;
 				HEADER_SEARCH_PATHS = "/opt/homebrew/Cellar/libpinyin/2.6.0/include/libpinyin-without-glib";
 				INFOPLIST_FILE = "macos-libpinyin/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -456,6 +487,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib",
 				);
+				LINK_WITH_STANDARD_LIBRARIES = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "cc.inoki.inputmethod.macos-libpinyin";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
