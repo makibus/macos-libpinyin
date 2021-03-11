@@ -24,4 +24,10 @@
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
 }
 
+
++ (instancetype)getDelegate
+{
+    return (AppDelegate *)[NSApp delegate];
+}
+
 @end

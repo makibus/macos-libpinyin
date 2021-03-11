@@ -9,6 +9,7 @@
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
++ (instancetype)getDelegate;
 
 @end
 
