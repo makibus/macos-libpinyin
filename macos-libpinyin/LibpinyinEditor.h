@@ -22,6 +22,8 @@
 - (void)reset;
 - (void)candidateClickedAt: (int)index withButton:(int) button andState:(int)state;
 
+- (void)refresh:(id)client;
+
 @end
 
 #define MAX_PINYIN_LEN 64
