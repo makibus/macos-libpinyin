@@ -40,7 +40,7 @@
             keyCode = [event keyCode];
             keyValue = [[event characters] UTF8String][0];  // TODO: use unmodified?
             handled = [_fullpinyinEditor processKeyEventWithKeyValue:keyValue keyCode:keyCode modifiers:0];
-            [_fullpinyinEditor refresh:sender];
+            [_fullpinyinEditor refresh:sender underController:self];
             break;
         default:
             break;

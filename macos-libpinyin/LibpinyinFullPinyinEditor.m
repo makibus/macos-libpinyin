@@ -96,6 +96,7 @@
     NSUInteger m_pinyin_len;
     // (LookupTable)m_lookup_table;
     // (String)m_buffer;
+    NSMutableString *m_preeditText;
 
     NSMutableArray *m_candidates;
 
@@ -105,6 +106,7 @@
     pinyin_instance_t *m_instance;
 
     BOOL m_shouldShowLookupTable;
+    BOOL m_shouldPreeditText;
 }
 
 - (id)initWithProperties:(LibpinyinProperties *) props andConfig:(LibpinyinConfig *) config {
@@ -112,7 +114,9 @@
     m_text = [[NSMutableString alloc] init];
     m_buffer = [[NSMutableString alloc] init];
     m_candidates = [[NSMutableArray alloc] init];
+    m_preeditText = [[NSMutableString alloc] init];
     m_shouldShowLookupTable = NO;
+    m_shouldPreeditText = NO;
     return self;
 }
 
@@ -227,10 +231,12 @@
         // TODO
     }
 
-    char* auxText = NULL;
+    char *auxText = NULL;
     pinyin_get_full_pinyin_auxiliary_text (m_instance, m_cursor, &auxText);
     NSString *text = [NSString stringWithFormat:@"%@%@", [NSString stringWithUTF8String:auxText], [m_text substringFromIndex:m_pinyin_len]];
+    [m_buffer setString:text];
     NSLog(@"Aux text: %@", text);
+    // Manually free it because it is derived from libpinyin
     free(auxText);
 
     // TODO
@@ -410,7 +416,35 @@
 }
 
 - (void)updatePreeditText {
-    // TODO
+    // TODO: unfinished
+    guint num = 0;
+    pinyin_get_n_candidate (m_instance, &num);
+    /* preedit text = guessed sentence + un-parsed pinyin text */
+    if ([m_text length] == 0 || 0 == num) {
+        m_shouldPreeditText = NO;
+        return;
+    }
+
+    /* probe nbest match candidate */
+    lookup_candidate_type_t type;
+    lookup_candidate_t * candidate = NULL;
+    pinyin_get_candidate (m_instance, 0, &candidate);
+    pinyin_get_candidate_type (m_instance, candidate, &type);
+
+    if (NBEST_MATCH_CANDIDATE == type) {
+        gchar * sentence = NULL;
+        pinyin_get_sentence (m_instance, 0, &sentence);
+        if (sentence != NULL) {
+            NSString *text = [NSString stringWithFormat:@"%@%@", [NSString stringWithUTF8String:sentence], [m_text substringFromIndex:m_pinyin_len]];
+            NSLog(@"Preedit text: %@", text);
+            [m_preeditText setString:text];
+            free(sentence);
+            m_shouldPreeditText = YES;
+            return;
+        }
+    }
+
+    m_shouldPreeditText = NO;
 }
 
 - (void)updateLookupTableFast {
@@ -421,8 +455,26 @@
     // TODO
 }
 
-- (void)refresh:(id)client {
-    // TODO
+- (void)refresh:(id)client underController:(MacOSLibpinyinController *)controller {
+//    if ([m_buffer length] > 0) {
+//        // Show auxiliray text
+//        NSDictionary *attrs = [controller markForStyle:kTSMHiliteSelectedRawText atRange:NSMakeRange(0, [m_buffer length])];
+//        NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:m_buffer attributes:attrs];
+//        // NSRange caretRange = [m_buffer rangeOfString:@"|"];
+//    }
+    if ([m_preeditText length] > 0 && m_shouldPreeditText) {
+        NSDictionary *preeditAttrs = [controller markForStyle:kTSMHiliteSelectedRawText atRange:NSMakeRange(0, [m_preeditText length])];
+        NSAttributedString *preeditAttrString = [[NSAttributedString alloc] initWithString:m_preeditText attributes:preeditAttrs];
+        [client setMarkedText:preeditAttrString
+                selectionRange:NSMakeRange([m_preeditText length], 0)
+                replacementRange:NSMakeRange(NSNotFound, NSNotFound)];
+    } else {
+        NSDictionary *pinyinAttrs = [controller markForStyle:kTSMHiliteSelectedRawText atRange:NSMakeRange(0, [m_text length])];
+        NSAttributedString *pinyinAttrString = [[NSAttributedString alloc] initWithString:m_text attributes:pinyinAttrs];
+        [client setMarkedText:pinyinAttrString
+                selectionRange:NSMakeRange([m_text length], 0)
+                replacementRange:NSMakeRange(NSNotFound, NSNotFound)];
+    }
 }
 
 - (NSUInteger)getPinyinCursor {

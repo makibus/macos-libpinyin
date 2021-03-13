@@ -9,6 +9,7 @@
 
 #import "LibpinyinProperties.h"
 #import "LibpinyinConfig.h"
+#import "MacOSLibpinyinController.h"
 
 
 @protocol EditorProtocol <NSObject>
@@ -22,7 +23,7 @@
 - (void)reset;
 - (void)candidateClickedAt: (int)index withButton:(int) button andState:(int)state;
 
-- (void)refresh:(id)client;
+- (void)refresh:(id)client underController:(MacOSLibpinyinController *)conrtoller;
 
 @end
 
