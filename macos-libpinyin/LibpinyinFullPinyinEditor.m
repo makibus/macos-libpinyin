@@ -389,8 +389,8 @@
             case kVK_Delete:
                 // Backspace: remove the char before
                 NSLog(@"Delete pressed");
-                [self removeCharBefore];
-                return YES;
+                // Return a false if no character, let the OS deal with the event
+                return [self removeCharBefore];
             case kVK_ForwardDelete:
                 // Delete: remove the char after
                 NSLog(@"Forward Delete pressed");
@@ -522,7 +522,7 @@
 
     [self updatePinyin];
     [self update];
-    return TRUE;
+    return YES;
 }
 
 - (BOOL)removeCharAfter {
