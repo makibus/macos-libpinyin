@@ -38,7 +38,7 @@
 - (void)updateLookupTableFast;
 - (BOOL)updateCandidates;
 - (BOOL)fillLookupTable;
-- (void)commit:(const char *)str;
+- (void)commit:(NSString *)str;
 
 /* Protected methods from PhoneticEditor */
 - (int)selectCandidateInternal; // (EnhancedCandidate & candidate);

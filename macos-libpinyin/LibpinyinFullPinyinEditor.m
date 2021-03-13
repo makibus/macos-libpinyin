@@ -97,6 +97,7 @@
     // (LookupTable)m_lookup_table;
     // (String)m_buffer;
     NSMutableString *m_preeditText;
+    NSMutableString *m_commitString;
 
     NSMutableArray *m_candidates;
 
@@ -107,6 +108,7 @@
 
     BOOL m_shouldShowLookupTable;
     BOOL m_shouldPreeditText;
+    BOOL m_shouldCommitString;
 }
 
 - (id)initWithProperties:(LibpinyinProperties *) props andConfig:(LibpinyinConfig *) config {
@@ -115,8 +117,10 @@
     m_buffer = [[NSMutableString alloc] init];
     m_candidates = [[NSMutableArray alloc] init];
     m_preeditText = [[NSMutableString alloc] init];
+    m_commitString = [[NSMutableString alloc] init];
     m_shouldShowLookupTable = NO;
     m_shouldPreeditText = NO;
+    m_shouldCommitString = NO;
     return self;
 }
 
@@ -358,6 +362,21 @@
 }
 
 - (BOOL)processSpaceWithKeyValue:(int)keyval keyCode:(int)keycode modifiers:(int)modifiers {
+    if ([m_text length] == 0) {
+        // Do nothing
+        return NO;
+    }
+
+    // TODO: detect modifiers
+
+    if ([m_candidates count] != 0) {
+        // TODO: commit the current candidate
+        [self commit:@"TODO"];
+    } else {
+        // Commit the raw input
+        [self commit:m_text];
+    }
+
     return YES;
 }
 
@@ -451,8 +470,9 @@
     // TODO
 }
 
-- (void)commit:(const char *)str {
-    // TODO
+- (void)commit:(NSString *)str {
+    [m_commitString setString:str];
+    m_shouldCommitString = YES;
 }
 
 - (void)refresh:(id)client underController:(MacOSLibpinyinController *)controller {
@@ -462,6 +482,15 @@
 //        NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:m_buffer attributes:attrs];
 //        // NSRange caretRange = [m_buffer rangeOfString:@"|"];
 //    }
+    if ([m_commitString length] > 0 && m_shouldCommitString) {
+        m_shouldCommitString = NO;
+        [client insertText:m_commitString replacementRange:NSMakeRange(NSNotFound, NSNotFound)];
+        [[AppDelegate getDelegate].candiWin hideCandidates];
+        [m_commitString setString:@""];
+        [self reset];
+        return;
+    }
+
     if ([m_preeditText length] > 0 && m_shouldPreeditText) {
         NSDictionary *preeditAttrs = [controller markForStyle:kTSMHiliteSelectedRawText atRange:NSMakeRange(0, [m_preeditText length])];
         NSAttributedString *preeditAttrString = [[NSAttributedString alloc] initWithString:m_preeditText attributes:preeditAttrs];
@@ -512,6 +541,20 @@
 
 - (void)hideLookupTable {
     m_shouldShowLookupTable = NO;
+}
+
+- (void)reset {
+    m_pinyin_len = 0;
+    [m_text setString:@""];
+    [m_preeditText setString:@""];
+    [m_buffer setString:@""];
+    [m_candidates removeAllObjects];
+    
+    m_shouldPreeditText = NO;
+    m_shouldCommitString = NO;
+    m_shouldShowLookupTable = NO;
+    
+    pinyin_reset (m_instance);
 }
 
 @end
