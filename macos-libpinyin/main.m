@@ -8,6 +8,7 @@
 #import <Cocoa/Cocoa.h>
 #import <InputMethodKit/InputMethodKit.h>
 #import "MacOSLibpinyinController.h"
+#import "LibpinyinConfig.h"
 
 
 NSString  *libpinyinConnectionName = @"MacOS_Libpinyin_Connection";
@@ -18,6 +19,9 @@ int main(int argc, const char * argv[]) {
     @autoreleasepool {
         // Setup code that might create autoreleased objects goes here.
         NSUserDefaults *pref = [NSUserDefaults standardUserDefaults];
+
+        // Pre-init libpinyin config
+        [LibpinyinConfig sharedConfig];
 
         NSLog(@"Init Controller");
 
