@@ -514,6 +514,80 @@
     return TRUE;
 }
 
+- (void)commitEmpty {
+    m_shouldCommitString = YES;
+}
+
+- (NSUInteger)getCursorLeftByWord {
+    // TODO
+    return 0;
+}
+
+- (NSUInteger)getCursorRightByWord {
+    // TODO
+    return 0;
+}
+
+- (BOOL)moveCursorLeft {
+    // TODO
+    return NO;
+}
+
+- (BOOL)moveCursorLeftByWord {
+    // TODO
+    return NO;
+}
+
+- (BOOL)moveCursorRight {
+    // TODO
+    return NO;
+}
+
+- (BOOL)moveCursorRightByWord {
+    // TODO
+    return NO;
+}
+
+- (BOOL)moveCursorToBegin {
+    // TODO
+    return NO;
+}
+
+- (BOOL)moveCursorToEnd {
+    // TODO
+    return NO;
+}
+
+- (BOOL)removeCandidateInternal {
+    // TODO
+    return NO;
+}
+
+- (BOOL)removeWordAfter {
+    // TODO
+    return NO;
+}
+
+- (BOOL)removeWordBefore {
+    // TODO
+    return NO;
+}
+
+- (BOOL)selectCandidate:(NSUInteger)i {
+    // TODO
+    return NO;
+}
+
+- (BOOL)selectCandidateInPage:(NSUInteger)i {
+    // TODO
+    return NO;
+}
+
+- (int)selectCandidateInternal {
+    // TODO
+    return 0;
+}
+
 - (void)showLookupTable {
     m_shouldShowLookupTable = YES;
 }
@@ -535,6 +609,26 @@
     m_shouldShowLookupTable = NO;
     
     pinyin_reset (m_instance);
+}
+
+- (void)candidateClickedAt:(int)index withButton:(int)button andState:(int)state {
+    // TODO
+}
+
+- (void)cursorDown {
+    // TODO
+}
+
+- (void)cursorUp {
+    // TODO
+}
+
+- (void)pageDown {
+    // TODO
+}
+
+- (void)pageUp {
+    // TODO
 }
 
 @end
