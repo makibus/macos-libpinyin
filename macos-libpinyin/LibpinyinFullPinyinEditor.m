@@ -36,6 +36,7 @@
 
 - (void)clear {
     m_size = 0;
+    m_pos = 0;
 }
 
 - (void)setPageSize:(NSUInteger)size {
@@ -88,6 +89,10 @@
     if (m_pos < m_size) {
         m_pos += 1;
     }
+}
+
+- (void)setSize:(NSUInteger) size {
+    m_size = size;
 }
 
 @end
@@ -176,7 +181,7 @@
 }
 
 - (void)updateLookupTable {
-    // TODO: clear the old lookup table
+    [m_lookupTable clear];
     [m_candidates removeAllObjects];
     [self updateCandidates];
     [self fillLookupTable];
@@ -196,7 +201,7 @@
 
     NSLog(@"%@ has %d candidates\n", m_text, number);
 
-    for (uint i = 0; i < 5 && i < number; ++i)
+    for (uint i = 0; i < number; ++i)
     {
         lookup_candidate_t * candidate;
         pinyin_get_candidate (m_instance, i, &candidate);
@@ -211,6 +216,7 @@
 }
 
 - (BOOL)fillLookupTable {
+    [m_lookupTable setSize:[m_candidates count]];
     return YES;
 }
 
@@ -265,6 +271,7 @@
     switch (keyval) {
         case '0' ... '9':
             i = (keyval >= '1' ? keyval - '1' : 9);
+            [self selectCandidateInPage:i];
             break;
         default:
             break;
@@ -347,8 +354,9 @@
     // TODO: detect modifiers
 
     if ([m_candidates count] != 0) {
-        // TODO: commit the current candidate
-        [self commit:@"TODO"];
+        // Commit the current candidate
+        [self selectCandidate:[m_lookupTable cursorPos]];
+        // TODO: update to check the rest of pinyin
     } else {
         // Commit the raw input
         [self commit:m_text];
@@ -362,7 +370,12 @@
         switch (keycode) {
             case kVK_Return:
                 // Enter: commit raw input
-                return YES;
+                if ([m_text length] > 0) {
+                    [self commit:m_text];
+                    return YES;
+                }
+                // Not yet input, let the OS deal with it
+                return NO;
             case kVK_Delete:
                 // Backspace: remove the char before
                 NSLog(@"Delete pressed");
@@ -381,9 +394,19 @@
             case kVK_RightArrow:
                 return YES;
             case kVK_PageUp:
-                return YES;
+                if ([m_candidates count] > 0) {
+                    [self pageUp];
+                    return YES;
+                }
+                // Not yet candidate, let the OS deal with it
+                return NO;
             case kVK_PageDown:
-                return YES;
+                if ([m_candidates count] > 0) {
+                    [self pageDown];
+                    return YES;
+                }
+                // Not yet candidate, let the OS deal with it
+                return NO;
             case kVK_Escape:
                 return YES;
             default:
@@ -574,6 +597,9 @@
     if (i >= [m_candidates count]) {
         return NO;
     }
+
+    // TODO: update to check the rest of pinyin
+    // https://github.com/libpinyin/ibus-libpinyin/blob/330ba5b289eec7670aa82244ed9064d8bc6d537b/src/PYPLibPinyinCandidates.cc#L79
 
     [self commit:m_candidates[i]];
 
