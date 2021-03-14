@@ -9,6 +9,7 @@
 
 #import "LibpinyinProperties.h"
 #import "LibpinyinConfig.h"
+#import "MacOSLibpinyinController.h"
 
 
 @protocol EditorProtocol <NSObject>
@@ -21,6 +22,8 @@
 - (void)update;
 - (void)reset;
 - (void)candidateClickedAt: (int)index withButton:(int) button andState:(int)state;
+
+- (void)refresh:(id)client underController:(MacOSLibpinyinController *)conrtoller;
 
 @end
 
@@ -35,7 +38,7 @@
 - (void)updateLookupTableFast;
 - (BOOL)updateCandidates;
 - (BOOL)fillLookupTable;
-- (void)commit:(const char *)str;
+- (void)commit:(NSString *)str;
 
 /* Protected methods from PhoneticEditor */
 - (int)selectCandidateInternal; // (EnhancedCandidate & candidate);
@@ -70,5 +73,21 @@
 - (BOOL)processPinyinWithKeyValue:(int)keyval keyCode:(int)keycode modifiers:(int)modifiers;
 - (BOOL)processNumberWithKeyValue:(int)keyval keyCode:(int)keycode modifiers:(int)modifiers;
 - (BOOL)processPunctWithKeyValue:(int)keyval keyCode:(int)keycode modifiers:(int)modifiers;
+
+@end
+
+@protocol LookupTableProtocol <NSObject>
+
+- (void)setPageSize:(NSUInteger)size;
+- (void)setCursorPos:(NSUInteger)pos;
+- (NSUInteger)pageSize;
+- (NSUInteger)cursorPos;
+- (NSUInteger)size;
+
+- (void)clear;
+- (void)pageUp;
+- (void)pageDown;
+- (void)cursorUp;
+- (void)cursorDown;
 
 @end
