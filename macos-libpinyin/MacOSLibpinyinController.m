@@ -7,6 +7,7 @@
 
 #import "MacOSLibpinyinController.h"
 #import "LibpinyinFullPinyinEditor.h"
+#import "AppDelegate.h"
 
 @implementation MacOSLibpinyinController {
     LibpinyinFullPinyinEditor *_fullpinyinEditor;
@@ -75,6 +76,15 @@
 - (void)createFullpinyinEditor {
     // LibpinyinFullPinyinEditor
     _fullpinyinEditor = [[LibpinyinFullPinyinEditor alloc] initWithProperties:[[LibpinyinProperties alloc] init] andConfig:[[LibpinyinConfig alloc] init]];
+}
+
+- (NSMenu *)menu {
+    return [AppDelegate getDelegate].menu;
+}
+
+- (IBAction)showPreferences:(id)sender {
+    // Passthrough to AppDelegate
+    return [[AppDelegate getDelegate] showPreferences:sender];
 }
 
 @end

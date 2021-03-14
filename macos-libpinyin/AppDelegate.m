@@ -30,4 +30,8 @@
     return (AppDelegate *)[NSApp delegate];
 }
 
+- (IBAction)showPreferences:(id)sender {
+    NSLog(@"Show preference is called");
+    [_window makeKeyAndOrderFront:sender];
+}
 @end
