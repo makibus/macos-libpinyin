@@ -75,3 +75,19 @@
 - (BOOL)processPunctWithKeyValue:(int)keyval keyCode:(int)keycode modifiers:(int)modifiers;
 
 @end
+
+@protocol LookupTableProtocol <NSObject>
+
+- (void)setPageSize:(NSUInteger)size;
+- (void)setCursorPos:(NSUInteger)pos;
+- (NSUInteger)pageSize;
+- (NSUInteger)cursorPos;
+- (NSUInteger)size;
+
+- (void)clear;
+- (void)pageUp;
+- (void)pageDown;
+- (void)cursorUp;
+- (void)cursorDown;
+
+@end

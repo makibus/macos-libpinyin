@@ -16,32 +16,26 @@
 #import <AppKit/NSEvent.h>
 #import <Carbon/Carbon.h>
 
-
-@interface LookupTable : NSObject {
-    NSMutableArray *m_candidates;
+@interface LookupTable : NSObject<LookupTableProtocol> {
+    NSUInteger m_size;
     NSUInteger m_pageSize;
     NSUInteger m_pos;
+    NSUInteger m_cursor;
+    NSUInteger m_pageNumber;
 }
-
-- (void)setPageSize:(NSUInteger)size;
-- (void)setCursorPos:(NSUInteger)pos;
-- (NSUInteger)pageSize;
-- (NSUInteger)cursorPos;
-- (NSUInteger)size;
-
-- (void)clear;
-- (void)pageUp;
-- (void)pageDown;
-- (void)cursorUp;
-- (void)cursorDown;
-- (void)appendCandidate:(NSString *)candidate;
-- (NSString *)getCandidate:(NSUInteger)index;
 @end
 
 @implementation LookupTable
 
+- (id)initWithPageSize:(NSUInteger)size {
+    m_pageSize = size;
+    m_pos = 0;
+
+    return self;
+}
+
 - (void)clear {
-    [m_candidates removeAllObjects];
+    m_size = 0;
 }
 
 - (void)setPageSize:(NSUInteger)size {
@@ -61,31 +55,39 @@
 }
 
 - (NSUInteger)size {
-    return [m_candidates count];
+    return m_size;
 }
 
 - (void)pageUp {
-    // TODO
+    if (m_pos >= m_pageSize) {
+        m_pos -= m_pageSize;
+    }
+    if (m_pos >= m_size) {
+        // Normalize position
+        m_pos = MAX(m_size, 1) - 1;
+    }
 }
 
 - (void)pageDown {
-    // TODO
+    if (m_pos < m_size) {
+        m_pos += m_pageSize;
+    }
 }
 
 - (void)cursorUp {
-    // TODO
+    if (m_pos >= m_pageSize) {
+        m_pos -= 1;
+    }
+    if (m_pos >= m_size) {
+        // Normalize position
+        m_pos = MAX(m_size, 1) - 1;
+    }
 }
 
 - (void)cursorDown {
-    // TODO
-}
-
-- (void)appendCandidate:(NSString *)candidate {
-    [m_candidates addObject:candidate];
-}
-
-- (NSString *)getCandidate:(NSUInteger)index {
-    return [m_candidates objectAtIndex:index];
+    if (m_pos < m_size) {
+        m_pos += 1;
+    }
 }
 
 @end
@@ -94,8 +96,9 @@
     NSMutableString *m_buffer;
     NSMutableString *m_text;
     NSUInteger m_pinyin_len;
-    // (LookupTable)m_lookup_table;
-    // (String)m_buffer;
+
+    LookupTable *m_lookupTable;
+
     NSMutableString *m_preeditText;
     NSMutableString *m_commitString;
 
@@ -121,6 +124,9 @@
     m_shouldShowLookupTable = NO;
     m_shouldPreeditText = NO;
     m_shouldCommitString = NO;
+
+    m_lookupTable = [[LookupTable alloc] initWithPageSize:10];
+
     return self;
 }
 
@@ -474,15 +480,6 @@
                 selectionRange:NSMakeRange([m_text length], 0)
                 replacementRange:NSMakeRange(NSNotFound, NSNotFound)];
     }
-
-    if ([m_candidates count] > 0 && m_shouldShowLookupTable) {
-        NSRect cursorRect;
-        [client attributesForCharacterIndex:0 lineHeightRectangle:&cursorRect];
-        [[AppDelegate getDelegate].candiWin showCandidates:m_candidates
-                                                    around:cursorRect];
-    } else {
-        [[AppDelegate getDelegate].candiWin hideCandidates];
-    }
 }
 
 - (NSUInteger)getPinyinCursor {
@@ -574,13 +571,23 @@
 }
 
 - (BOOL)selectCandidate:(NSUInteger)i {
-    // TODO
-    return NO;
+    if (i >= [m_candidates count]) {
+        return NO;
+    }
+
+    [self commit:m_candidates[i]];
+
+    return YES;
 }
 
 - (BOOL)selectCandidateInPage:(NSUInteger)i {
-    // TODO
-    return NO;
+    NSUInteger pageSize = [m_lookupTable pageSize];
+    NSUInteger pos = [m_lookupTable cursorPos];
+    if (i >= pageSize) {
+        return NO;
+    }
+    i += (pos / pageSize) * pageSize;   // Offset some pages
+    return [self selectCandidate:i];
 }
 
 - (int)selectCandidateInternal {
@@ -603,6 +610,7 @@
     [m_preeditText setString:@""];
     [m_buffer setString:@""];
     [m_candidates removeAllObjects];
+    [m_lookupTable clear];
     
     m_shouldPreeditText = NO;
     m_shouldCommitString = NO;
@@ -616,19 +624,19 @@
 }
 
 - (void)cursorDown {
-    // TODO
+    [m_lookupTable cursorDown];
 }
 
 - (void)cursorUp {
-    // TODO
+    [m_lookupTable cursorUp];
 }
 
 - (void)pageDown {
-    // TODO
+    [m_lookupTable pageDown];
 }
 
 - (void)pageUp {
-    // TODO
+    [m_lookupTable pageUp];
 }
 
 @end
