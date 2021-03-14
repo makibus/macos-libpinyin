@@ -545,6 +545,7 @@
 
 - (void)reset {
     m_pinyin_len = 0;
+    m_cursor = 0;
     [m_text setString:@""];
     [m_preeditText setString:@""];
     [m_buffer setString:@""];
