@@ -232,7 +232,8 @@
 
 - (void)updateAuxiliaryText {
     if ([m_text length] == 0) {
-        // TODO
+        // Do nothing
+        return;
     }
 
     char *auxText = NULL;
@@ -242,36 +243,6 @@
     NSLog(@"Aux text: %@", text);
     // Manually free it because it is derived from libpinyin
     free(auxText);
-
-    // TODO
-    /*
-    if (G_UNLIKELY (m_text.empty ())) {
-        if (DISPLAY_STYLE_TRADITIONAL == m_config.displayStyle () ||
-            DISPLAY_STYLE_COMPATIBILITY == m_config.displayStyle ())
-            hideAuxiliaryText ();
-        if (DISPLAY_STYLE_COMPACT == m_config.displayStyle ())
-            hidePreeditText ();
-        return;
-    }
-
-    m_buffer.clear ();
-
-    gchar * aux_text = NULL;
-    pinyin_get_full_pinyin_auxiliary_text (m_instance, m_cursor, &aux_text);
-    m_buffer << aux_text;
-    g_free(aux_text);
-
-    // append rest text
-    const gchar * p = m_text.c_str() + m_pinyin_len;
-    m_buffer << p;
-
-    StaticText text (m_buffer);
-    if (DISPLAY_STYLE_TRADITIONAL == m_config.displayStyle () ||
-        DISPLAY_STYLE_COMPATIBILITY == m_config.displayStyle ())
-        Editor::updateAuxiliaryText (text, TRUE);
-    if (DISPLAY_STYLE_COMPACT == m_config.displayStyle ())
-        Editor::updatePreeditText (text, 0, TRUE);
-    */
 }
 
 // https://github.com/epico/ibus-libpinyin/blob/master/src/PYPPinyinEditor.cc
@@ -435,7 +406,6 @@
 }
 
 - (void)updatePreeditText {
-    // TODO: unfinished
     guint num = 0;
     pinyin_get_n_candidate (m_instance, &num);
     /* preedit text = guessed sentence + un-parsed pinyin text */
@@ -503,6 +473,15 @@
         [client setMarkedText:pinyinAttrString
                 selectionRange:NSMakeRange([m_text length], 0)
                 replacementRange:NSMakeRange(NSNotFound, NSNotFound)];
+    }
+
+    if ([m_candidates count] > 0 && m_shouldShowLookupTable) {
+        NSRect cursorRect;
+        [client attributesForCharacterIndex:0 lineHeightRectangle:&cursorRect];
+        [[AppDelegate getDelegate].candiWin showCandidates:m_candidates
+                                                    around:cursorRect];
+    } else {
+        [[AppDelegate getDelegate].candiWin hideCandidates];
     }
 }
 
