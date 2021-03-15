@@ -30,7 +30,11 @@
 }
 
 - (void)reset {
-    // TODO: get value from config
+    // Get values from config
+    m_mode_chinese = [m_config initChinese];
+    m_mode_simp = [m_config initSimpChinese];
+    m_mode_full = [m_config initFull];
+    m_mode_full_punct = [m_config initFullPunct];
 }
 
 - (BOOL)modeChinese { return m_mode_chinese; }
@@ -41,7 +45,8 @@
 - (id)initWithConfig:(LibpinyinConfig *)config {
     m_config = config;
 
-    // TODO: get values from config
+    // Get values from config
+    [self reset];
 
     return self;
 }
