@@ -685,6 +685,138 @@
                                 <view key="view" id="KWt-a1-h2I">
                                     <rect key="frame" x="10" y="33" width="460" height="314"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="29w-YP-IOr">
+                                            <rect key="frame" x="13" y="30" width="151" height="276"/>
+                                            <subviews>
+                                                <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Rm-g6-MZg">
+                                                    <rect key="frame" x="0.0" y="0.0" width="151" height="276"/>
+                                                    <subviews>
+                                                        <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="132" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IeK-vp-FcM">
+                                                            <rect key="frame" x="0.0" y="260" width="151" height="16"/>
+                                                            <subviews>
+                                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="r4Q-HE-gkT">
+                                                                    <rect key="frame" x="-2" y="-1" width="153" height="18"/>
+                                                                    <buttonCell key="cell" type="check" title="Enable fuzzy syllable" bezelStyle="regularSquare" imagePosition="left" inset="2" id="ZqF-98-4b9">
+                                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                                        <font key="font" metaFont="system"/>
+                                                                    </buttonCell>
+                                                                </button>
+                                                            </subviews>
+                                                            <visibilityPriorities>
+                                                                <integer value="1000"/>
+                                                            </visibilityPriorities>
+                                                            <customSpacing>
+                                                                <real value="3.4028234663852886e+38"/>
+                                                            </customSpacing>
+                                                        </stackView>
+                                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lV2-N7-wWY">
+                                                            <rect key="frame" x="-2" y="233" width="80" height="18"/>
+                                                            <buttonCell key="cell" type="check" title="c &lt;=&gt; ch" bezelStyle="regularSquare" imagePosition="left" enabled="NO" state="on" inset="2" id="gBd-sC-z0y">
+                                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                                <font key="font" metaFont="system"/>
+                                                            </buttonCell>
+                                                        </button>
+                                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5ht-s7-Cxg">
+                                                            <rect key="frame" x="-2" y="207" width="79" height="18"/>
+                                                            <buttonCell key="cell" type="check" title="z &lt;=&gt; zh" bezelStyle="regularSquare" imagePosition="left" enabled="NO" state="on" inset="2" id="L8m-49-5mq">
+                                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                                <font key="font" metaFont="system"/>
+                                                            </buttonCell>
+                                                        </button>
+                                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hfF-2i-i2d">
+                                                            <rect key="frame" x="-2" y="181" width="79" height="18"/>
+                                                            <buttonCell key="cell" type="check" title="s &lt;=&gt; sh" bezelStyle="regularSquare" imagePosition="left" enabled="NO" state="on" inset="2" id="hhy-wL-wAp">
+                                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                                <font key="font" metaFont="system"/>
+                                                            </buttonCell>
+                                                        </button>
+                                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rzu-5y-Gdp">
+                                                            <rect key="frame" x="-2" y="155" width="69" height="18"/>
+                                                            <buttonCell key="cell" type="check" title="l &lt;=&gt; n" bezelStyle="regularSquare" imagePosition="left" enabled="NO" state="on" inset="2" id="sIh-hG-sWw">
+                                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                                <font key="font" metaFont="system"/>
+                                                            </buttonCell>
+                                                        </button>
+                                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KTZ-o8-eid">
+                                                            <rect key="frame" x="-2" y="129" width="70" height="18"/>
+                                                            <buttonCell key="cell" type="check" title="f &lt;=&gt; h" bezelStyle="regularSquare" imagePosition="left" enabled="NO" state="on" inset="2" id="Nv8-qC-R1F">
+                                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                                <font key="font" metaFont="system"/>
+                                                            </buttonCell>
+                                                        </button>
+                                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SFQ-dP-l6F">
+                                                            <rect key="frame" x="-2" y="103" width="66" height="18"/>
+                                                            <buttonCell key="cell" type="check" title="l &lt;=&gt; r" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="MNZ-rJ-dcL">
+                                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                                <font key="font" metaFont="system"/>
+                                                            </buttonCell>
+                                                        </button>
+                                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IdJ-eY-n3M">
+                                                            <rect key="frame" x="-2" y="77" width="73" height="18"/>
+                                                            <buttonCell key="cell" type="check" title="g &lt;=&gt; k" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="Y1r-1T-OWf">
+                                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                                <font key="font" metaFont="system"/>
+                                                            </buttonCell>
+                                                        </button>
+                                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YzX-Jm-3vu">
+                                                            <rect key="frame" x="-2" y="51" width="95" height="18"/>
+                                                            <buttonCell key="cell" type="check" title="an &lt;=&gt; ang" bezelStyle="regularSquare" imagePosition="left" enabled="NO" state="on" inset="2" id="gPh-5a-oyK">
+                                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                                <font key="font" metaFont="system"/>
+                                                            </buttonCell>
+                                                        </button>
+                                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fqt-M9-r03">
+                                                            <rect key="frame" x="-2" y="25" width="96" height="18"/>
+                                                            <buttonCell key="cell" type="check" title="en &lt;=&gt; eng" bezelStyle="regularSquare" imagePosition="left" enabled="NO" state="on" inset="2" id="OZa-N6-tH1">
+                                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                                <font key="font" metaFont="system"/>
+                                                            </buttonCell>
+                                                        </button>
+                                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aUG-d3-e8Q">
+                                                            <rect key="frame" x="-2" y="-1" width="87" height="18"/>
+                                                            <buttonCell key="cell" type="check" title="in &lt;=&gt; ing" bezelStyle="regularSquare" imagePosition="left" enabled="NO" state="on" inset="2" id="50u-1b-1UF">
+                                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                                <font key="font" metaFont="system"/>
+                                                            </buttonCell>
+                                                        </button>
+                                                    </subviews>
+                                                    <visibilityPriorities>
+                                                        <integer value="1000"/>
+                                                        <integer value="1000"/>
+                                                        <integer value="1000"/>
+                                                        <integer value="1000"/>
+                                                        <integer value="1000"/>
+                                                        <integer value="1000"/>
+                                                        <integer value="1000"/>
+                                                        <integer value="1000"/>
+                                                        <integer value="1000"/>
+                                                        <integer value="1000"/>
+                                                        <integer value="1000"/>
+                                                    </visibilityPriorities>
+                                                    <customSpacing>
+                                                        <real value="3.4028234663852886e+38"/>
+                                                        <real value="3.4028234663852886e+38"/>
+                                                        <real value="3.4028234663852886e+38"/>
+                                                        <real value="3.4028234663852886e+38"/>
+                                                        <real value="3.4028234663852886e+38"/>
+                                                        <real value="3.4028234663852886e+38"/>
+                                                        <real value="3.4028234663852886e+38"/>
+                                                        <real value="3.4028234663852886e+38"/>
+                                                        <real value="3.4028234663852886e+38"/>
+                                                        <real value="3.4028234663852886e+38"/>
+                                                        <real value="3.4028234663852886e+38"/>
+                                                    </customSpacing>
+                                                </stackView>
+                                            </subviews>
+                                            <visibilityPriorities>
+                                                <integer value="1000"/>
+                                            </visibilityPriorities>
+                                            <customSpacing>
+                                                <real value="3.4028234663852886e+38"/>
+                                            </customSpacing>
+                                        </stackView>
+                                    </subviews>
                                 </view>
                             </tabViewItem>
                             <tabViewItem label="Dictionary" identifier="" id="M7c-CV-eLk">
