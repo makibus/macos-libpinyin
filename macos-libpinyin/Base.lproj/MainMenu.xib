@@ -1024,6 +1024,37 @@
                                 <view key="view" id="goo-Ir-uHj">
                                     <rect key="frame" x="10" y="33" width="460" height="314"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HPA-gy-8Kl">
+                                            <rect key="frame" x="13" y="264" width="101" height="42"/>
+                                            <subviews>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="v1R-nO-n3F">
+                                                    <rect key="frame" x="-2" y="26" width="105" height="16"/>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="User Dictionary" id="VKe-gk-9hS">
+                                                        <font key="font" metaFont="systemBold"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="s44-y8-YrV">
+                                                    <rect key="frame" x="-2" y="0.0" width="78" height="16"/>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="Not finished" id="Jx3-Hb-a7I">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                            </subviews>
+                                            <visibilityPriorities>
+                                                <integer value="1000"/>
+                                                <integer value="1000"/>
+                                            </visibilityPriorities>
+                                            <customSpacing>
+                                                <real value="3.4028234663852886e+38"/>
+                                                <real value="3.4028234663852886e+38"/>
+                                            </customSpacing>
+                                        </stackView>
+                                    </subviews>
                                 </view>
                             </tabViewItem>
                             <tabViewItem label="About" identifier="" id="2IB-g4-7YZ">
