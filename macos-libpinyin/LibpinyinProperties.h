@@ -6,9 +6,19 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LibpinyinConfig.h"
 
 
 @interface LibpinyinProperties : NSObject
+
+- (id)initWithConfig:(LibpinyinConfig *)config;
+
+- (void)toggleModeChinese;
+- (void)toggleModeFull;
+- (void)toggleModeFullPunct;
+- (void)toggleModeSimp;
+
+- (void)reset;
 
 @end
 
