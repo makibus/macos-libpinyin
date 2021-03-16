@@ -16,7 +16,10 @@
             <connections>
                 <outlet property="Society" destination="C2x-Sb-eKK" id="Rq5-nm-dg2"/>
                 <outlet property="_menu" destination="Wdz-Dv-yRL" id="pR8-1E-JQJ"/>
-                <outlet property="correctPinyinGNNG" destination="BMk-8L-RDU" id="29H-jb-NVE"/>
+                <outlet property="m_autoCommit" destination="yrz-U5-2Lo" id="xpW-p8-LO5"/>
+                <outlet property="m_commaPeriodFlipPage" destination="n3V-78-OEo" id="eQ5-uU-vul"/>
+                <outlet property="m_correctPinyin" destination="xSC-e8-rK0" id="x2M-OR-crQ"/>
+                <outlet property="m_correctPinyinGNNG" destination="BMk-8L-RDU" id="MxF-7c-DTp"/>
                 <outlet property="m_correctPinyinIOUIU" destination="Vma-yU-9hB" id="T0Q-4f-pju"/>
                 <outlet property="m_correctPinyinMGNG" destination="gmp-Xm-hMx" id="GUl-Bh-juK"/>
                 <outlet property="m_correctPinyinONONG" destination="fMh-vP-ca7" id="Ni7-F9-kc3"/>
@@ -36,6 +39,8 @@
                 <outlet property="m_dictSport" destination="LSa-fX-e3l" id="JQ1-Wu-iP6"/>
                 <outlet property="m_dictTechnology" destination="8AM-i4-D1s" id="kzo-0v-IyH"/>
                 <outlet property="m_doublePinyinSchema" destination="G7i-h6-vfv" id="i17-9Y-kRL"/>
+                <outlet property="m_dynamicAdjust" destination="PuZ-SA-xmA" id="IW5-q9-0VC"/>
+                <outlet property="m_fuzzySyllable" destination="r4Q-HE-gkT" id="XQL-2H-DEn"/>
                 <outlet property="m_fuzzySyllableANANG" destination="YzX-Jm-3vu" id="lgu-cw-jP6"/>
                 <outlet property="m_fuzzySyllableCCH" destination="lV2-N7-wWY" id="dKK-8P-UWd"/>
                 <outlet property="m_fuzzySyllableENENG" destination="fqt-M9-r03" id="yOg-2y-cQy"/>
@@ -46,7 +51,16 @@
                 <outlet property="m_fuzzySyllableLR" destination="SFQ-dP-l6F" id="cdR-0z-QXh"/>
                 <outlet property="m_fuzzySyllableSSH" destination="hfF-2i-i2d" id="aZ3-HO-uyN"/>
                 <outlet property="m_fuzzySyllableZZH" destination="5ht-s7-Cxg" id="Lce-mL-h5w"/>
-                <outlet property="m_initLanguageEn" destination="iqo-Ur-Ugi" id="1nF-DO-gc7"/>
+                <outlet property="m_incompletePinyin" destination="2cd-SZ-OBU" id="X4c-zi-bgP"/>
+                <outlet property="m_initFull" destination="y6h-hz-vDF" id="kwH-7t-hC2"/>
+                <outlet property="m_initFullPunct" destination="38o-6b-tMt" id="4jl-OY-L1V"/>
+                <outlet property="m_initLanguage" destination="vmS-s7-hb5" id="Yn7-nP-RqM"/>
+                <outlet property="m_minusEqualFlipPage" destination="N9Q-xP-E0j" id="i0z-iV-v2f"/>
+                <outlet property="m_numberOfCandidates" destination="BEZ-3g-pDA" id="hoO-wp-2ls"/>
+                <outlet property="m_rememberEveryInput" destination="nCn-Fs-4ch" id="R3p-g3-FPQ"/>
+                <outlet property="m_shiftSelectCandidate" destination="eDY-JG-D7U" id="t24-8o-kQk"/>
+                <outlet property="m_showSuggestions" destination="2S1-vd-bhR" id="FQX-Gy-pir"/>
+                <outlet property="m_sortCandidates" destination="yM7-o4-C1W" id="BDO-c5-Qkw"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -101,20 +115,17 @@
                                                                     <items>
                                                                         <menuItem title="Chinese" state="on" id="vWb-mc-aoh">
                                                                             <connections>
-                                                                                <action selector="initLanuageValueChangedToCH:" target="Voe-Tx-rLC" id="iTC-3U-dq5"/>
+                                                                                <action selector="initLanuageValueChangedToCH:" target="Voe-Tx-rLC" id="g4t-kg-oeV"/>
                                                                             </connections>
                                                                         </menuItem>
                                                                         <menuItem title="English" id="iqo-Ur-Ugi">
                                                                             <connections>
-                                                                                <action selector="initLanguageValueChangedToEN:" target="Voe-Tx-rLC" id="3z4-NX-z2E"/>
+                                                                                <action selector="initLanguageValueChangedToEN:" target="Voe-Tx-rLC" id="tIh-nf-QYg"/>
                                                                             </connections>
                                                                         </menuItem>
                                                                     </items>
                                                                 </menu>
                                                             </popUpButtonCell>
-                                                            <connections>
-                                                                <action selector="initLanguageValueChanged:" target="Voe-Tx-rLC" id="MN7-8C-ZgV"/>
-                                                            </connections>
                                                         </popUpButton>
                                                     </subviews>
                                                     <visibilityPriorities>
@@ -268,7 +279,7 @@
                                                                 </textField>
                                                                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BEZ-3g-pDA">
                                                                     <rect key="frame" x="369" y="-4" width="54" height="25"/>
-                                                                    <popUpButtonCell key="cell" type="push" title="5" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="5D6-ni-qqW" id="Tol-uH-SJx">
+                                                                    <popUpButtonCell key="cell" type="push" title="6" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="Q2V-hM-w6E" id="Tol-uH-SJx">
                                                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                                         <font key="font" metaFont="menu"/>
                                                                         <menu key="menu" id="jEL-SW-szb">
@@ -295,13 +306,13 @@
                                                                                         <action selector="numberOfCandidates4:" target="Voe-Tx-rLC" id="Pcl-EN-T6N"/>
                                                                                     </connections>
                                                                                 </menuItem>
-                                                                                <menuItem title="5" state="on" id="5D6-ni-qqW">
+                                                                                <menuItem title="5" id="5D6-ni-qqW">
                                                                                     <modifierMask key="keyEquivalentModifierMask"/>
                                                                                     <connections>
                                                                                         <action selector="numberOfCandidates5:" target="Voe-Tx-rLC" id="DXI-m7-qCs"/>
                                                                                     </connections>
                                                                                 </menuItem>
-                                                                                <menuItem title="6" id="Q2V-hM-w6E">
+                                                                                <menuItem title="6" state="on" id="Q2V-hM-w6E">
                                                                                     <modifierMask key="keyEquivalentModifierMask"/>
                                                                                     <connections>
                                                                                         <action selector="numberOfCandidates6:" target="Voe-Tx-rLC" id="ckc-bJ-hZd"/>
@@ -749,7 +760,7 @@
                                                                         <font key="font" metaFont="system"/>
                                                                     </buttonCell>
                                                                     <connections>
-                                                                        <action selector="correctPinyinGNNG:" target="Voe-Tx-rLC" id="Tzo-zn-0eF"/>
+                                                                        <action selector="correctPinyinGNNG:" target="Voe-Tx-rLC" id="ZFS-gm-iJk"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gmp-Xm-hMx">

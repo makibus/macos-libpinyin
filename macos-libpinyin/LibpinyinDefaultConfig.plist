@@ -1,12 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<!--
-   Property List.plist
-   macos-libpinyin
-
-   Created by inoki on 3/14/21.
-   Copyright (c) 2021 ___ORGANIZATIONNAME___. All rights reserved.
--->
 <plist version="1.0">
-<dict/>
+<dict>
+	<key>init-chinese</key>
+	<true/>
+	<key>correct-pinyin</key>
+	<false/>
+	<key>fuzzy-pinyin</key>
+	<false/>
+	<key>lookup-table-orientation</key>
+	<integer>0</integer>
+	<key>lookup-table-page-size</key>
+	<integer>5</integer>
+	<key>display-style</key>
+	<integer>0</integer>
+	<key>remember-every-input</key>
+	<false/>
+	<key>sort-candidate-option</key>
+	<integer>1</integer>
+	<key>show-suggestion</key>
+	<false/>
+	<key>emoji-candidate</key>
+	<true/>
+	<key>shift-select-candidate</key>
+	<false/>
+	<key>minus-equal-page</key>
+	<true/>
+	<key>comma-period-page</key>
+	<true/>
+	<key>auto-commit</key>
+	<false/>
+	<key>double-pinyin</key>
+	<false/>
+	<key>double-pinyin-schema</key>
+	<integer>1</integer>
+	<key>dictionaries</key>
+	<string></string>
+	<key>opencc-config</key>
+	<string></string>
+	<key>main-switch</key>
+	<string>&lt;Shift&gt;</string>
+	<key>letter-switch</key>
+	<string></string>
+	<key>punct-switch</key>
+	<string>&lt;Control&gt;period</string>
+	<key>both-switch</key>
+	<string></string>
+	<key>trad-switch</key>
+	<string>&lt;Control&gt;&lt;Shift&gt;f</string>
+	<key>enable-cloud-input</key>
+	<false/>
+	<key>cloud-input-source</key>
+	<integer>0</integer>
+	<key>cloud-candidates-number</key>
+	<integer>1</integer>
+	<key>cloud-request-delay-time</key>
+	<integer>600</integer>
+</dict>
 </plist>

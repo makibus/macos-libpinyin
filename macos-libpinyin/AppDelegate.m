@@ -14,8 +14,29 @@
 }
 
 @property (strong) IBOutlet NSWindow *window;
+
+@property (weak) IBOutlet NSPopUpButtonCell *m_initLanguage;
+@property (weak) IBOutlet NSPopUpButton *m_initFull;
+@property (weak) IBOutlet NSPopUpButton *m_initFullPunct;
+
+@property (weak) IBOutlet NSPopUpButton *m_numberOfCandidates;
+
+@property (weak) IBOutlet NSButton *m_dynamicAdjust;
+@property (weak) IBOutlet NSButtonCell *m_rememberEveryInput;
+@property (weak) IBOutlet NSButtonCell *m_showSuggestions;
+@property (weak) IBOutlet NSPopUpButton *m_sortCandidates;
+
+@property (weak) IBOutlet NSPopUpButton *m_pinyinMode;
 @property (weak) IBOutlet NSPopUpButton *m_doublePinyinSchema;
 
+@property (weak) IBOutlet NSButtonCell *m_incompletePinyin;
+
+@property (weak) IBOutlet NSButtonCell *m_commaPeriodFlipPage;
+@property (weak) IBOutlet NSButtonCell *m_minusEqualFlipPage;
+@property (weak) IBOutlet NSButtonCell *m_shiftSelectCandidate;
+@property (weak) IBOutlet NSButtonCell *m_autoCommit;
+
+@property (weak) IBOutlet NSButton *m_correctPinyin;
 @property (weak) IBOutlet NSButton *m_correctPinyinGNNG;
 @property (weak) IBOutlet NSButton *m_correctPinyinMGNG;
 @property (weak) IBOutlet NSButton *m_correctPinyinUEIUI;
@@ -25,6 +46,7 @@
 @property (weak) IBOutlet NSButton *m_correctPinyinUEVE;
 @property (weak) IBOutlet NSButton *m_correctPinyinIOUIU;
 
+@property (weak) IBOutlet NSButton *m_fuzzySyllable;
 @property (weak) IBOutlet NSButton *m_fuzzySyllableCCH;
 @property (weak) IBOutlet NSButton *m_fuzzySyllableZZH;
 @property (weak) IBOutlet NSButton *m_fuzzySyllableSSH;
@@ -56,6 +78,7 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     m_config = [LibpinyinConfig sharedConfig];
     _candiWin = [[CandidateWindow alloc] init];
+    [self initConfigs];
 }
 
 
@@ -94,34 +117,34 @@
 }
 
 - (IBAction)numberOfCandidates1:(id)sender {
-    NSLog(@"Value changed to 1");
+    [m_config setPageSize:1];
 }
 - (IBAction)numberOfCandidates2:(id)sender {
-    NSLog(@"Value changed to 2");
+    [m_config setPageSize:2];
 }
 - (IBAction)numberOfCandidates3:(id)sender {
-    NSLog(@"Value changed to 3");
+    [m_config setPageSize:3];
 }
 - (IBAction)numberOfCandidates4:(id)sender {
-    NSLog(@"Value changed to 4");
+    [m_config setPageSize:4];
 }
 - (IBAction)numberOfCandidates5:(id)sender {
-    NSLog(@"Value changed to 5");
+    [m_config setPageSize:5];
 }
 - (IBAction)numberOfCandidates6:(id)sender {
-    NSLog(@"Value changed to 6");
+    [m_config setPageSize:6];
 }
 - (IBAction)numberOfCandidates7:(id)sender {
-    NSLog(@"Value changed to 7");
+    [m_config setPageSize:7];
 }
 - (IBAction)numberOfCandidates8:(id)sender {
-    NSLog(@"Value changed to 8");
+    [m_config setPageSize:8];
 }
 - (IBAction)numberOfCandidates9:(id)sender {
-    NSLog(@"Value changed to 9");
+    [m_config setPageSize:9];
 }
 - (IBAction)numberOfCandidates10:(id)sender {
-    NSLog(@"Value changed to 10");
+    [m_config setPageSize:10];
 }
 
 - (IBAction)dynamicAdjust:(id)sender {
@@ -130,11 +153,11 @@
 }
 - (IBAction)rememberEveryInput:(id)sender {
     NSButton *cell = sender;
-    NSLog(@"Value changed to %d", [cell intValue]);
+    [m_config setRememberEveryInput:[cell intValue]];
 }
 - (IBAction)showSuggestions:(id)sender {
     NSButton *cell = sender;
-    NSLog(@"Value changed to %d", [cell intValue]);
+    [m_config setShowSuggestion:[cell intValue]];
 }
 
 - (IBAction)sortCandidatesByFrequency:(id)sender {
@@ -325,5 +348,38 @@
     NSLog(@"Value changed to %d", [cell intValue]);
 }
 
+
+- (void)initConfigs {
+    // General
+    [_m_initLanguage selectItemAtIndex:[m_config initChinese] ? 0 : 1];
+    [_m_initFull selectItemAtIndex:[m_config initFull] ? 0 : 1];
+    [_m_initFullPunct selectItemAtIndex:[m_config initFullPunct] ? 0 : 1];
+
+    [_m_numberOfCandidates selectItemAtIndex:[m_config pageSize] - 1];
+    
+    // [_m_dynamicAdjust setState:[m_config ]];
+    [_m_rememberEveryInput setState:[m_config rememberEveryInput] ? NSControlStateValueOn : NSControlStateValueOff];
+    [_m_showSuggestions setState:[m_config showSuggestion] ? NSControlStateValueOn : NSControlStateValueOff];
+
+    [_m_sortCandidates selectItemAtIndex:[m_config sortOption] - 1];
+
+    // Pinyin
+    [_m_pinyinMode selectItemAtIndex:[m_config doublePinyin] ? 1 : 0];
+    // TODO: [_m_doublePinyinSchema selectItemAtIndex:0];
+    // TODO: [_m_incompletePinyin setState:[m_config ]];
+
+    [_m_commaPeriodFlipPage setState:[m_config commaPeriodPage] ? NSControlStateValueOn : NSControlStateValueOff];
+    [_m_minusEqualFlipPage setState:[m_config minusEqualPage] ? NSControlStateValueOn : NSControlStateValueOff];
+    [_m_autoCommit setState:[m_config autoCommit] ? NSControlStateValueOn : NSControlStateValueOff];
+    [_m_shiftSelectCandidate setState:[m_config shiftSelectCandidate] ? NSControlStateValueOn : NSControlStateValueOff];
+
+    // TODO: [_m_correctPinyin setState:[m_config ] ? NSControlStateValueOn : NSControlStateValueOff];
+
+    // Fuzzy
+    // TODO: [_m_fuzzySyllable setState:[m_config ]];
+
+    // Dict
+    // TODO
+}
 
 @end
