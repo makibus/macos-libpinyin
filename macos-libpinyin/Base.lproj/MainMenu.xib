@@ -14,7 +14,39 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
             <connections>
+                <outlet property="Society" destination="C2x-Sb-eKK" id="Rq5-nm-dg2"/>
                 <outlet property="_menu" destination="Wdz-Dv-yRL" id="pR8-1E-JQJ"/>
+                <outlet property="correctPinyinGNNG" destination="BMk-8L-RDU" id="29H-jb-NVE"/>
+                <outlet property="m_correctPinyinIOUIU" destination="Vma-yU-9hB" id="T0Q-4f-pju"/>
+                <outlet property="m_correctPinyinMGNG" destination="gmp-Xm-hMx" id="GUl-Bh-juK"/>
+                <outlet property="m_correctPinyinONONG" destination="fMh-vP-ca7" id="Ni7-F9-kc3"/>
+                <outlet property="m_correctPinyinUEIUI" destination="Ewe-EP-R4g" id="Ldt-T3-e2l"/>
+                <outlet property="m_correctPinyinUENUN" destination="gjO-ZT-6BN" id="XFm-w3-U0R"/>
+                <outlet property="m_correctPinyinUEVE" destination="G7T-lj-bc5" id="QAt-Mn-MDh"/>
+                <outlet property="m_correctPinyinVU" destination="8OD-Be-hQS" id="TkA-9Q-ATh"/>
+                <outlet property="m_dictArt" destination="qLc-n6-RxA" id="sqq-0k-clY"/>
+                <outlet property="m_dictCulture" destination="RtM-YE-CwL" id="Ws2-XQ-w0i"/>
+                <outlet property="m_dictEconomy" destination="yjW-S5-meE" id="ILS-OH-Rsz"/>
+                <outlet property="m_dictGeology" destination="zlW-3c-oI4" id="Yiw-Tv-Jfi"/>
+                <outlet property="m_dictHistory" destination="oge-LK-gqo" id="KKs-8x-OqE"/>
+                <outlet property="m_dictLife" destination="F2f-GG-CYa" id="WUS-Uc-JoK"/>
+                <outlet property="m_dictNature" destination="LjP-UA-TM4" id="tnr-Lw-gQf"/>
+                <outlet property="m_dictPeople" destination="9Sv-wI-vFq" id="Roa-fa-Uws"/>
+                <outlet property="m_dictScience" destination="Ea1-Bs-7aI" id="pU7-pA-NSf"/>
+                <outlet property="m_dictSport" destination="LSa-fX-e3l" id="JQ1-Wu-iP6"/>
+                <outlet property="m_dictTechnology" destination="8AM-i4-D1s" id="kzo-0v-IyH"/>
+                <outlet property="m_doublePinyinSchema" destination="G7i-h6-vfv" id="i17-9Y-kRL"/>
+                <outlet property="m_fuzzySyllableANANG" destination="YzX-Jm-3vu" id="lgu-cw-jP6"/>
+                <outlet property="m_fuzzySyllableCCH" destination="lV2-N7-wWY" id="dKK-8P-UWd"/>
+                <outlet property="m_fuzzySyllableENENG" destination="fqt-M9-r03" id="yOg-2y-cQy"/>
+                <outlet property="m_fuzzySyllableFH" destination="KTZ-o8-eid" id="Syg-yQ-3mO"/>
+                <outlet property="m_fuzzySyllableGK" destination="IdJ-eY-n3M" id="Ufp-cG-ipl"/>
+                <outlet property="m_fuzzySyllableINING" destination="aUG-d3-e8Q" id="nV6-sN-rC5"/>
+                <outlet property="m_fuzzySyllableLN" destination="rzu-5y-Gdp" id="5pS-1e-Zcq"/>
+                <outlet property="m_fuzzySyllableLR" destination="SFQ-dP-l6F" id="cdR-0z-QXh"/>
+                <outlet property="m_fuzzySyllableSSH" destination="hfF-2i-i2d" id="aZ3-HO-uyN"/>
+                <outlet property="m_fuzzySyllableZZH" destination="5ht-s7-Cxg" id="Lce-mL-h5w"/>
+                <outlet property="m_initLanguageEn" destination="iqo-Ur-Ugi" id="1nF-DO-gc7"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -67,11 +99,22 @@
                                                                 <font key="font" metaFont="menu"/>
                                                                 <menu key="menu" id="PvR-GH-oQc">
                                                                     <items>
-                                                                        <menuItem title="Chinese" state="on" id="vWb-mc-aoh"/>
-                                                                        <menuItem title="English" id="iqo-Ur-Ugi"/>
+                                                                        <menuItem title="Chinese" state="on" id="vWb-mc-aoh">
+                                                                            <connections>
+                                                                                <action selector="initLanuageValueChangedToCH:" target="Voe-Tx-rLC" id="iTC-3U-dq5"/>
+                                                                            </connections>
+                                                                        </menuItem>
+                                                                        <menuItem title="English" id="iqo-Ur-Ugi">
+                                                                            <connections>
+                                                                                <action selector="initLanguageValueChangedToEN:" target="Voe-Tx-rLC" id="3z4-NX-z2E"/>
+                                                                            </connections>
+                                                                        </menuItem>
                                                                     </items>
                                                                 </menu>
                                                             </popUpButtonCell>
+                                                            <connections>
+                                                                <action selector="initLanguageValueChanged:" target="Voe-Tx-rLC" id="MN7-8C-ZgV"/>
+                                                            </connections>
                                                         </popUpButton>
                                                     </subviews>
                                                     <visibilityPriorities>
@@ -101,8 +144,16 @@
                                                                 <font key="font" metaFont="menu"/>
                                                                 <menu key="menu" id="cvj-0d-kqW">
                                                                     <items>
-                                                                        <menuItem title="Full" state="on" id="H4H-Pt-Dqe"/>
-                                                                        <menuItem title="Half" id="pfw-hW-2Fj"/>
+                                                                        <menuItem title="Full" state="on" id="H4H-Pt-Dqe">
+                                                                            <connections>
+                                                                                <action selector="initFullValueChangedToFull:" target="Voe-Tx-rLC" id="Ikl-lL-tuF"/>
+                                                                            </connections>
+                                                                        </menuItem>
+                                                                        <menuItem title="Half" id="pfw-hW-2Fj">
+                                                                            <connections>
+                                                                                <action selector="initFullValueChangedToHalf:" target="Voe-Tx-rLC" id="6cN-sH-xkb"/>
+                                                                            </connections>
+                                                                        </menuItem>
                                                                     </items>
                                                                 </menu>
                                                             </popUpButtonCell>
@@ -135,8 +186,16 @@
                                                                 <font key="font" metaFont="menu"/>
                                                                 <menu key="menu" id="Iii-JF-Ccp">
                                                                     <items>
-                                                                        <menuItem title="Full" state="on" id="vWv-tr-srO"/>
-                                                                        <menuItem title="Half" id="a8M-3Q-KGb"/>
+                                                                        <menuItem title="Full" state="on" id="vWv-tr-srO">
+                                                                            <connections>
+                                                                                <action selector="initFullPuncValueChangedToFull:" target="Voe-Tx-rLC" id="f7i-Z8-RST"/>
+                                                                            </connections>
+                                                                        </menuItem>
+                                                                        <menuItem title="Half" id="a8M-3Q-KGb">
+                                                                            <connections>
+                                                                                <action selector="initFullPuncValueChangedToHalf:" target="Voe-Tx-rLC" id="cEe-s8-mGE"/>
+                                                                            </connections>
+                                                                        </menuItem>
                                                                     </items>
                                                                 </menu>
                                                             </popUpButtonCell>
@@ -185,8 +244,8 @@
                                                         <real value="3.4028234663852886e+38"/>
                                                     </customSpacing>
                                                 </stackView>
-                                                <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" ambiguous="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dly-aU-trt">
-                                                    <rect key="frame" x="0.0" y="134" width="413" height="46"/>
+                                                <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dly-aU-trt">
+                                                    <rect key="frame" x="0.0" y="134" width="419" height="46"/>
                                                     <subviews>
                                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="962-ch-xPg">
                                                             <rect key="frame" x="-2" y="30" width="18" height="16"/>
@@ -196,8 +255,8 @@
                                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                         </textField>
-                                                        <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="182" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" ambiguous="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ezi-Jw-TFa">
-                                                            <rect key="frame" x="0.0" y="0.0" width="413" height="20"/>
+                                                        <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="233" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ezi-Jw-TFa">
+                                                            <rect key="frame" x="0.0" y="0.0" width="419" height="20"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oX7-vz-dS6">
                                                                     <rect key="frame" x="-2" y="4" width="143" height="16"/>
@@ -207,10 +266,75 @@
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                 </textField>
-                                                                <slider verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uuT-i8-2i7">
-                                                                    <rect key="frame" x="319" y="-6" width="96" height="28"/>
-                                                                    <sliderCell key="cell" state="on" alignment="left" minValue="1" maxValue="10" doubleValue="5" tickMarkPosition="above" sliderType="linear" id="v0b-Z0-6iy"/>
-                                                                </slider>
+                                                                <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BEZ-3g-pDA">
+                                                                    <rect key="frame" x="369" y="-4" width="54" height="25"/>
+                                                                    <popUpButtonCell key="cell" type="push" title="5" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="5D6-ni-qqW" id="Tol-uH-SJx">
+                                                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                                                        <font key="font" metaFont="menu"/>
+                                                                        <menu key="menu" id="jEL-SW-szb">
+                                                                            <items>
+                                                                                <menuItem title="1" id="xDu-5m-44j">
+                                                                                    <connections>
+                                                                                        <action selector="numberOfCandidates1:" target="Voe-Tx-rLC" id="4t2-qK-JwF"/>
+                                                                                    </connections>
+                                                                                </menuItem>
+                                                                                <menuItem title="2" id="DgW-rb-F0W">
+                                                                                    <connections>
+                                                                                        <action selector="numberOfCandidates2:" target="Voe-Tx-rLC" id="lLM-Tt-SjO"/>
+                                                                                    </connections>
+                                                                                </menuItem>
+                                                                                <menuItem title="3" id="HN9-gR-25H">
+                                                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                                                    <connections>
+                                                                                        <action selector="numberOfCandidates3:" target="Voe-Tx-rLC" id="ogi-mU-fmL"/>
+                                                                                    </connections>
+                                                                                </menuItem>
+                                                                                <menuItem title="4" id="47T-U7-ycA">
+                                                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                                                    <connections>
+                                                                                        <action selector="numberOfCandidates4:" target="Voe-Tx-rLC" id="Pcl-EN-T6N"/>
+                                                                                    </connections>
+                                                                                </menuItem>
+                                                                                <menuItem title="5" state="on" id="5D6-ni-qqW">
+                                                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                                                    <connections>
+                                                                                        <action selector="numberOfCandidates5:" target="Voe-Tx-rLC" id="DXI-m7-qCs"/>
+                                                                                    </connections>
+                                                                                </menuItem>
+                                                                                <menuItem title="6" id="Q2V-hM-w6E">
+                                                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                                                    <connections>
+                                                                                        <action selector="numberOfCandidates6:" target="Voe-Tx-rLC" id="ckc-bJ-hZd"/>
+                                                                                    </connections>
+                                                                                </menuItem>
+                                                                                <menuItem title="7" id="57v-4X-oKU">
+                                                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                                                    <connections>
+                                                                                        <action selector="numberOfCandidates7:" target="Voe-Tx-rLC" id="Raa-Ms-xW3"/>
+                                                                                    </connections>
+                                                                                </menuItem>
+                                                                                <menuItem title="8" id="eyZ-RK-1lw">
+                                                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                                                    <connections>
+                                                                                        <action selector="numberOfCandidates8:" target="Voe-Tx-rLC" id="VyG-g8-Arw"/>
+                                                                                    </connections>
+                                                                                </menuItem>
+                                                                                <menuItem title="9" id="9az-Qd-PTZ">
+                                                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                                                    <connections>
+                                                                                        <action selector="numberOfCandidates9:" target="Voe-Tx-rLC" id="tlc-AL-syB"/>
+                                                                                    </connections>
+                                                                                </menuItem>
+                                                                                <menuItem title="10" id="iMf-Zw-cMB">
+                                                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                                                    <connections>
+                                                                                        <action selector="numberOfCandidates10:" target="Voe-Tx-rLC" id="e3K-xE-7mt"/>
+                                                                                    </connections>
+                                                                                </menuItem>
+                                                                            </items>
+                                                                        </menu>
+                                                                    </popUpButtonCell>
+                                                                </popUpButton>
                                                             </subviews>
                                                             <visibilityPriorities>
                                                                 <integer value="1000"/>
@@ -251,6 +375,9 @@
                                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                         <font key="font" metaFont="system"/>
                                                                     </buttonCell>
+                                                                    <connections>
+                                                                        <action selector="dynamicAdjust:" target="Voe-Tx-rLC" id="xQi-hU-c3w"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                             <visibilityPriorities>
@@ -276,6 +403,9 @@
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
                                                     </buttonCell>
+                                                    <connections>
+                                                        <action selector="rememberEveryInput:" target="Voe-Tx-rLC" id="QN8-DM-0mC"/>
+                                                    </connections>
                                                 </button>
                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="my6-aO-Q50">
                                                     <rect key="frame" x="-2" y="29" width="137" height="18"/>
@@ -283,6 +413,9 @@
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
                                                     </buttonCell>
+                                                    <connections>
+                                                        <action selector="showSuggestions:" target="Voe-Tx-rLC" id="aXL-cf-Ako"/>
+                                                    </connections>
                                                 </button>
                                                 <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="187" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DUc-LD-piS">
                                                     <rect key="frame" x="0.0" y="0.0" width="419" height="20"/>
@@ -302,8 +435,16 @@
                                                                 <font key="font" metaFont="menu"/>
                                                                 <menu key="menu" id="KO6-5M-vis">
                                                                     <items>
-                                                                        <menuItem title="Frequency" state="on" id="U8f-zq-cNB"/>
-                                                                        <menuItem title="Pinyin Length" id="CnY-we-kUX"/>
+                                                                        <menuItem title="Frequency" state="on" id="U8f-zq-cNB">
+                                                                            <connections>
+                                                                                <action selector="sortCandidatesByFrequency:" target="Voe-Tx-rLC" id="9mQ-Dl-Ik1"/>
+                                                                            </connections>
+                                                                        </menuItem>
+                                                                        <menuItem title="Pinyin Length" id="CnY-we-kUX">
+                                                                            <connections>
+                                                                                <action selector="sortCandidatesByPinyinLength:" target="Voe-Tx-rLC" id="8Nu-yO-Hyc"/>
+                                                                            </connections>
+                                                                        </menuItem>
                                                                     </items>
                                                                 </menu>
                                                             </popUpButtonCell>
@@ -381,8 +522,16 @@
                                                                 <font key="font" metaFont="menu"/>
                                                                 <menu key="menu" id="5Rf-dP-2ml">
                                                                     <items>
-                                                                        <menuItem title="Full pinyin" state="on" id="UaX-Zl-Mo4"/>
-                                                                        <menuItem title="Double pinyin" id="CCh-m8-w8e"/>
+                                                                        <menuItem title="Full pinyin" state="on" id="UaX-Zl-Mo4">
+                                                                            <connections>
+                                                                                <action selector="useFullpinyin:" target="Voe-Tx-rLC" id="jJE-Rk-fUf"/>
+                                                                            </connections>
+                                                                        </menuItem>
+                                                                        <menuItem title="Double pinyin" id="CCh-m8-w8e">
+                                                                            <connections>
+                                                                                <action selector="useDoublePinyin:" target="Voe-Tx-rLC" id="96i-DT-MsC"/>
+                                                                            </connections>
+                                                                        </menuItem>
                                                                     </items>
                                                                 </menu>
                                                             </popUpButtonCell>
@@ -415,19 +564,39 @@
                                                                 <font key="font" metaFont="menu"/>
                                                                 <menu key="menu" id="e4c-S2-sFP">
                                                                     <items>
-                                                                        <menuItem title="MSPY" state="on" id="Q7d-qf-suf"/>
-                                                                        <menuItem title="ZRM" id="fgG-N4-k8h"/>
+                                                                        <menuItem title="MSPY" state="on" id="Q7d-qf-suf">
+                                                                            <connections>
+                                                                                <action selector="doublePinyinSchemaMSPY:" target="Voe-Tx-rLC" id="ejb-wS-OSn"/>
+                                                                            </connections>
+                                                                        </menuItem>
+                                                                        <menuItem title="ZRM" id="fgG-N4-k8h">
+                                                                            <connections>
+                                                                                <action selector="doublePinyinSchemaZRM:" target="Voe-Tx-rLC" id="Y9j-8g-Dj9"/>
+                                                                            </connections>
+                                                                        </menuItem>
                                                                         <menuItem title="ABC" id="5FK-60-iVJ">
                                                                             <modifierMask key="keyEquivalentModifierMask"/>
+                                                                            <connections>
+                                                                                <action selector="doublePinyinSchemaABC:" target="Voe-Tx-rLC" id="vRa-bU-x4L"/>
+                                                                            </connections>
                                                                         </menuItem>
                                                                         <menuItem title="ZGPY" id="38a-ut-S7v">
                                                                             <modifierMask key="keyEquivalentModifierMask"/>
+                                                                            <connections>
+                                                                                <action selector="doublePinyinSchemaZGPY:" target="Voe-Tx-rLC" id="MDa-XI-dzd"/>
+                                                                            </connections>
                                                                         </menuItem>
                                                                         <menuItem title="PYJJ" id="OHK-IE-noc">
                                                                             <modifierMask key="keyEquivalentModifierMask"/>
+                                                                            <connections>
+                                                                                <action selector="doublePinyinSchemaPYJJ:" target="Voe-Tx-rLC" id="99I-bL-clX"/>
+                                                                            </connections>
                                                                         </menuItem>
                                                                         <menuItem title="XHE" id="AiE-6p-pXA">
                                                                             <modifierMask key="keyEquivalentModifierMask"/>
+                                                                            <connections>
+                                                                                <action selector="doublePinyinSchemaXHE:" target="Voe-Tx-rLC" id="nUd-Ii-ddP"/>
+                                                                            </connections>
                                                                         </menuItem>
                                                                     </items>
                                                                 </menu>
@@ -449,6 +618,9 @@
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
                                                     </buttonCell>
+                                                    <connections>
+                                                        <action selector="incompletePinyin:" target="Voe-Tx-rLC" id="iTb-4B-3NE"/>
+                                                    </connections>
                                                 </button>
                                                 <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" ambiguous="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YGj-gp-rDt">
                                                     <rect key="frame" x="0.0" y="156" width="86" height="16"/>
@@ -478,6 +650,9 @@
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
+                                                            <connections>
+                                                                <action selector="commaPeriodFlipPage:" target="Voe-Tx-rLC" id="hOk-3x-9al"/>
+                                                            </connections>
                                                         </button>
                                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tPk-zQ-7Qz">
                                                             <rect key="frame" x="306" y="-1" width="120" height="18"/>
@@ -485,6 +660,9 @@
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
+                                                            <connections>
+                                                                <action selector="minusEqualFlipPage:" target="Voe-Tx-rLC" id="6fZ-Aw-HXL"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <visibilityPriorities>
@@ -505,6 +683,9 @@
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
+                                                            <connections>
+                                                                <action selector="autoCommit:" target="Voe-Tx-rLC" id="bLL-e6-SLU"/>
+                                                            </connections>
                                                         </button>
                                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="J3w-T8-LEr">
                                                             <rect key="frame" x="258" y="-1" width="168" height="18"/>
@@ -512,6 +693,9 @@
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
+                                                            <connections>
+                                                                <action selector="shiftSelectCandidate:" target="Voe-Tx-rLC" id="rcS-Xu-CLf"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <visibilityPriorities>
@@ -543,6 +727,9 @@
                                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                         <font key="font" metaFont="system"/>
                                                                     </buttonCell>
+                                                                    <connections>
+                                                                        <action selector="correctPinyin:" target="Voe-Tx-rLC" id="GYJ-u9-e0s"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                             <visibilityPriorities>
@@ -561,6 +748,9 @@
                                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                         <font key="font" metaFont="system"/>
                                                                     </buttonCell>
+                                                                    <connections>
+                                                                        <action selector="correctPinyinGNNG:" target="Voe-Tx-rLC" id="Tzo-zn-0eF"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gmp-Xm-hMx">
                                                                     <rect key="frame" x="83" y="-1" width="84" height="18"/>
@@ -568,6 +758,9 @@
                                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                         <font key="font" metaFont="system"/>
                                                                     </buttonCell>
+                                                                    <connections>
+                                                                        <action selector="correctPinyinMGNG:" target="Voe-Tx-rLC" id="qz2-Gt-y6f"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ewe-EP-R4g">
                                                                     <rect key="frame" x="171" y="-1" width="79" height="18"/>
@@ -575,6 +768,9 @@
                                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                         <font key="font" metaFont="system"/>
                                                                     </buttonCell>
+                                                                    <connections>
+                                                                        <action selector="correctPinyinUEIUI:" target="Voe-Tx-rLC" id="Tmk-UE-ZtO"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gjO-ZT-6BN">
                                                                     <rect key="frame" x="254" y="-1" width="87" height="18"/>
@@ -582,6 +778,9 @@
                                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                         <font key="font" metaFont="system"/>
                                                                     </buttonCell>
+                                                                    <connections>
+                                                                        <action selector="correctPinyinUENEN:" target="Voe-Tx-rLC" id="sQc-ei-zB0"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fMh-vP-ca7">
                                                                     <rect key="frame" x="345" y="-1" width="88" height="18"/>
@@ -589,6 +788,9 @@
                                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                         <font key="font" metaFont="system"/>
                                                                     </buttonCell>
+                                                                    <connections>
+                                                                        <action selector="correctPinyinONONG:" target="Voe-Tx-rLC" id="xhz-C7-46b"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                             <visibilityPriorities>
@@ -615,6 +817,9 @@
                                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                         <font key="font" metaFont="system"/>
                                                                     </buttonCell>
+                                                                    <connections>
+                                                                        <action selector="correctPinyinVU:" target="Voe-Tx-rLC" id="fOa-eA-r4Z"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="G7T-lj-bc5">
                                                                     <rect key="frame" x="248" y="-1" width="79" height="18"/>
@@ -622,6 +827,9 @@
                                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                         <font key="font" metaFont="system"/>
                                                                     </buttonCell>
+                                                                    <connections>
+                                                                        <action selector="correctPinyinUEVE:" target="Voe-Tx-rLC" id="q69-bZ-nmY"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Vma-yU-9hB">
                                                                     <rect key="frame" x="352" y="-1" width="79" height="18"/>
@@ -629,6 +837,9 @@
                                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                         <font key="font" metaFont="system"/>
                                                                     </buttonCell>
+                                                                    <connections>
+                                                                        <action selector="correctPinyinIOUIU:" target="Voe-Tx-rLC" id="yNF-1A-NUv"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                             <visibilityPriorities>
@@ -701,6 +912,9 @@
                                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                         <font key="font" metaFont="system"/>
                                                                     </buttonCell>
+                                                                    <connections>
+                                                                        <action selector="fuzzySyllable:" target="Voe-Tx-rLC" id="Rd1-ck-pka"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                             <visibilityPriorities>
@@ -716,6 +930,9 @@
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
+                                                            <connections>
+                                                                <action selector="fuzzySyllableCCH:" target="Voe-Tx-rLC" id="gZ4-yr-Skj"/>
+                                                            </connections>
                                                         </button>
                                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5ht-s7-Cxg">
                                                             <rect key="frame" x="-2" y="207" width="79" height="18"/>
@@ -723,6 +940,9 @@
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
+                                                            <connections>
+                                                                <action selector="fuzzySyllableZZH:" target="Voe-Tx-rLC" id="2O0-ds-si7"/>
+                                                            </connections>
                                                         </button>
                                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hfF-2i-i2d">
                                                             <rect key="frame" x="-2" y="181" width="79" height="18"/>
@@ -730,6 +950,9 @@
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
+                                                            <connections>
+                                                                <action selector="fuzzySyllableSSH:" target="Voe-Tx-rLC" id="Y4t-hB-KnI"/>
+                                                            </connections>
                                                         </button>
                                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rzu-5y-Gdp">
                                                             <rect key="frame" x="-2" y="155" width="69" height="18"/>
@@ -737,6 +960,9 @@
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
+                                                            <connections>
+                                                                <action selector="fuzzySyllableLN:" target="Voe-Tx-rLC" id="yDV-Ie-6FP"/>
+                                                            </connections>
                                                         </button>
                                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KTZ-o8-eid">
                                                             <rect key="frame" x="-2" y="129" width="70" height="18"/>
@@ -744,6 +970,9 @@
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
+                                                            <connections>
+                                                                <action selector="fuzzySyllableFH:" target="Voe-Tx-rLC" id="XUt-Rh-NOf"/>
+                                                            </connections>
                                                         </button>
                                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SFQ-dP-l6F">
                                                             <rect key="frame" x="-2" y="103" width="66" height="18"/>
@@ -751,6 +980,9 @@
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
+                                                            <connections>
+                                                                <action selector="fuzzySyllableLR:" target="Voe-Tx-rLC" id="ofr-ke-osD"/>
+                                                            </connections>
                                                         </button>
                                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IdJ-eY-n3M">
                                                             <rect key="frame" x="-2" y="77" width="73" height="18"/>
@@ -758,6 +990,9 @@
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
+                                                            <connections>
+                                                                <action selector="fuzzySyllableGK:" target="Voe-Tx-rLC" id="LS2-I1-5n0"/>
+                                                            </connections>
                                                         </button>
                                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YzX-Jm-3vu">
                                                             <rect key="frame" x="-2" y="51" width="95" height="18"/>
@@ -765,6 +1000,9 @@
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
+                                                            <connections>
+                                                                <action selector="fuzzySyllableANANG:" target="Voe-Tx-rLC" id="nUF-B7-haW"/>
+                                                            </connections>
                                                         </button>
                                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fqt-M9-r03">
                                                             <rect key="frame" x="-2" y="25" width="96" height="18"/>
@@ -772,6 +1010,9 @@
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
+                                                            <connections>
+                                                                <action selector="fuzzySyllableENENG:" target="Voe-Tx-rLC" id="kdZ-7D-kdZ"/>
+                                                            </connections>
                                                         </button>
                                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aUG-d3-e8Q">
                                                             <rect key="frame" x="-2" y="-1" width="87" height="18"/>
@@ -779,6 +1020,9 @@
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
+                                                            <connections>
+                                                                <action selector="fuzzySyllableINING:" target="Voe-Tx-rLC" id="IEl-Ir-SOd"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <visibilityPriorities>
@@ -844,6 +1088,9 @@
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
+                                                            <connections>
+                                                                <action selector="dictArt:" target="Voe-Tx-rLC" id="E5a-gb-1Sd"/>
+                                                            </connections>
                                                         </button>
                                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RtM-YE-CwL">
                                                             <rect key="frame" x="365" y="-1" width="71" height="18"/>
@@ -851,6 +1098,9 @@
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
+                                                            <connections>
+                                                                <action selector="dictCulture:" target="Voe-Tx-rLC" id="VXP-cv-gZ1"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <visibilityPriorities>
@@ -871,12 +1121,18 @@
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
+                                                            <connections>
+                                                                <action selector="dictEconomy:" target="Voe-Tx-rLC" id="9hd-XD-kR8"/>
+                                                            </connections>
                                                         </button>
                                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zlW-3c-oI4">
                                                             <rect key="frame" x="359" y="-1" width="77" height="18"/>
                                                             <buttonCell key="cell" type="check" title="Geology" bezelStyle="regularSquare" imagePosition="right" inset="2" id="BeZ-NR-8uT">
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                 <font key="font" metaFont="system"/>
+                                                                <connections>
+                                                                    <action selector="dictGeology:" target="Voe-Tx-rLC" id="VuE-lk-Q4u"/>
+                                                                </connections>
                                                             </buttonCell>
                                                         </button>
                                                     </subviews>
@@ -898,6 +1154,9 @@
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
+                                                            <connections>
+                                                                <action selector="dictHistory:" target="Voe-Tx-rLC" id="E40-9j-lrD"/>
+                                                            </connections>
                                                         </button>
                                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="F2f-GG-CYa">
                                                             <rect key="frame" x="387" y="-1" width="49" height="18"/>
@@ -905,6 +1164,9 @@
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
+                                                            <connections>
+                                                                <action selector="dictLife:" target="Voe-Tx-rLC" id="rfw-SJ-6wV"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <visibilityPriorities>
@@ -925,6 +1187,9 @@
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
+                                                            <connections>
+                                                                <action selector="dictNature:" target="Voe-Tx-rLC" id="EDA-Ez-7NK"/>
+                                                            </connections>
                                                         </button>
                                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9Sv-wI-vFq">
                                                             <rect key="frame" x="368" y="-1" width="68" height="18"/>
@@ -932,6 +1197,9 @@
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
+                                                            <connections>
+                                                                <action selector="dictPeople:" target="Voe-Tx-rLC" id="KBq-IC-dLM"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <visibilityPriorities>
@@ -952,6 +1220,9 @@
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
+                                                            <connections>
+                                                                <action selector="dictScience:" target="Voe-Tx-rLC" id="T4Z-PI-Ffi"/>
+                                                            </connections>
                                                         </button>
                                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="C2x-Sb-eKK">
                                                             <rect key="frame" x="364" y="-1" width="72" height="18"/>
@@ -959,6 +1230,9 @@
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
+                                                            <connections>
+                                                                <action selector="dictSociety:" target="Voe-Tx-rLC" id="iAr-2M-3Db"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <visibilityPriorities>
@@ -979,6 +1253,9 @@
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
+                                                            <connections>
+                                                                <action selector="dictSport:" target="Voe-Tx-rLC" id="Fpj-W8-UEc"/>
+                                                            </connections>
                                                         </button>
                                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8AM-i4-D1s">
                                                             <rect key="frame" x="340" y="-1" width="96" height="18"/>
@@ -986,6 +1263,9 @@
                                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                 <font key="font" metaFont="system"/>
                                                             </buttonCell>
+                                                            <connections>
+                                                                <action selector="dictTechnology:" target="Voe-Tx-rLC" id="fP6-uy-1qc"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <visibilityPriorities>
