@@ -149,7 +149,11 @@
 
 - (IBAction)dynamicAdjust:(id)sender {
     NSButton *cell = sender;
-    NSLog(@"Value changed to %d", [cell intValue]);
+    if ([cell intValue]) {
+        [m_config setFuzzyOption:DYNAMIC_ADJUST];
+    } else {
+        [m_config removeFuzzyOption:DYNAMIC_ADJUST];
+    }
 }
 - (IBAction)rememberEveryInput:(id)sender {
     NSButton *cell = sender;
@@ -516,7 +520,7 @@
     [_m_fuzzySyllableANANG setState:(fuzzyOption | PINYIN_AMB_AN_ANG) ? NSControlStateValueOn : NSControlStateValueOff];
     [_m_fuzzySyllableENENG setState:(fuzzyOption | PINYIN_AMB_EN_ENG) ? NSControlStateValueOn : NSControlStateValueOff];
     [_m_fuzzySyllableINING setState:(fuzzyOption | PINYIN_AMB_IN_ING) ? NSControlStateValueOn : NSControlStateValueOff];
-    if (fuzzyOption) {
+    if (fuzzyOption & PINYIN_AMB_ALL) {
         [_m_fuzzySyllable setState: NSControlStateValueOn];
 
         // Set each options
