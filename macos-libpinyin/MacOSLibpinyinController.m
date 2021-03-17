@@ -75,7 +75,7 @@
 
 - (void)createFullpinyinEditor {
     // LibpinyinFullPinyinEditor
-    _fullpinyinEditor = [[LibpinyinFullPinyinEditor alloc] initWithConfig:[[LibpinyinConfig alloc] init]];
+    _fullpinyinEditor = [[LibpinyinFullPinyinEditor alloc] initWithConfig:[LibpinyinConfig sharedConfig]];
 }
 
 - (NSMenu *)menu {

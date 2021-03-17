@@ -117,9 +117,13 @@
     BOOL m_shouldShowLookupTable;
     BOOL m_shouldPreeditText;
     BOOL m_shouldCommitString;
+
+    LibpinyinConfig *m_config;
 }
 
 - (id)initWithConfig:(LibpinyinConfig *) config {
+    m_config = config;
+
     m_instance = [[LibpinyinBackend sharedInstance] allocPinyinInstance];
     m_text = [[NSMutableString alloc] init];
     m_buffer = [[NSMutableString alloc] init];
@@ -130,7 +134,7 @@
     m_shouldPreeditText = NO;
     m_shouldCommitString = NO;
 
-    m_lookupTable = [[LookupTable alloc] initWithPageSize:10];
+    m_lookupTable = [[LookupTable alloc] initWithPageSize:[m_config pageSize]];
 
     return self;
 }
@@ -173,7 +177,7 @@
 - (void)update {
     // Get the position of cursor
     NSUInteger lookupCursor = [self getLookupCursor];
-    pinyin_guess_candidates (m_instance, lookupCursor, SORT_BY_PHRASE_LENGTH_AND_FREQUENCY);
+    pinyin_guess_candidates (m_instance, lookupCursor, [m_config sortOption]);
 
     [self updateLookupTable];
     [self updatePreeditText];
@@ -296,26 +300,42 @@
             return YES;
         case 0x2c:
             // Comma
+            if ([m_config commaPeriodPage]) {
+                [self pageUp];
+            }
             break;
         case 0x2d:
             // Minus
+            if ([m_config minusEqualPage]) {
+                [self pageUp];
+            }
             break;
         case 0x2e:
             // Period
+            if ([m_config commaPeriodPage]) {
+                [self pageDown];
+            }
             break;
         case 0x3d:
             // Equal
+            if ([m_config commaPeriodPage]) {
+                [self pageDown];
+            }
             break;
         default:
             break;
     }
 
     // Auto commit before punction
-    if (NO) {
+    if ([m_config autoCommit]) {
+        if ([m_lookupTable size]) {
+            [self selectCandidate:[m_lookupTable cursorPos]];
+        }
+        [self commitEmpty];
         return NO;
     }
 
-    return YES;
+    return NO;
 }
 
 - (BOOL)processKeyEventWithKeyValue:(int)keyval keyCode:(int)keycode modifiers:(int)modifiers {
@@ -378,20 +398,22 @@
                 return NO;
             case kVK_Delete:
                 // Backspace: remove the char before
-                NSLog(@"Delete pressed");
                 // Return a false if no character, let the OS deal with the event
                 return [self removeCharBefore];
             case kVK_ForwardDelete:
                 // Delete: remove the char after
-                NSLog(@"Forward Delete pressed");
-                return YES;
+                return [self removeCharAfter];
             case kVK_UpArrow:
+                [self cursorUp];
                 return YES;
             case kVK_DownArrow:
+                [self cursorDown];
                 return YES;
             case kVK_LeftArrow:
+                [self moveCursorLeft];
                 return YES;
             case kVK_RightArrow:
+                [self moveCursorRight];
                 return YES;
             case kVK_PageUp:
                 if ([m_candidates count] > 0) {
@@ -408,6 +430,7 @@
                 // Not yet candidate, let the OS deal with it
                 return NO;
             case kVK_Escape:
+                [self reset];
                 return YES;
             default:
                 return YES;
@@ -417,15 +440,19 @@
         switch (keyval) {
             case kVK_Delete:
                 // Backspace: remove the word before
+                [self removeWordBefore];
                 return YES;
             case kVK_ForwardDelete:
                 // Delete: remove the word after
+                [self removeWordAfter];
                 return YES;
             case kVK_LeftArrow:
                 // Left: move left by word
+                [self moveCursorLeftByWord];
                 return YES;
             case kVK_RightArrow:
                 // Left: move right by word
+                [self moveCursorRightByWord];
                 return YES;
             default:
                 return YES;
