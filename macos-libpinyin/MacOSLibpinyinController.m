@@ -75,7 +75,7 @@
 
 - (void)createFullpinyinEditor {
     // LibpinyinFullPinyinEditor
-    _fullpinyinEditor = [[LibpinyinFullPinyinEditor alloc] initWithProperties:[[LibpinyinProperties alloc] init] andConfig:[[LibpinyinConfig alloc] init]];
+    _fullpinyinEditor = [[LibpinyinFullPinyinEditor alloc] initWithConfig:[LibpinyinConfig sharedConfig]];
 }
 
 - (NSMenu *)menu {
@@ -85,6 +85,17 @@
 - (IBAction)showPreferences:(id)sender {
     // Passthrough to AppDelegate
     return [[AppDelegate getDelegate] showPreferences:sender];
+}
+
+- (IBAction)menuChineseClicked:(id)sender {
+    [[AppDelegate getDelegate] menuChineseClicked:sender];
+}
+
+- (IBAction)menuFullClicked:(id)sender {
+    [[AppDelegate getDelegate] menuFullClicked:sender];
+}
+- (IBAction)menuFullPunctClicked:(id)sender {
+    [[AppDelegate getDelegate] menuFullPunctClicked:sender];
 }
 
 @end

@@ -9,12 +9,11 @@
 
 #import "LibpinyinConfig.h"
 #import "LibpinyinEditor.h"
-#import "LibpinyinProperties.h"
 
 
 @interface LibpinyinFullPinyinEditor : NSObject<LibpinyinEditorProtocol>
 
-- (id)initWithProperties:(LibpinyinProperties *) props andConfig:(LibpinyinConfig *) config;
+- (id)initWithConfig:(LibpinyinConfig *) config;
 
 @end
 

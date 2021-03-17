@@ -7,7 +7,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "LibpinyinProperties.h"
 #import "LibpinyinConfig.h"
 #import "MacOSLibpinyinController.h"
 

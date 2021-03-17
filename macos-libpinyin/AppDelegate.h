@@ -16,5 +16,10 @@
 + (instancetype)getDelegate;
 
 - (IBAction)showPreferences:(id)sender;
+
+- (IBAction)menuChineseClicked:(id)sender;
+- (IBAction)menuFullClicked:(id)sender;
+- (IBAction)menuFullPunctClicked:(id)sender;
+
 @end
 
