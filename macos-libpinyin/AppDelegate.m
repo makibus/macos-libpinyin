@@ -197,7 +197,11 @@
 
 - (IBAction)incompletePinyin:(id)sender {
     NSButton *cell = sender;
-    NSLog(@"Value changed to %d", [cell intValue]);
+    if ([cell intValue]) {
+        [m_config setFuzzyOption:PINYIN_INCOMPLETE | ZHUYIN_INCOMPLETE];
+    } else {
+        [m_config removeFuzzyOption:PINYIN_INCOMPLETE | ZHUYIN_INCOMPLETE];
+    }
 }
 
 - (IBAction)commaPeriodFlipPage:(id)sender {
@@ -219,84 +223,166 @@
 
 - (IBAction)correctPinyin:(id)sender {
     NSButton *cell = sender;
-    NSLog(@"Value changed to %d", [cell intValue]);
+    if ([cell intValue]) {
+        [m_config setCorrectOption:PINYIN_CORRECT_ALL];
+    } else {
+        [m_config removeCorrectOption:PINYIN_CORRECT_ALL];
+    }
+    [self resetCorrectStates];
 }
 - (IBAction)correctPinyinGNNG:(id)sender {
     NSButton *cell = sender;
-    NSLog(@"Value changed to %d", [cell intValue]);
+    if ([cell intValue]) {
+        [m_config setCorrectOption:PINYIN_CORRECT_GN_NG];
+    } else {
+        [m_config removeCorrectOption:PINYIN_CORRECT_GN_NG];
+    }
 }
 - (IBAction)correctPinyinMGNG:(id)sender {
     NSButton *cell = sender;
-    NSLog(@"Value changed to %d", [cell intValue]);
+    if ([cell intValue]) {
+        [m_config setCorrectOption:PINYIN_CORRECT_MG_NG];
+    } else {
+        [m_config removeCorrectOption:PINYIN_CORRECT_MG_NG];
+    }
 }
 - (IBAction)correctPinyinUEIUI:(id)sender {
     NSButton *cell = sender;
-    NSLog(@"Value changed to %d", [cell intValue]);
+    if ([cell intValue]) {
+        [m_config setCorrectOption:PINYIN_CORRECT_UEI_UI];
+    } else {
+        [m_config removeCorrectOption:PINYIN_CORRECT_UEI_UI];
+    }
 }
 - (IBAction)correctPinyinUENEN:(id)sender {
     NSButton *cell = sender;
-    NSLog(@"Value changed to %d", [cell intValue]);
+    if ([cell intValue]) {
+        [m_config setCorrectOption:PINYIN_CORRECT_UEN_UN];
+    } else {
+        [m_config removeCorrectOption:PINYIN_CORRECT_UEN_UN];
+    }
 }
 - (IBAction)correctPinyinONONG:(id)sender {
     NSButton *cell = sender;
-    NSLog(@"Value changed to %d", [cell intValue]);
+    if ([cell intValue]) {
+        [m_config setCorrectOption:PINYIN_CORRECT_ON_ONG];
+    } else {
+        [m_config removeCorrectOption:PINYIN_CORRECT_ON_ONG];
+    }
 }
 - (IBAction)correctPinyinVU:(id)sender {
     NSButton *cell = sender;
-    NSLog(@"Value changed to %d", [cell intValue]);
+    if ([cell intValue]) {
+        [m_config setCorrectOption:PINYIN_CORRECT_V_U];
+    } else {
+        [m_config removeCorrectOption:PINYIN_CORRECT_V_U];
+    }
 }
 - (IBAction)correctPinyinUEVE:(id)sender {
     NSButton *cell = sender;
-    NSLog(@"Value changed to %d", [cell intValue]);
+    if ([cell intValue]) {
+        [m_config setCorrectOption:PINYIN_CORRECT_UE_VE];
+    } else {
+        [m_config removeCorrectOption:PINYIN_CORRECT_UE_VE];
+    }
 }
 - (IBAction)correctPinyinIOUIU:(id)sender {
     NSButton *cell = sender;
-    NSLog(@"Value changed to %d", [cell intValue]);
+    if ([cell intValue]) {
+        [m_config setCorrectOption:PINYIN_CORRECT_IOU_IU];
+    } else {
+        [m_config removeCorrectOption:PINYIN_CORRECT_IOU_IU];
+    }
 }
 
 - (IBAction)fuzzySyllable:(id)sender {
     NSButton *cell = sender;
-    NSLog(@"Value changed to %d", [cell intValue]);
+    if ([cell intValue]) {
+        [m_config setFuzzyOption:PINYIN_AMB_ALL];
+    } else {
+        [m_config removeFuzzyOption:PINYIN_AMB_ALL];
+    }
+    [self resetFuzzyStates];
 }
 - (IBAction)fuzzySyllableCCH:(id)sender {
     NSButton *cell = sender;
-    NSLog(@"Value changed to %d", [cell intValue]);
+    if ([cell intValue]) {
+        [m_config setFuzzyOption:PINYIN_AMB_C_CH];
+    } else {
+        [m_config removeFuzzyOption:PINYIN_AMB_C_CH];
+    }
 }
 - (IBAction)fuzzySyllableZZH:(id)sender {
     NSButton *cell = sender;
-    NSLog(@"Value changed to %d", [cell intValue]);
+    if ([cell intValue]) {
+        [m_config setFuzzyOption:PINYIN_AMB_Z_ZH];
+    } else {
+        [m_config removeFuzzyOption:PINYIN_AMB_Z_ZH];
+    }
 }
 - (IBAction)fuzzySyllableSSH:(id)sender {
     NSButton *cell = sender;
-    NSLog(@"Value changed to %d", [cell intValue]);
+    if ([cell intValue]) {
+        [m_config setFuzzyOption:PINYIN_AMB_S_SH];
+    } else {
+        [m_config removeFuzzyOption:PINYIN_AMB_S_SH];
+    }
 }
 - (IBAction)fuzzySyllableLN:(id)sender {
     NSButton *cell = sender;
-    NSLog(@"Value changed to %d", [cell intValue]);
+    if ([cell intValue]) {
+        [m_config setFuzzyOption:PINYIN_AMB_L_N];
+    } else {
+        [m_config removeFuzzyOption:PINYIN_AMB_L_N];
+    }
 }
 - (IBAction)fuzzySyllableFH:(id)sender {
     NSButton *cell = sender;
-    NSLog(@"Value changed to %d", [cell intValue]);
+    if ([cell intValue]) {
+        [m_config setFuzzyOption:PINYIN_AMB_F_H];
+    } else {
+        [m_config removeFuzzyOption:PINYIN_AMB_F_H];
+    }
 }
 - (IBAction)fuzzySyllableLR:(id)sender {
     NSButton *cell = sender;
-    NSLog(@"Value changed to %d", [cell intValue]);
+    if ([cell intValue]) {
+        [m_config setFuzzyOption:PINYIN_AMB_L_R];
+    } else {
+        [m_config removeFuzzyOption:PINYIN_AMB_L_R];
+    }
 }
 - (IBAction)fuzzySyllableGK:(id)sender {
     NSButton *cell = sender;
-    NSLog(@"Value changed to %d", [cell intValue]);
+    if ([cell intValue]) {
+        [m_config setFuzzyOption:PINYIN_AMB_G_K];
+    } else {
+        [m_config removeFuzzyOption:PINYIN_AMB_G_K];
+    }
 }
 - (IBAction)fuzzySyllableANANG:(id)sender {
     NSButton *cell = sender;
-    NSLog(@"Value changed to %d", [cell intValue]);
+    if ([cell intValue]) {
+        [m_config setFuzzyOption:PINYIN_AMB_AN_ANG];
+    } else {
+        [m_config removeFuzzyOption:PINYIN_AMB_AN_ANG];
+    }
 }
 - (IBAction)fuzzySyllableENENG:(id)sender {
     NSButton *cell = sender;
-    NSLog(@"Value changed to %d", [cell intValue]);
+    if ([cell intValue]) {
+        [m_config setFuzzyOption:PINYIN_AMB_EN_ENG];
+    } else {
+        [m_config removeFuzzyOption:PINYIN_AMB_EN_ENG];
+    }
 }
 - (IBAction)fuzzySyllableINING:(id)sender {
     NSButton *cell = sender;
-    NSLog(@"Value changed to %d", [cell intValue]);
+    if ([cell intValue]) {
+        [m_config setFuzzyOption:PINYIN_AMB_IN_ING];
+    } else {
+        [m_config removeFuzzyOption:PINYIN_AMB_IN_ING];
+    }
 }
 
 - (IBAction)dictArt:(id)sender {
@@ -357,7 +443,7 @@
 
     [_m_numberOfCandidates selectItemAtIndex:[m_config pageSize] - 1];
     
-    // [_m_dynamicAdjust setState:[m_config ]];
+    [_m_dynamicAdjust setState:([m_config fuzzyOption] & DYNAMIC_ADJUST) ? NSControlStateValueOn : NSControlStateValueOff];
     [_m_rememberEveryInput setState:[m_config rememberEveryInput] ? NSControlStateValueOn : NSControlStateValueOff];
     [_m_showSuggestions setState:[m_config showSuggestion] ? NSControlStateValueOn : NSControlStateValueOff];
 
@@ -366,20 +452,99 @@
     // Pinyin
     [_m_pinyinMode selectItemAtIndex:[m_config doublePinyin] ? 1 : 0];
     // TODO: [_m_doublePinyinSchema selectItemAtIndex:0];
-    // TODO: [_m_incompletePinyin setState:[m_config ]];
+    [_m_incompletePinyin setState:([m_config fuzzyOption] & (PINYIN_INCOMPLETE | ZHUYIN_INCOMPLETE)) ? NSControlStateValueOn : NSControlStateValueOff];
 
     [_m_commaPeriodFlipPage setState:[m_config commaPeriodPage] ? NSControlStateValueOn : NSControlStateValueOff];
     [_m_minusEqualFlipPage setState:[m_config minusEqualPage] ? NSControlStateValueOn : NSControlStateValueOff];
     [_m_autoCommit setState:[m_config autoCommit] ? NSControlStateValueOn : NSControlStateValueOff];
     [_m_shiftSelectCandidate setState:[m_config shiftSelectCandidate] ? NSControlStateValueOn : NSControlStateValueOff];
 
-    // TODO: [_m_correctPinyin setState:[m_config ] ? NSControlStateValueOn : NSControlStateValueOff];
+    [self resetCorrectStates];
 
     // Fuzzy
-    // TODO: [_m_fuzzySyllable setState:[m_config ]];
+    [self resetFuzzyStates];
 
     // Dict
     // TODO
+}
+
+- (void)resetCorrectStates {
+    NSUInteger correctOption = [m_config correctOption];
+    [_m_correctPinyinGNNG setState:(correctOption & PINYIN_CORRECT_GN_NG) ? NSControlStateValueOn : NSControlStateValueOff];
+    [_m_correctPinyinMGNG setState:(correctOption & PINYIN_CORRECT_MG_NG) ? NSControlStateValueOn : NSControlStateValueOff];
+    [_m_correctPinyinUEIUI setState:(correctOption & PINYIN_CORRECT_UEI_UI) ? NSControlStateValueOn : NSControlStateValueOff];
+    [_m_correctPinyinUENUN setState:(correctOption & PINYIN_CORRECT_UEN_UN) ? NSControlStateValueOn : NSControlStateValueOff];
+    [_m_correctPinyinONONG setState:(correctOption & PINYIN_CORRECT_ON_ONG) ? NSControlStateValueOn : NSControlStateValueOff];
+    [_m_correctPinyinUEVE setState:(correctOption & PINYIN_CORRECT_UE_VE) ? NSControlStateValueOn : NSControlStateValueOff];
+    [_m_correctPinyinIOUIU setState:(correctOption & PINYIN_CORRECT_IOU_IU) ? NSControlStateValueOn : NSControlStateValueOff];
+    if (correctOption) {
+        [_m_correctPinyin setState: NSControlStateValueOn];
+
+        // Set each options
+        [_m_correctPinyinVU setEnabled:YES];
+        [_m_correctPinyinGNNG setEnabled:YES];
+        [_m_correctPinyinMGNG setEnabled:YES];
+        [_m_correctPinyinUEIUI setEnabled:YES];
+        [_m_correctPinyinUENUN setEnabled:YES];
+        [_m_correctPinyinONONG setEnabled:YES];
+        [_m_correctPinyinUEVE setEnabled:YES];
+        [_m_correctPinyinIOUIU setEnabled:YES];
+    } else {
+        [_m_correctPinyin setState:NSControlStateValueOff];
+
+        // Set each options
+        [_m_correctPinyinVU setEnabled:NO];
+        [_m_correctPinyinGNNG setEnabled:NO];
+        [_m_correctPinyinMGNG setEnabled:NO];
+        [_m_correctPinyinUEIUI setEnabled:NO];
+        [_m_correctPinyinUENUN setEnabled:NO];
+        [_m_correctPinyinONONG setEnabled:NO];
+        [_m_correctPinyinUEVE setEnabled:NO];
+        [_m_correctPinyinIOUIU setEnabled:NO];
+    }
+}
+
+- (void)resetFuzzyStates {
+    NSUInteger fuzzyOption = [m_config fuzzyOption];
+    [_m_fuzzySyllableFH setState:(fuzzyOption | PINYIN_AMB_F_H) ? NSControlStateValueOn : NSControlStateValueOff];
+    [_m_fuzzySyllableGK setState:(fuzzyOption | PINYIN_AMB_G_K) ? NSControlStateValueOn : NSControlStateValueOff];
+    [_m_fuzzySyllableLN setState:(fuzzyOption | PINYIN_AMB_L_N) ? NSControlStateValueOn : NSControlStateValueOff];
+    [_m_fuzzySyllableLR setState:(fuzzyOption | PINYIN_AMB_L_R) ? NSControlStateValueOn : NSControlStateValueOff];
+    [_m_fuzzySyllableCCH setState:(fuzzyOption | PINYIN_AMB_C_CH) ? NSControlStateValueOn : NSControlStateValueOff];
+    [_m_fuzzySyllableSSH setState:(fuzzyOption | PINYIN_AMB_S_SH) ? NSControlStateValueOn : NSControlStateValueOff];
+    [_m_fuzzySyllableZZH setState:(fuzzyOption | PINYIN_AMB_Z_ZH) ? NSControlStateValueOn : NSControlStateValueOff];
+    [_m_fuzzySyllableANANG setState:(fuzzyOption | PINYIN_AMB_AN_ANG) ? NSControlStateValueOn : NSControlStateValueOff];
+    [_m_fuzzySyllableENENG setState:(fuzzyOption | PINYIN_AMB_EN_ENG) ? NSControlStateValueOn : NSControlStateValueOff];
+    [_m_fuzzySyllableINING setState:(fuzzyOption | PINYIN_AMB_IN_ING) ? NSControlStateValueOn : NSControlStateValueOff];
+    if (fuzzyOption) {
+        [_m_fuzzySyllable setState: NSControlStateValueOn];
+
+        // Set each options
+        [_m_fuzzySyllableFH setEnabled:YES];
+        [_m_fuzzySyllableGK setEnabled:YES];
+        [_m_fuzzySyllableLN setEnabled:YES];
+        [_m_fuzzySyllableLR setEnabled:YES];
+        [_m_fuzzySyllableCCH setEnabled:YES];
+        [_m_fuzzySyllableSSH setEnabled:YES];
+        [_m_fuzzySyllableZZH setEnabled:YES];
+        [_m_fuzzySyllableANANG setEnabled:YES];
+        [_m_fuzzySyllableENENG setEnabled:YES];
+        [_m_fuzzySyllableINING setEnabled:YES];
+    } else {
+        [_m_fuzzySyllable setState:NSControlStateValueOff];
+
+        // Set each options
+        [_m_fuzzySyllableFH setEnabled:NO];
+        [_m_fuzzySyllableGK setEnabled:NO];
+        [_m_fuzzySyllableLN setEnabled:NO];
+        [_m_fuzzySyllableLR setEnabled:NO];
+        [_m_fuzzySyllableCCH setEnabled:NO];
+        [_m_fuzzySyllableSSH setEnabled:NO];
+        [_m_fuzzySyllableZZH setEnabled:NO];
+        [_m_fuzzySyllableANANG setEnabled:NO];
+        [_m_fuzzySyllableENENG setEnabled:NO];
+        [_m_fuzzySyllableINING setEnabled:NO];
+    }
 }
 
 @end

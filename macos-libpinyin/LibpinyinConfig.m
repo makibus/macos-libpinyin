@@ -9,6 +9,15 @@
 
 static LibpinyinConfig *_config = nil;
 
+static const struct{
+    gint cloud_input_source_index;
+    enum CloudInputSource cloud_input_source;
+} cloud_input_source_options [] = {
+    {0, CLOUD_INPUT_SOURCE_BAIDU},
+    {1, CLOUD_INPUT_SOURCE_GOOGLE},
+    {2, CLOUD_INPUT_SOURCE_GOOGLE_CN}
+};
+
 NSString *CONFIG_CORRECT_PINYIN            = @"correct-pinyin";
 NSString *CONFIG_FUZZY_PINYIN              = @"fuzzy-pinyin";
 NSString *CONFIG_ORIENTATION               = @"lookup-table-orientation";
@@ -61,6 +70,9 @@ NSString *CONFIG_CLOUD_REQUEST_DELAY_TIME  = @"cloud-request-delay-time";
     NSString *m_opencc_config;
     pinyin_option_t m_option;
     pinyin_option_t m_option_mask;
+
+    pinyin_fuzzy_option_t m_fuzzyOption;
+    pinyin_correct_option_t m_correctOption;
 
     NSInteger m_orientation;
     NSUInteger m_page_size;
@@ -127,6 +139,9 @@ NSString *CONFIG_CLOUD_REQUEST_DELAY_TIME  = @"cloud-request-delay-time";
     NSDictionary *defaultConfig = [NSDictionary dictionaryWithContentsOfFile:defaultPlist];
     [m_prefs registerDefaults:defaultConfig];
     NSLog(@"Default config set from %@", defaultPlist);
+
+    m_correctOption = (pinyin_correct_option_t)[self readInt:CONFIG_CORRECT_PINYIN orDefault:PINYIN_CORRECT_ALL];
+    m_fuzzyOption = (pinyin_fuzzy_option_t)[self readInt:CONFIG_FUZZY_PINYIN orDefault:PINYIN_AMB_ALL];
 
     m_orientation = [self readInt:CONFIG_ORIENTATION orDefault:PINYIN_PANEL_ORIENTATION_HORIZONTAL];
     m_page_size = [self readInt:CONFIG_PAGE_SIZE orDefault:5];
@@ -235,6 +250,8 @@ NSString *CONFIG_CLOUD_REQUEST_DELAY_TIME  = @"cloud-request-delay-time";
 - (NSString *)bothSwitch { return m_both_switch; }
 - (NSString *)tradSwitch { return m_trad_switch; }
 - (NSString *)openccConfig { return m_opencc_config; }
+- (NSUInteger)fuzzyOption { return m_fuzzyOption; }
+- (NSUInteger)correctOption { return m_correctOption; }
 
 /* Write functions */
 - (void)setDictionaries:(NSString *)dict {
@@ -360,6 +377,23 @@ NSString *CONFIG_CLOUD_REQUEST_DELAY_TIME  = @"cloud-request-delay-time";
 - (void)setOpenccConfig:(NSString *)opencc {
     [self writeStirng:CONFIG_OPENCC_CONFIG withValue:opencc];
     m_opencc_config = opencc;
+}
+
+- (void)setFuzzyOption:(NSUInteger)option {
+    m_fuzzyOption |= option;
+    [self writeInt:CONFIG_FUZZY_PINYIN withValue:m_fuzzyOption];
+}
+- (void)removeFuzzyOption:(NSUInteger)option {
+    m_fuzzyOption &= ~option;
+    [self writeInt:CONFIG_FUZZY_PINYIN withValue:m_fuzzyOption];
+}
+- (void)setCorrectOption:(NSUInteger)option {
+    m_correctOption |= option;
+    [self writeInt:CONFIG_CORRECT_PINYIN withValue:m_correctOption];
+}
+- (void)removeCorrectOption:(NSUInteger)option {
+    m_correctOption &= ~option;
+    [self writeInt:CONFIG_CORRECT_PINYIN withValue:m_correctOption];
 }
 
 @end

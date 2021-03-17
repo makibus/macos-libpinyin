@@ -5,9 +5,9 @@
 	<key>init-chinese</key>
 	<true/>
 	<key>correct-pinyin</key>
-	<false/>
+	<real>4294967295</real>
 	<key>fuzzy-pinyin</key>
-	<false/>
+	<real>4294967295</real>
 	<key>lookup-table-orientation</key>
 	<integer>0</integer>
 	<key>lookup-table-page-size</key>

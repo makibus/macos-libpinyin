@@ -61,6 +61,8 @@ typedef enum {
 - (NSString *)bothSwitch;
 - (NSString *)tradSwitch;
 - (NSString *)openccConfig;
+- (NSUInteger)fuzzyOption;
+- (NSUInteger)correctOption;
 
 - (void)setDictionaries:(NSString *)dict;
 - (void)setLuaConverter:(NSString *)convertor;
@@ -94,4 +96,8 @@ typedef enum {
 - (void)setTradSwitch:(NSString *)trad;
 - (void)setOpenccConfig:(NSString *)opencc;
 
+- (void)setFuzzyOption:(NSUInteger)option;
+- (void)removeFuzzyOption:(NSUInteger)option;
+- (void)setCorrectOption:(NSUInteger)option;
+- (void)removeCorrectOption:(NSUInteger)option;
 @end
