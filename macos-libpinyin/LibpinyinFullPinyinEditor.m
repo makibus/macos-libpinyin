@@ -119,7 +119,7 @@
     BOOL m_shouldCommitString;
 }
 
-- (id)initWithProperties:(LibpinyinProperties *) props andConfig:(LibpinyinConfig *) config {
+- (id)initWithConfig:(LibpinyinConfig *) config {
     m_instance = [[LibpinyinBackend sharedInstance] allocPinyinInstance];
     m_text = [[NSMutableString alloc] init];
     m_buffer = [[NSMutableString alloc] init];

@@ -55,6 +55,9 @@
                 <outlet property="m_initFull" destination="y6h-hz-vDF" id="kwH-7t-hC2"/>
                 <outlet property="m_initFullPunct" destination="38o-6b-tMt" id="4jl-OY-L1V"/>
                 <outlet property="m_initLanguage" destination="vmS-s7-hb5" id="Yn7-nP-RqM"/>
+                <outlet property="m_menuInitChinese" destination="gyi-Nf-E5Z" id="2MA-cp-UwK"/>
+                <outlet property="m_menuInitFull" destination="VCW-8Z-DLZ" id="8vc-L5-QSL"/>
+                <outlet property="m_menuInitFullPunct" destination="5ub-wR-1r2" id="Dc5-6E-Aow"/>
                 <outlet property="m_minusEqualFlipPage" destination="N9Q-xP-E0j" id="i0z-iV-v2f"/>
                 <outlet property="m_numberOfCandidates" destination="BEZ-3g-pDA" id="hoO-wp-2ls"/>
                 <outlet property="m_rememberEveryInput" destination="nCn-Fs-4ch" id="R3p-g3-FPQ"/>
@@ -1409,6 +1412,25 @@
         </window>
         <menu title="Menu" id="Wdz-Dv-yRL" userLabel="Menu (Menu)">
             <items>
+                <menuItem title="Chinese" id="gyi-Nf-E5Z">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="menuChineseClicked:" target="-1" id="0Ys-6E-hVY"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Full" id="VCW-8Z-DLZ">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="menuFullClicked:" target="-1" id="611-rK-od7"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Full Punction" id="5ub-wR-1r2">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="menuFullPunctClicked:" target="-1" id="vqb-yQ-NMF"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="y91-rL-Mx6"/>
                 <menuItem title="Configure" id="Zuk-lQ-jVK">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>

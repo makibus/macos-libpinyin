@@ -71,6 +71,9 @@
 @property (weak) IBOutlet NSButton *m_dictSport;
 @property (weak) IBOutlet NSButton *m_dictTechnology;
 
+@property (weak) IBOutlet NSMenuItem *m_menuInitChinese;
+@property (weak) IBOutlet NSMenuItem *m_menuInitFull;
+@property (weak) IBOutlet NSMenuItem *m_menuInitFullPunct;
 @end
 
 @implementation AppDelegate
@@ -99,21 +102,27 @@
 /* Configs */
 - (IBAction)initLanguageValueChangedToEN:(id)sender {
     [m_config setInitChinese:NO];
+    [_m_menuInitChinese setState:NSControlStateValueOff];
 }
 - (IBAction)initLanuageValueChangedToCH:(id)sender {
     [m_config setInitChinese:YES];
+    [_m_menuInitChinese setState:NSControlStateValueOn];
 }
 - (IBAction)initFullValueChangedToFull:(id)sender {
     [m_config setInitFull:YES];
+    [_m_menuInitFull setState:NSControlStateValueOn];
 }
 - (IBAction)initFullValueChangedToHalf:(id)sender {
     [m_config setInitFull:NO];
+    [_m_menuInitFull setState:NSControlStateValueOff];
 }
 - (IBAction)initFullPuncValueChangedToFull:(id)sender {
     [m_config setInitFullPunct:YES];
+    [_m_menuInitFullPunct setState:NSControlStateValueOn];
 }
 - (IBAction)initFullPuncValueChangedToHalf:(id)sender {
     [m_config setInitFullPunct:NO];
+    [_m_menuInitFullPunct setState:NSControlStateValueOff];
 }
 
 - (IBAction)numberOfCandidates1:(id)sender {
@@ -470,6 +479,11 @@
 
     // Dict
     // TODO
+
+    // Menu
+    [_m_menuInitChinese setState:[m_config initChinese] ? NSControlStateValueOn : NSControlStateValueOff];
+    [_m_menuInitFull setState:[m_config initFull] ? NSControlStateValueOn : NSControlStateValueOff];
+    [_m_menuInitFullPunct setState:[m_config initFullPunct] ? NSControlStateValueOn : NSControlStateValueOff];
 }
 
 - (void)resetCorrectStates {
@@ -575,6 +589,29 @@
         default:
             break;
     }
+}
+
+- (IBAction)menuChineseClicked:(id)sender {
+    BOOL current = ![m_config initChinese];
+    [m_config setInitChinese:current];
+
+    [_m_menuInitChinese setState:current ? NSControlStateValueOn : NSControlStateValueOff];
+    [_m_initLanguage selectItemAtIndex:[m_config initChinese] ? 0 : 1];
+}
+
+- (IBAction)menuFullClicked:(id)sender {
+    BOOL current = ![m_config initFull];
+    [m_config setInitFull:current];
+
+    [_m_menuInitFull setState:current ? NSControlStateValueOn : NSControlStateValueOff];
+    [_m_initFull selectItemAtIndex:[m_config initFull] ? 0 : 1];
+}
+- (IBAction)menuFullPunctClicked:(id)sender {
+    BOOL current = ![m_config initFullPunct];
+    [m_config setInitFullPunct:current];
+
+    [_m_menuInitFullPunct setState:current ? NSControlStateValueOn : NSControlStateValueOff];
+    [_m_initFullPunct selectItemAtIndex:[m_config initFullPunct] ? 0 : 1];
 }
 
 @end
