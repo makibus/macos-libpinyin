@@ -455,7 +455,7 @@
 
     // Pinyin
     [_m_pinyinMode selectItemAtIndex:[m_config doublePinyin] ? 1 : 0];
-    // TODO: [_m_doublePinyinSchema selectItemAtIndex:0];
+    [self resetDoublePinyinSchema];
     [_m_incompletePinyin setState:([m_config fuzzyOption] & (PINYIN_INCOMPLETE | ZHUYIN_INCOMPLETE)) ? NSControlStateValueOn : NSControlStateValueOff];
 
     [_m_commaPeriodFlipPage setState:[m_config commaPeriodPage] ? NSControlStateValueOn : NSControlStateValueOff];
@@ -548,6 +548,32 @@
         [_m_fuzzySyllableANANG setEnabled:NO];
         [_m_fuzzySyllableENENG setEnabled:NO];
         [_m_fuzzySyllableINING setEnabled:NO];
+    }
+}
+
+- (void)resetDoublePinyinSchema {
+    NSUInteger schema = [m_config doublePinyinSchema];
+    switch (schema) {
+        case DOUBLE_PINYIN_MS:
+            [_m_doublePinyinSchema selectItemAtIndex:0];
+            break;
+        case DOUBLE_PINYIN_ZRM:
+            [_m_doublePinyinSchema selectItemAtIndex:1];
+            break;
+        case DOUBLE_PINYIN_ABC:
+            [_m_doublePinyinSchema selectItemAtIndex:2];
+            break;
+        case DOUBLE_PINYIN_ZIGUANG:
+            [_m_doublePinyinSchema selectItemAtIndex:3];
+            break;
+        case DOUBLE_PINYIN_PYJJ:
+            [_m_doublePinyinSchema selectItemAtIndex:4];
+            break;
+        case DOUBLE_PINYIN_XHE:
+            [_m_doublePinyinSchema selectItemAtIndex:5];
+            break;
+        default:
+            break;
     }
 }
 
