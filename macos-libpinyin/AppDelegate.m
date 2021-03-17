@@ -210,19 +210,19 @@
 
 - (IBAction)commaPeriodFlipPage:(id)sender {
     NSButton *cell = sender;
-    NSLog(@"Value changed to %d", [cell intValue]);
+    [m_config setCommaPeriodPage:[cell intValue] ? YES : NO];
 }
 - (IBAction)minusEqualFlipPage:(id)sender {
     NSButton *cell = sender;
-    NSLog(@"Value changed to %d", [cell intValue]);
+    [m_config setMinusEqualPage:[cell intValue] ? YES : NO];
 }
 - (IBAction)autoCommit:(id)sender {
     NSButton *cell = sender;
-    NSLog(@"Value changed to %d", [cell intValue]);
+    [m_config setAutoCommit:[cell intValue] ? YES : NO];
 }
 - (IBAction)shiftSelectCandidate:(id)sender {
     NSButton *cell = sender;
-    NSLog(@"Value changed to %d", [cell intValue]);
+    [m_config setShiftSelectCandidate:[cell intValue] ? YES : NO];
 }
 
 - (IBAction)correctPinyin:(id)sender {
