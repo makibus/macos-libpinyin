@@ -73,6 +73,10 @@
 - (BOOL)processNumberWithKeyValue:(int)keyval keyCode:(int)keycode modifiers:(int)modifiers;
 - (BOOL)processPunctWithKeyValue:(int)keyval keyCode:(int)keycode modifiers:(int)modifiers;
 
+/* Instance */
+- (pinyin_instance_t *)getPinyinInstance;
+- (NSString *)getText;
+
 @end
 
 @protocol LookupTableProtocol <NSObject>

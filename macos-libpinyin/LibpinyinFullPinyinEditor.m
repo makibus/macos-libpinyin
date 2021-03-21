@@ -741,4 +741,12 @@
     [m_lookupTable pageUp];
 }
 
+- (pinyin_instance_t *)getPinyinInstance {
+    return m_instance;
+}
+
+- (NSString *)getText {
+    return m_text;
+}
+
 @end
