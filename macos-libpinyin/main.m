@@ -18,7 +18,6 @@ MacOSLibpinyinController *controller;
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         // Setup code that might create autoreleased objects goes here.
-        NSUserDefaults *pref = [NSUserDefaults standardUserDefaults];
 
         // Pre-init libpinyin config
         [LibpinyinConfig sharedConfig];
