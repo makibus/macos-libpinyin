@@ -577,7 +577,7 @@
 
     [self updatePinyin];
     [self update];
-    return TRUE;
+    return YES;
 }
 
 - (void)commitEmpty {
@@ -585,43 +585,61 @@
 }
 
 - (NSUInteger)getCursorLeftByWord {
-    // TODO
-    return 0;
+    size_t offset = 0;
+    pinyin_get_pinyin_offset (m_instance, m_cursor, &offset);
+    size_t cursor = 0;
+    pinyin_get_left_pinyin_offset(m_instance, offset, &cursor);
+    return cursor;
 }
 
 - (NSUInteger)getCursorRightByWord {
-    // TODO
-    return 0;
+    size_t offset = 0;
+    pinyin_get_pinyin_offset (m_instance, m_cursor, &offset);
+    size_t cursor = 0;
+    pinyin_get_right_pinyin_offset(m_instance, offset, &cursor);
+    return cursor;
 }
 
 - (BOOL)moveCursorLeft {
-    // TODO
-    return NO;
+    if (m_cursor == 0) return NO;
+    m_cursor -= 1;
+    [self update];
+    return YES;
 }
 
 - (BOOL)moveCursorLeftByWord {
-    // TODO
-    return NO;
+    if (m_cursor == 0) return NO;
+    m_cursor = [self getCursorLeftByWord];
+    [self update];
+    return YES;
 }
 
 - (BOOL)moveCursorRight {
-    // TODO
-    return NO;
+    if (m_cursor == [m_text length]) return NO;
+    m_cursor += 1;
+    [self update];
+    return YES;
 }
 
 - (BOOL)moveCursorRightByWord {
-    // TODO
-    return NO;
+    if (m_cursor == [m_text length]) return NO;
+    m_cursor = [self getCursorRightByWord];
+    [self update];
+    return YES;
 }
 
 - (BOOL)moveCursorToBegin {
-    // TODO
-    return NO;
+    if (m_cursor == 0) return NO;
+    m_cursor = 0;
+    [self update];
+    return YES;
 }
 
 - (BOOL)moveCursorToEnd {
-    // TODO
-    return NO;
+    if (m_cursor == [m_text length]) return NO;
+    m_cursor = [m_text length];
+    [self update];
+    return YES;
 }
 
 - (BOOL)removeCandidateInternal {
@@ -630,13 +648,25 @@
 }
 
 - (BOOL)removeWordAfter {
-    // TODO
-    return NO;
+    if (m_cursor == [m_text length]) return NO;
+
+    NSUInteger newCursor = [self getCursorRightByWord];
+    [m_text deleteCharactersInRange:NSMakeRange(m_cursor, newCursor - m_cursor)];
+
+    [self updatePinyin];
+    [self update];
+    return YES;
 }
 
 - (BOOL)removeWordBefore {
-    // TODO
-    return NO;
+    if (m_cursor == 0) return NO;
+
+    NSUInteger newCursor = [self getCursorLeftByWord];
+    [m_text deleteCharactersInRange:NSMakeRange(newCursor, m_cursor - newCursor)];
+
+    [self updatePinyin];
+    [self update];
+    return YES;
 }
 
 - (BOOL)selectCandidate:(NSUInteger)i {
