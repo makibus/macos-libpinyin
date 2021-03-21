@@ -119,6 +119,11 @@
     BOOL m_shouldCommitString;
 
     LibpinyinConfig *m_config;
+
+    MacOSIMEPanelPayload *m_panelPayload;
+
+    /* Candidates */
+    LibpinyinCandidates *m_libpinyinCandidates;
 }
 
 - (id)initWithConfig:(LibpinyinConfig *) config {
@@ -135,6 +140,10 @@
     m_shouldCommitString = NO;
 
     m_lookupTable = [[LookupTable alloc] initWithPageSize:[m_config pageSize]];
+
+    m_panelPayload = [[MacOSIMEPanelPayload alloc] init];
+
+    m_libpinyinCandidates = [[LibpinyinCandidates alloc] init];
 
     return self;
 }
@@ -199,22 +208,8 @@
 }
 
 - (BOOL)updateCandidates {
-    uint number;
-
-    pinyin_get_n_candidate (m_instance, &number);
-
-    NSLog(@"%@ has %d candidates\n", m_text, number);
-
-    for (uint i = 0; i < number; ++i)
-    {
-        lookup_candidate_t * candidate;
-        pinyin_get_candidate (m_instance, i, &candidate);
-
-        const char *display_string;
-        pinyin_get_candidate_string (m_instance, candidate, &display_string);
-
-        [m_candidates addObject:[NSString stringWithUTF8String:display_string]];
-    }
+    // Update libpinyin candidates
+    [m_libpinyinCandidates processCandidates:m_candidates inEditor:self];
 
     return YES;
 }
@@ -260,8 +255,6 @@
     // Manually free it because it is derived from libpinyin
     free(auxText);
 }
-
-// https://github.com/epico/ibus-libpinyin/blob/master/src/PYPPinyinEditor.cc
 
 - (BOOL)processPinyinWithKeyValue:(int)keyval keyCode:(int)keycode modifiers:(int)modifiers {
     // TODO: check modifier
@@ -502,16 +495,15 @@
 }
 
 - (void)refresh:(id)client underController:(MacOSLibpinyinController *)controller {
-//    if ([m_buffer length] > 0) {
-//        // Show auxiliray text
-//        NSDictionary *attrs = [controller markForStyle:kTSMHiliteSelectedRawText atRange:NSMakeRange(0, [m_buffer length])];
-//        NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:m_buffer attributes:attrs];
-//        // NSRange caretRange = [m_buffer rangeOfString:@"|"];
-//    }
+    if ([m_buffer length] > 0) {
+        // Show auxiliray text
+        [m_panelPayload setAuxiliaryText:m_buffer];
+    }
+
     if ([m_commitString length] > 0 && m_shouldCommitString) {
         m_shouldCommitString = NO;
         [client insertText:m_commitString replacementRange:NSMakeRange(NSNotFound, NSNotFound)];
-        [[AppDelegate getDelegate].candiWin hideCandidates];
+        [[AppDelegate getDelegate].panel hide];
         [m_commitString setString:@""];
         [self reset];
         return;
@@ -523,12 +515,33 @@
         [client setMarkedText:preeditAttrString
                 selectionRange:NSMakeRange([m_preeditText length], 0)
                 replacementRange:NSMakeRange(NSNotFound, NSNotFound)];
+        [m_panelPayload setPreeditText:m_preeditText];
     } else {
         NSDictionary *pinyinAttrs = [controller markForStyle:kTSMHiliteSelectedRawText atRange:NSMakeRange(0, [m_text length])];
         NSAttributedString *pinyinAttrString = [[NSAttributedString alloc] initWithString:m_text attributes:pinyinAttrs];
         [client setMarkedText:pinyinAttrString
                 selectionRange:NSMakeRange([m_text length], 0)
                 replacementRange:NSMakeRange(NSNotFound, NSNotFound)];
+    }
+
+    if ([m_candidates count] > 0 && m_shouldShowLookupTable) {
+        NSMutableArray *candidates = [[NSMutableArray alloc] init];
+        NSRect cursorRect;
+        NSUInteger pos = [m_lookupTable cursorPos];
+        NSUInteger pageSize = [m_lookupTable pageSize];
+        NSUInteger candidateFrom = pos / pageSize * pageSize;
+        NSUInteger pageLength = MIN([m_lookupTable size] - candidateFrom, pageSize);
+        [client attributesForCharacterIndex:0 lineHeightRectangle:&cursorRect];
+        NSArray *candidatesToDisplay = [m_candidates subarrayWithRange:NSMakeRange(candidateFrom, pageLength)];
+        for (NSUInteger i = 0; i < [candidatesToDisplay count]; i++) {
+            [candidates addObject:[candidatesToDisplay[i] string]];
+        }
+        [m_panelPayload setCandidates:candidates];
+        [m_panelPayload setHighlightIndex:pos % pageSize];
+        [m_panelPayload setCursor:cursorRect];
+        [[AppDelegate getDelegate].panel update:m_panelPayload];
+    } else {
+        [[AppDelegate getDelegate].panel hide];
     }
 }
 
@@ -558,7 +571,7 @@
 
     [self updatePinyin];
     [self update];
-    return TRUE;
+    return YES;
 }
 
 - (void)commitEmpty {
@@ -566,58 +579,88 @@
 }
 
 - (NSUInteger)getCursorLeftByWord {
-    // TODO
-    return 0;
+    size_t offset = 0;
+    pinyin_get_pinyin_offset (m_instance, m_cursor, &offset);
+    size_t cursor = 0;
+    pinyin_get_left_pinyin_offset(m_instance, offset, &cursor);
+    return cursor;
 }
 
 - (NSUInteger)getCursorRightByWord {
-    // TODO
-    return 0;
+    size_t offset = 0;
+    pinyin_get_pinyin_offset (m_instance, m_cursor, &offset);
+    size_t cursor = 0;
+    pinyin_get_right_pinyin_offset(m_instance, offset, &cursor);
+    return cursor;
 }
 
 - (BOOL)moveCursorLeft {
-    // TODO
-    return NO;
+    if (m_cursor == 0) return NO;
+    m_cursor -= 1;
+    [self update];
+    return YES;
 }
 
 - (BOOL)moveCursorLeftByWord {
-    // TODO
-    return NO;
+    if (m_cursor == 0) return NO;
+    m_cursor = [self getCursorLeftByWord];
+    [self update];
+    return YES;
 }
 
 - (BOOL)moveCursorRight {
-    // TODO
-    return NO;
+    if (m_cursor == [m_text length]) return NO;
+    m_cursor += 1;
+    [self update];
+    return YES;
 }
 
 - (BOOL)moveCursorRightByWord {
-    // TODO
-    return NO;
+    if (m_cursor == [m_text length]) return NO;
+    m_cursor = [self getCursorRightByWord];
+    [self update];
+    return YES;
 }
 
 - (BOOL)moveCursorToBegin {
-    // TODO
-    return NO;
+    if (m_cursor == 0) return NO;
+    m_cursor = 0;
+    [self update];
+    return YES;
 }
 
 - (BOOL)moveCursorToEnd {
-    // TODO
-    return NO;
+    if (m_cursor == [m_text length]) return NO;
+    m_cursor = [m_text length];
+    [self update];
+    return YES;
 }
 
-- (BOOL)removeCandidateInternal {
+- (BOOL)removeCandidateInternal:(Candidate *)candidate {
     // TODO
     return NO;
 }
 
 - (BOOL)removeWordAfter {
-    // TODO
-    return NO;
+    if (m_cursor == [m_text length]) return NO;
+
+    NSUInteger newCursor = [self getCursorRightByWord];
+    [m_text deleteCharactersInRange:NSMakeRange(m_cursor, newCursor - m_cursor)];
+
+    [self updatePinyin];
+    [self update];
+    return YES;
 }
 
 - (BOOL)removeWordBefore {
-    // TODO
-    return NO;
+    if (m_cursor == 0) return NO;
+
+    NSUInteger newCursor = [self getCursorLeftByWord];
+    [m_text deleteCharactersInRange:NSMakeRange(newCursor, m_cursor - newCursor)];
+
+    [self updatePinyin];
+    [self update];
+    return YES;
 }
 
 - (BOOL)selectCandidate:(NSUInteger)i {
@@ -625,10 +668,18 @@
         return NO;
     }
 
-    // TODO: update to check the rest of pinyin
-    // https://github.com/libpinyin/ibus-libpinyin/blob/330ba5b289eec7670aa82244ed9064d8bc6d537b/src/PYPLibPinyinCandidates.cc#L79
+    // Update to check the rest of pinyin
+    Candidate *candidate = [m_candidates objectAtIndex:i];
 
-    [self commit:m_candidates[i]];
+    enum SelectCandidateAction action = [self selectCandidateInternal:candidate];
+
+    if (action & SELECT_CANDIDATE_COMMIT) {
+        [self commit:[candidate string]];
+    }
+
+    if (action & SELECT_CANDIDATE_UPDATE) {
+        [self update];
+    }
 
     return YES;
 }
@@ -643,9 +694,16 @@
     return [self selectCandidate:i];
 }
 
-- (int)selectCandidateInternal {
-    // TODO
-    return 0;
+- (enum SelectCandidateAction)selectCandidateInternal:(Candidate *)candidate {
+    switch ([candidate candidateType]) {
+        case CANDIDATE_NBEST_MATCH:
+        case CANDIDATE_NORMAL:
+        case CANDIDATE_USER:
+            return [m_libpinyinCandidates selectCandidate:candidate inEditor:self];
+        default:
+            break;
+    }
+    return SELECT_CANDIDATE_ALREADY_HANDLED;
 }
 
 - (void)showLookupTable {
@@ -690,6 +748,19 @@
 
 - (void)pageUp {
     [m_lookupTable pageUp];
+}
+
+- (pinyin_instance_t *)getPinyinInstance {
+    return m_instance;
+}
+
+- (NSString *)getText {
+    return m_text;
+}
+
+- (void)setCursorPos:(NSUInteger)i {
+    if (i > [m_text length]) i = [m_text length];
+    m_cursor = i;
 }
 
 @end

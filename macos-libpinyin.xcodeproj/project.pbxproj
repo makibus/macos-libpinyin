@@ -9,8 +9,9 @@
 /* Begin PBXBuildFile section */
 		1412251025F8B3CB006D6BB2 /* LibpinyinConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 1412250F25F8B3CB006D6BB2 /* LibpinyinConfig.m */; };
 		144009C825F8CD4B0023D072 /* LibpinyinFullPinyinEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 144009C725F8CD4B0023D072 /* LibpinyinFullPinyinEditor.m */; };
-		144009CC25F8D8C20023D072 /* LibpinyinProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 144009CB25F8D8C20023D072 /* LibpinyinProperties.m */; };
 		144009D025F8D96F0023D072 /* LibpinyinBackend.m in Sources */ = {isa = PBXBuildFile; fileRef = 144009CF25F8D96F0023D072 /* LibpinyinBackend.m */; };
+		144009E725F933EC0023D072 /* MacOSLibpinyinController.m in Sources */ = {isa = PBXBuildFile; fileRef = 144009E625F933EC0023D072 /* MacOSLibpinyinController.m */; };
+		144009EA25F934AE0023D072 /* InputMethodKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 144009E925F934AE0023D072 /* InputMethodKit.framework */; };
 		14D0130C25F3AA73004C36F8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D0130B25F3AA73004C36F8 /* AppDelegate.m */; };
 		14D0130E25F3AA74004C36F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14D0130D25F3AA74004C36F8 /* Assets.xcassets */; };
 		14D0131125F3AA74004C36F8 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14D0130F25F3AA74004C36F8 /* MainMenu.xib */; };
@@ -46,6 +47,14 @@
 		14D0135A25F3AAE3004C36F8 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D0135825F3AADA004C36F8 /* libc++.tbd */; };
 		14D0135B25F3AAE3004C36F8 /* libc.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D0135925F3AADA004C36F8 /* libc.tbd */; };
 		14D0135E25F3AAEC004C36F8 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D0135D25F3AAE8004C36F8 /* libiconv.tbd */; };
+		14E6DC6C2607590B00CB1834 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 14E6DC642607590B00CB1834 /* LICENSE */; };
+		14E6DC6D2607590B00CB1834 /* MacOSIMEPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E6DC652607590B00CB1834 /* MacOSIMEPanel.m */; };
+		14E6DC6E2607590B00CB1834 /* highlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 14E6DC662607590B00CB1834 /* highlight.png */; };
+		14E6DC6F2607590B00CB1834 /* panel.png in Resources */ = {isa = PBXBuildFile; fileRef = 14E6DC682607590B00CB1834 /* panel.png */; };
+		14E6DC702607590B00CB1834 /* MacOSIMETheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E6DC692607590B00CB1834 /* MacOSIMETheme.m */; };
+		14E6DC712607590B00CB1834 /* next.png in Resources */ = {isa = PBXBuildFile; fileRef = 14E6DC6A2607590B00CB1834 /* next.png */; };
+		14E6DC722607590B00CB1834 /* prev.png in Resources */ = {isa = PBXBuildFile; fileRef = 14E6DC6B2607590B00CB1834 /* prev.png */; };
+		14E9C8F325FE3A1600A2D23F /* LibpinyinDefaultConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 14E9C8F225FE3A1600A2D23F /* LibpinyinDefaultConfig.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,10 +63,11 @@
 		1412251925F8C459006D6BB2 /* LibpinyinEditor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LibpinyinEditor.h; sourceTree = "<group>"; };
 		144009C625F8CD4B0023D072 /* LibpinyinFullPinyinEditor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LibpinyinFullPinyinEditor.h; sourceTree = "<group>"; };
 		144009C725F8CD4B0023D072 /* LibpinyinFullPinyinEditor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LibpinyinFullPinyinEditor.m; sourceTree = "<group>"; };
-		144009CA25F8D8C20023D072 /* LibpinyinProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LibpinyinProperties.h; sourceTree = "<group>"; };
-		144009CB25F8D8C20023D072 /* LibpinyinProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LibpinyinProperties.m; sourceTree = "<group>"; };
 		144009CE25F8D96F0023D072 /* LibpinyinBackend.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LibpinyinBackend.h; sourceTree = "<group>"; };
 		144009CF25F8D96F0023D072 /* LibpinyinBackend.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LibpinyinBackend.m; sourceTree = "<group>"; };
+		144009E525F933EC0023D072 /* MacOSLibpinyinController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MacOSLibpinyinController.h; sourceTree = "<group>"; };
+		144009E625F933EC0023D072 /* MacOSLibpinyinController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MacOSLibpinyinController.m; sourceTree = "<group>"; };
+		144009E925F934AE0023D072 /* InputMethodKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InputMethodKit.framework; path = System/Library/Frameworks/InputMethodKit.framework; sourceTree = SDKROOT; };
 		14D0130725F3AA73004C36F8 /* macos-libpinyin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "macos-libpinyin.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		14D0130A25F3AA73004C36F8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		14D0130B25F3AA73004C36F8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -97,6 +107,16 @@
 		14D0135825F3AADA004C36F8 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		14D0135925F3AADA004C36F8 /* libc.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libc.tbd; path = usr/lib/libc.tbd; sourceTree = SDKROOT; };
 		14D0135D25F3AAE8004C36F8 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		14E6DC632607590B00CB1834 /* MacOSIMETheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacOSIMETheme.h; sourceTree = "<group>"; };
+		14E6DC642607590B00CB1834 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		14E6DC652607590B00CB1834 /* MacOSIMEPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MacOSIMEPanel.m; sourceTree = "<group>"; };
+		14E6DC662607590B00CB1834 /* highlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = highlight.png; sourceTree = "<group>"; };
+		14E6DC672607590B00CB1834 /* MacOSIMEPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacOSIMEPanel.h; sourceTree = "<group>"; };
+		14E6DC682607590B00CB1834 /* panel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = panel.png; sourceTree = "<group>"; };
+		14E6DC692607590B00CB1834 /* MacOSIMETheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MacOSIMETheme.m; sourceTree = "<group>"; };
+		14E6DC6A2607590B00CB1834 /* next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = next.png; sourceTree = "<group>"; };
+		14E6DC6B2607590B00CB1834 /* prev.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = prev.png; sourceTree = "<group>"; };
+		14E9C8F225FE3A1600A2D23F /* LibpinyinDefaultConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = LibpinyinDefaultConfig.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +133,7 @@
 				14D0135E25F3AAEC004C36F8 /* libiconv.tbd in Frameworks */,
 				14D0133C25F3AAC1004C36F8 /* libglib-2.0.a in Frameworks */,
 				14D0133A25F3AAC1004C36F8 /* libcrypto.a in Frameworks */,
+				144009EA25F934AE0023D072 /* InputMethodKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,6 +143,7 @@
 		14D012FE25F3AA73004C36F8 = {
 			isa = PBXGroup;
 			children = (
+				14E6DC622607590B00CB1834 /* panel */,
 				14D0132325F3AAC1004C36F8 /* data */,
 				14D0131C25F3AAC1004C36F8 /* lib */,
 				14D0130925F3AA73004C36F8 /* macos-libpinyin */,
@@ -153,10 +175,11 @@
 				1412251925F8C459006D6BB2 /* LibpinyinEditor.h */,
 				144009C625F8CD4B0023D072 /* LibpinyinFullPinyinEditor.h */,
 				144009C725F8CD4B0023D072 /* LibpinyinFullPinyinEditor.m */,
-				144009CA25F8D8C20023D072 /* LibpinyinProperties.h */,
-				144009CB25F8D8C20023D072 /* LibpinyinProperties.m */,
 				144009CE25F8D96F0023D072 /* LibpinyinBackend.h */,
 				144009CF25F8D96F0023D072 /* LibpinyinBackend.m */,
+				144009E525F933EC0023D072 /* MacOSLibpinyinController.h */,
+				144009E625F933EC0023D072 /* MacOSLibpinyinController.m */,
+				14E9C8F225FE3A1600A2D23F /* LibpinyinDefaultConfig.plist */,
 			);
 			path = "macos-libpinyin";
 			sourceTree = "<group>";
@@ -206,11 +229,28 @@
 		14D0135725F3AADA004C36F8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				144009E925F934AE0023D072 /* InputMethodKit.framework */,
 				14D0135D25F3AAE8004C36F8 /* libiconv.tbd */,
 				14D0135925F3AADA004C36F8 /* libc.tbd */,
 				14D0135825F3AADA004C36F8 /* libc++.tbd */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		14E6DC622607590B00CB1834 /* panel */ = {
+			isa = PBXGroup;
+			children = (
+				14E6DC632607590B00CB1834 /* MacOSIMETheme.h */,
+				14E6DC642607590B00CB1834 /* LICENSE */,
+				14E6DC652607590B00CB1834 /* MacOSIMEPanel.m */,
+				14E6DC662607590B00CB1834 /* highlight.png */,
+				14E6DC672607590B00CB1834 /* MacOSIMEPanel.h */,
+				14E6DC682607590B00CB1834 /* panel.png */,
+				14E6DC692607590B00CB1834 /* MacOSIMETheme.m */,
+				14E6DC6A2607590B00CB1834 /* next.png */,
+				14E6DC6B2607590B00CB1834 /* prev.png */,
+			);
+			path = panel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,7 +311,10 @@
 			files = (
 				14D0135525F3AAC1004C36F8 /* nature.bin in Resources */,
 				14D0134225F3AAC1004C36F8 /* phrase_index.bin in Resources */,
+				14E6DC6C2607590B00CB1834 /* LICENSE in Resources */,
+				14E6DC6E2607590B00CB1834 /* highlight.png in Resources */,
 				14D0134825F3AAC1004C36F8 /* addon_pinyin_index.bin in Resources */,
+				14E9C8F325FE3A1600A2D23F /* LibpinyinDefaultConfig.plist in Resources */,
 				14D0134B25F3AAC1004C36F8 /* people.bin in Resources */,
 				14D0134625F3AAC1004C36F8 /* science.bin in Resources */,
 				14D0134425F3AAC1004C36F8 /* geology.bin in Resources */,
@@ -290,6 +333,9 @@
 				14D0134525F3AAC1004C36F8 /* pinyin_index.bin in Resources */,
 				14D0134925F3AAC1004C36F8 /* art.bin in Resources */,
 				14D0135425F3AAC1004C36F8 /* society.bin in Resources */,
+				14E6DC6F2607590B00CB1834 /* panel.png in Resources */,
+				14E6DC712607590B00CB1834 /* next.png in Resources */,
+				14E6DC722607590B00CB1834 /* prev.png in Resources */,
 				14D0134C25F3AAC1004C36F8 /* opengram.bin in Resources */,
 				14D0134325F3AAC1004C36F8 /* sport.bin in Resources */,
 				14D0134125F3AAC1004C36F8 /* life.bin in Resources */,
@@ -303,12 +349,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14E6DC6D2607590B00CB1834 /* MacOSIMEPanel.m in Sources */,
 				14D0131425F3AA74004C36F8 /* main.m in Sources */,
 				1412251025F8B3CB006D6BB2 /* LibpinyinConfig.m in Sources */,
+				144009E725F933EC0023D072 /* MacOSLibpinyinController.m in Sources */,
+				14E6DC702607590B00CB1834 /* MacOSIMETheme.m in Sources */,
 				144009D025F8D96F0023D072 /* LibpinyinBackend.m in Sources */,
 				144009C825F8CD4B0023D072 /* LibpinyinFullPinyinEditor.m in Sources */,
 				14D0130C25F3AA73004C36F8 /* AppDelegate.m in Sources */,
-				144009CC25F8D8C20023D072 /* LibpinyinProperties.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -462,6 +510,8 @@
 				LINK_WITH_STANDARD_LIBRARIES = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "cc.inoki.inputmethod.macos-libpinyin";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SHARED_PRECOMPS_DIR = build/SharedPrecompiledHeaders;
+				SYMROOT = "/Library/Input Methods";
 			};
 			name = Debug;
 		};

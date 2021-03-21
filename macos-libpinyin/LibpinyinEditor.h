@@ -39,12 +39,6 @@
 - (BOOL)fillLookupTable;
 - (void)commit:(NSString *)str;
 
-/* Protected methods from PhoneticEditor */
-- (int)selectCandidateInternal; // (EnhancedCandidate & candidate);
-- (BOOL)removeCandidateInternal; // (EnhancedCandidate & candidate);
-- (BOOL)selectCandidate:(NSUInteger) i;
-- (BOOL)selectCandidateInPage:(NSUInteger) i;
-
 - (void)commitEmpty;
 
 - (NSUInteger)getPinyinCursor;
@@ -72,6 +66,10 @@
 - (BOOL)processPinyinWithKeyValue:(int)keyval keyCode:(int)keycode modifiers:(int)modifiers;
 - (BOOL)processNumberWithKeyValue:(int)keyval keyCode:(int)keycode modifiers:(int)modifiers;
 - (BOOL)processPunctWithKeyValue:(int)keyval keyCode:(int)keycode modifiers:(int)modifiers;
+
+/* Instance */
+- (pinyin_instance_t *)getPinyinInstance;
+- (NSString *)getText;
 
 @end
 
