@@ -509,7 +509,7 @@
 				DEVELOPMENT_TEAM = GMJNW6P6DV;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_MASTER_OBJECT_FILE = NO;
-				HEADER_SEARCH_PATHS = "/opt/homebrew/Cellar/libpinyin/2.6.0/include/libpinyin-without-glib";
+				HEADER_SEARCH_PATHS = include;
 				INFOPLIST_FILE = "macos-libpinyin/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -539,7 +539,7 @@
 				DEVELOPMENT_TEAM = GMJNW6P6DV;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_MASTER_OBJECT_FILE = NO;
-				HEADER_SEARCH_PATHS = "/opt/homebrew/Cellar/libpinyin/2.6.0/include/libpinyin-without-glib";
+				HEADER_SEARCH_PATHS = include;
 				INFOPLIST_FILE = "macos-libpinyin/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
