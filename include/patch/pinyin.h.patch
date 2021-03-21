@@ -1,0 +1,19 @@
+--- pinyin.h	2021-03-21 21:50:39.000000000 +0100
++++ pinyin2.h	2021-03-21 21:51:16.000000000 +0100
+@@ -26,9 +26,6 @@
+ #include "novel_types.h"
+ #include "pinyin_custom2.h"
+ 
+-
+-G_BEGIN_DECLS
+-
+ typedef struct _ChewingKey ChewingKey;
+ typedef struct _ChewingKeyRest ChewingKeyRest;
+ 
+@@ -1024,6 +1021,4 @@
+ typedef ChewingKeyRest PinyinKeyPos;
+ 
+ 
+-G_END_DECLS
+-
+ #endif
