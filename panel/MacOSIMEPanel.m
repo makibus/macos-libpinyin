@@ -267,9 +267,9 @@
 
     NSRect winRect;
     NSRect cursorRect = [m_payload cursor];
-    winRect.origin.x = cursorRect.origin.x + 2;
-    winRect.origin.y = cursorRect.origin.y - winRect.size.height - 20;
     winRect.size = _size;
+    winRect.origin.x = cursorRect.origin.x + 2;
+    winRect.origin.y = cursorRect.origin.y - winRect.size.height - 2;
 
     // Find a screen
     NSRect screenRect = [[NSScreen mainScreen] frame];
