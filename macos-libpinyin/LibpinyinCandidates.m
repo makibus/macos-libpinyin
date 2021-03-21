@@ -69,9 +69,9 @@
 
 - (enum SelectCandidateAction)selectCandidate:(Candidate *)enhanced inEditor:(id)editor {
     pinyin_instance_t * instance = [editor getPinyinInstance];
-    if (CANDIDATE_NBEST_MATCH == [enhanced candidateType] ||
-            CANDIDATE_NORMAL == [enhanced candidateType] ||
-        CANDIDATE_USER == [enhanced candidateType]) {
+    if (CANDIDATE_NBEST_MATCH != [enhanced candidateType] &&
+            CANDIDATE_NORMAL != [enhanced candidateType] &&
+        CANDIDATE_USER != [enhanced candidateType]) {
         return SELECT_CANDIDATE_ALREADY_HANDLED;
     }
 

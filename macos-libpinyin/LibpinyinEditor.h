@@ -39,12 +39,6 @@
 - (BOOL)fillLookupTable;
 - (void)commit:(NSString *)str;
 
-/* Protected methods from PhoneticEditor */
-- (int)selectCandidateInternal; // (EnhancedCandidate & candidate);
-- (BOOL)removeCandidateInternal; // (EnhancedCandidate & candidate);
-- (BOOL)selectCandidate:(NSUInteger) i;
-- (BOOL)selectCandidateInPage:(NSUInteger) i;
-
 - (void)commitEmpty;
 
 - (NSUInteger)getPinyinCursor;
