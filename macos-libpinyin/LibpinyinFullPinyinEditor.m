@@ -506,14 +506,10 @@
 }
 
 - (void)refresh:(id)client underController:(MacOSLibpinyinController *)controller {
-//    if ([m_buffer length] > 0) {
-//        // Show auxiliray text
-//        NSDictionary *attrs = [controller markForStyle:kTSMHiliteSelectedRawText atRange:NSMakeRange(0, [m_buffer length])];
-//        NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:m_buffer attributes:attrs];
-//        // NSRange caretRange = [m_buffer rangeOfString:@"|"];
-//    }
-    // TODO: auxilirayText
-    [m_panelPayload setAuxiliaryText:@"TODO|"];
+    if ([m_buffer length] > 0) {
+        // Show auxiliray text
+        [m_panelPayload setAuxiliaryText:m_buffer];
+    }
 
     if ([m_commitString length] > 0 && m_shouldCommitString) {
         m_shouldCommitString = NO;
