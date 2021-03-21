@@ -79,7 +79,7 @@ else
     INFIX="$OS_STRING"
 fi
 
-LIBS="glib-2.66.7 libpinyin-2.6.0 openssl-1.0.2t gettext-0.21 berkeley-db-18.1.32_1"
+LIBS="glib-2.66.7 libpinyin-2.6.0 openssl@1.1-1.1.1j gettext-0.21 berkeley-db-18.1.32_1"
 TARGET_LIBS="libpinyin.a libglib-2.0.a libdb.a libintl.a libssl.a libcrypto.a"
 
 for LIB in $LIBS
