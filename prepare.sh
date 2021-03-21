@@ -84,7 +84,10 @@ TARGET_LIBS="libpinyin.a libglib-2.0.a libdb.a libintl.a libssl.a libcrypto.a"
 
 for LIB in $LIBS
 do
-    #download_bottle_from_homebrew $LIB $INFIX "$TMP_DIR/$LIB.tar.gz"
+    if [ ! -f $TMP_DIR/$LIB.tar.gz ]
+    then
+        download_bottle_from_homebrew $LIB $INFIX "$TMP_DIR/$LIB.tar.gz"
+    fi
     extract_bottle_of_homebrew "$TMP_DIR/$LIB.tar.gz" $TMP_DIR
 done
 
