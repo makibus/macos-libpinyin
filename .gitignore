@@ -53,4 +53,7 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-
+.temp
+*.a
+*.bin
+*.db

@@ -1,0 +1,101 @@
+--- novel_types.h	2021-03-21 21:46:37.000000000 +0100
++++ novel_types2.h	2021-03-21 21:46:50.000000000 +0100
+@@ -26,9 +26,70 @@
+ #ifndef NOVEL_TYPES_H
+ #define NOVEL_TYPES_H
+ 
+-#include <glib.h>
+-
+-G_BEGIN_DECLS
++/* GLib types */
++///////////////////////// gtypes
++typedef char   gchar;
++typedef short  gshort;
++typedef long   glong;
++typedef int    gint;
++typedef gint   gboolean;
++
++typedef unsigned char   guchar;
++typedef unsigned short  gushort;
++typedef unsigned long   gulong;
++typedef unsigned int    guint;
++
++typedef float   gfloat;
++typedef double  gdouble;
++
++
++typedef void* gpointer;
++typedef const void *gconstpointer;
++//////////////////////////
++
++////////////////////////// Extra
++typedef unsigned char guint8;
++typedef unsigned short guint16;
++typedef unsigned int guint32;
++typedef unsigned long guint64;
++
++typedef signed char gint8;
++typedef signed short gint16;
++typedef signed int gint32;
++typedef signed long gint64;
++//////////////////////////
++
++////////////////////////// gunicode
++typedef guint32 gunichar;
++typedef guint16 gunichar2;
++
++//////////////////////////
++
++////////////////////////// garray
++typedef struct _GBytes          GBytes;
++typedef struct _GArray		GArray;
++typedef struct _GByteArray	GByteArray;
++typedef struct _GPtrArray	GPtrArray;
++
++struct _GArray
++{
++  gchar *data;
++  guint len;
++};
++
++struct _GByteArray
++{
++  guint8 *data;
++  guint	  len;
++};
++
++struct _GPtrArray
++{
++  gpointer *pdata;
++  guint	    len;
++};
++//////////////////////////
++/* GLib types end */
+ 
+ typedef guint32 phrase_token_t;
+ typedef gunichar ucs4_t;
+@@ -118,12 +179,12 @@
+ 
+ #define MAX_PHRASE_LENGTH 16
+ 
+-const phrase_token_t null_token = 0;
+-const phrase_token_t sentence_start = 1;
+-const phrase_token_t token_min = 0;
+-const phrase_token_t token_max = UINT_MAX;
++static const phrase_token_t null_token = 0;
++static const phrase_token_t sentence_start = 1;
++static const phrase_token_t token_min = 0;
++static const phrase_token_t token_max = UINT_MAX;
+ 
+-const char c_separate = '#';
++static const char c_separate = '#';
+ 
+ typedef guint32 table_offset_t;
+ 
+@@ -161,6 +222,5 @@
+     USER_DICTIONARY = 7,
+ } PHRASE_INDEX_LIBRARIES;
+ 
+-G_END_DECLS
+ 
+ #endif

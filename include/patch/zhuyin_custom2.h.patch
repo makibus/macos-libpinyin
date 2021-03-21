@@ -1,0 +1,20 @@
+--- zhuyin_custom2.h	2021-03-21 21:50:39.000000000 +0100
++++ zhuyin_custom3.h	2021-03-21 21:51:49.000000000 +0100
+@@ -22,9 +22,6 @@
+ #define ZHUYIN_CUSTOM2_H
+ 
+ #include "pinyin_custom2.h"
+-#include <glib.h>
+-
+-G_BEGIN_DECLS
+ 
+ 
+ #define ZHUYIN_AMB_C_CH PINYIN_AMB_C_CH
+@@ -39,7 +36,4 @@
+ #define ZHUYIN_AMB_IN_ING PINYIN_AMB_IN_ING
+ #define ZHUYIN_AMB_ALL PINYIN_AMB_ALL
+ 
+-
+-G_END_DECLS
+-
+ #endif

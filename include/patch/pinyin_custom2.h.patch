@@ -1,0 +1,20 @@
+--- pinyin_custom2.h	2021-03-21 21:50:39.000000000 +0100
++++ pinyin_custom3.h	2021-03-21 21:51:35.000000000 +0100
+@@ -21,10 +21,6 @@
+ #ifndef PINYIN_CUSTOM2_H
+ #define PINYIN_CUSTOM2_H
+ 
+-#include <glib.h>
+-
+-G_BEGIN_DECLS
+-
+ /**
+  * PinyinTableFlag:
+  */
+@@ -132,6 +128,4 @@
+     ZHUYIN_DEFAULT  = ZHUYIN_STANDARD
+ } ZhuyinScheme;
+ 
+-G_END_DECLS
+-
+ #endif

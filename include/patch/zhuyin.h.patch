@@ -1,0 +1,20 @@
+--- zhuyin.h	2021-03-21 21:50:39.000000000 +0100
++++ zhuyin2.h	2021-03-21 21:52:00.000000000 +0100
+@@ -26,9 +26,6 @@
+ #include "novel_types.h"
+ #include "zhuyin_custom2.h"
+ 
+-
+-G_BEGIN_DECLS
+-
+ typedef struct _ChewingKey ChewingKey;
+ typedef struct _ChewingKeyRest ChewingKeyRest;
+ 
+@@ -743,7 +740,4 @@
+ typedef ChewingKeyRest PinyinKeyPos;
+ typedef pinyin_option_t zhuyin_option_t;
+ 
+-
+-G_END_DECLS
+-
+ #endif

@@ -54,6 +54,8 @@
 		14E6DC702607590B00CB1834 /* MacOSIMETheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E6DC692607590B00CB1834 /* MacOSIMETheme.m */; };
 		14E6DC712607590B00CB1834 /* next.png in Resources */ = {isa = PBXBuildFile; fileRef = 14E6DC6A2607590B00CB1834 /* next.png */; };
 		14E6DC722607590B00CB1834 /* prev.png in Resources */ = {isa = PBXBuildFile; fileRef = 14E6DC6B2607590B00CB1834 /* prev.png */; };
+		14E6DC7726077E4F00CB1834 /* LibpinyinCandidates.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E6DC7626077E4F00CB1834 /* LibpinyinCandidates.m */; };
+		14E6DC7C26078D1800CB1834 /* Candidates.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E6DC7B26078D1800CB1834 /* Candidates.m */; };
 		14E9C8F325FE3A1600A2D23F /* LibpinyinDefaultConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 14E9C8F225FE3A1600A2D23F /* LibpinyinDefaultConfig.plist */; };
 /* End PBXBuildFile section */
 
@@ -116,6 +118,10 @@
 		14E6DC692607590B00CB1834 /* MacOSIMETheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MacOSIMETheme.m; sourceTree = "<group>"; };
 		14E6DC6A2607590B00CB1834 /* next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = next.png; sourceTree = "<group>"; };
 		14E6DC6B2607590B00CB1834 /* prev.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = prev.png; sourceTree = "<group>"; };
+		14E6DC7526077E4F00CB1834 /* LibpinyinCandidates.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LibpinyinCandidates.h; sourceTree = "<group>"; };
+		14E6DC7626077E4F00CB1834 /* LibpinyinCandidates.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LibpinyinCandidates.m; sourceTree = "<group>"; };
+		14E6DC7926077E6600CB1834 /* Candidates.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Candidates.h; sourceTree = "<group>"; };
+		14E6DC7B26078D1800CB1834 /* Candidates.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Candidates.m; sourceTree = "<group>"; };
 		14E9C8F225FE3A1600A2D23F /* LibpinyinDefaultConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = LibpinyinDefaultConfig.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -180,6 +186,10 @@
 				144009E525F933EC0023D072 /* MacOSLibpinyinController.h */,
 				144009E625F933EC0023D072 /* MacOSLibpinyinController.m */,
 				14E9C8F225FE3A1600A2D23F /* LibpinyinDefaultConfig.plist */,
+				14E6DC7526077E4F00CB1834 /* LibpinyinCandidates.h */,
+				14E6DC7626077E4F00CB1834 /* LibpinyinCandidates.m */,
+				14E6DC7926077E6600CB1834 /* Candidates.h */,
+				14E6DC7B26078D1800CB1834 /* Candidates.m */,
 			);
 			path = "macos-libpinyin";
 			sourceTree = "<group>";
@@ -349,6 +359,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14E6DC7726077E4F00CB1834 /* LibpinyinCandidates.m in Sources */,
 				14E6DC6D2607590B00CB1834 /* MacOSIMEPanel.m in Sources */,
 				14D0131425F3AA74004C36F8 /* main.m in Sources */,
 				1412251025F8B3CB006D6BB2 /* LibpinyinConfig.m in Sources */,
@@ -357,6 +368,7 @@
 				144009D025F8D96F0023D072 /* LibpinyinBackend.m in Sources */,
 				144009C825F8CD4B0023D072 /* LibpinyinFullPinyinEditor.m in Sources */,
 				14D0130C25F3AA73004C36F8 /* AppDelegate.m in Sources */,
+				14E6DC7C26078D1800CB1834 /* Candidates.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
