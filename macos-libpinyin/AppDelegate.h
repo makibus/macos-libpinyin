@@ -6,11 +6,11 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "CandidateWindow.h"
+#import "MacOSIMEPanel.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
-@property CandidateWindow *candiWin;
+@property MacOSIMEPanel *panel;
 @property (weak) IBOutlet NSMenu *menu;
 
 + (instancetype)getDelegate;

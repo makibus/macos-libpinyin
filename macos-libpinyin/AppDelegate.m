@@ -80,7 +80,7 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     m_config = [LibpinyinConfig sharedConfig];
-    _candiWin = [[CandidateWindow alloc] init];
+    _panel = [[MacOSIMEPanel alloc] init];
     [self initConfigs];
 }
 

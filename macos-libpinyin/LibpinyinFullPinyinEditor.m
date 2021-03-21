@@ -119,6 +119,8 @@
     BOOL m_shouldCommitString;
 
     LibpinyinConfig *m_config;
+
+    MacOSIMEPanelPayload *m_panelPayload;
 }
 
 - (id)initWithConfig:(LibpinyinConfig *) config {
@@ -135,6 +137,8 @@
     m_shouldCommitString = NO;
 
     m_lookupTable = [[LookupTable alloc] initWithPageSize:[m_config pageSize]];
+
+    m_panelPayload = [[MacOSIMEPanelPayload alloc] init];
 
     return self;
 }
@@ -508,10 +512,13 @@
 //        NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:m_buffer attributes:attrs];
 //        // NSRange caretRange = [m_buffer rangeOfString:@"|"];
 //    }
+    // TODO: auxilirayText
+    [m_panelPayload setAuxiliaryText:@"TODO|"];
+
     if ([m_commitString length] > 0 && m_shouldCommitString) {
         m_shouldCommitString = NO;
         [client insertText:m_commitString replacementRange:NSMakeRange(NSNotFound, NSNotFound)];
-        [[AppDelegate getDelegate].candiWin hideCandidates];
+        [[AppDelegate getDelegate].panel hide];
         [m_commitString setString:@""];
         [self reset];
         return;
@@ -523,12 +530,28 @@
         [client setMarkedText:preeditAttrString
                 selectionRange:NSMakeRange([m_preeditText length], 0)
                 replacementRange:NSMakeRange(NSNotFound, NSNotFound)];
+        [m_panelPayload setPreeditText:m_preeditText];
     } else {
         NSDictionary *pinyinAttrs = [controller markForStyle:kTSMHiliteSelectedRawText atRange:NSMakeRange(0, [m_text length])];
         NSAttributedString *pinyinAttrString = [[NSAttributedString alloc] initWithString:m_text attributes:pinyinAttrs];
         [client setMarkedText:pinyinAttrString
                 selectionRange:NSMakeRange([m_text length], 0)
                 replacementRange:NSMakeRange(NSNotFound, NSNotFound)];
+    }
+
+    if ([m_candidates count] > 0 && m_shouldShowLookupTable) {
+        NSRect cursorRect;
+        NSUInteger pos = [m_lookupTable cursorPos];
+        NSUInteger pageSize = [m_lookupTable pageSize];
+        NSUInteger candidateFrom = pos / pageSize * pageSize;
+        NSUInteger pageLength = MIN([m_lookupTable size] - candidateFrom, pageSize);
+        [client attributesForCharacterIndex:0 lineHeightRectangle:&cursorRect];
+        [m_panelPayload setCandidates:[m_candidates subarrayWithRange:NSMakeRange(candidateFrom, pageLength)]];
+        [m_panelPayload setHighlightIndex:pos % pageSize];
+        [m_panelPayload setCursor:cursorRect];
+        [[AppDelegate getDelegate].panel update:m_panelPayload];
+    } else {
+        [[AppDelegate getDelegate].panel hide];
     }
 }
 
