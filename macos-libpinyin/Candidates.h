@@ -11,7 +11,8 @@
 #import "LibpinyinEditor.h"
 
 enum CandidateType {
-    CANDIDATE_NBEST_MATCH = 1,
+    CANDIDATE_INVALID = 0,
+    CANDIDATE_NBEST_MATCH,
     /* not included with user candidate */
     CANDIDATE_NORMAL,
     /* both normal candidate and user candidate */
@@ -50,9 +51,6 @@ enum SelectCandidateAction {
 - (enum SelectCandidateAction)selectCandidate:(Candidate *)candidate inEditor:(id)editor;
 - (BOOL)removeCandidate:(Candidate *)candidate inEditor:(id)editor;
 
-@end
-
-@implementation Candidate
 @end
 
 #endif /* Candidates_h */
