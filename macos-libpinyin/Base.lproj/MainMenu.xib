@@ -14,7 +14,6 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
             <connections>
-                <outlet property="Society" destination="C2x-Sb-eKK" id="Rq5-nm-dg2"/>
                 <outlet property="_menu" destination="Wdz-Dv-yRL" id="pR8-1E-JQJ"/>
                 <outlet property="m_autoCommit" destination="yrz-U5-2Lo" id="xpW-p8-LO5"/>
                 <outlet property="m_commaPeriodFlipPage" destination="n3V-78-OEo" id="eQ5-uU-vul"/>
@@ -36,6 +35,7 @@
                 <outlet property="m_dictNature" destination="LjP-UA-TM4" id="tnr-Lw-gQf"/>
                 <outlet property="m_dictPeople" destination="9Sv-wI-vFq" id="Roa-fa-Uws"/>
                 <outlet property="m_dictScience" destination="Ea1-Bs-7aI" id="pU7-pA-NSf"/>
+                <outlet property="m_dictSociety" destination="C2x-Sb-eKK" id="P7Q-wf-uAo"/>
                 <outlet property="m_dictSport" destination="LSa-fX-e3l" id="JQ1-Wu-iP6"/>
                 <outlet property="m_dictTechnology" destination="8AM-i4-D1s" id="kzo-0v-IyH"/>
                 <outlet property="m_doublePinyinSchema" destination="G7i-h6-vfv" id="i17-9Y-kRL"/>

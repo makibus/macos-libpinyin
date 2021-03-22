@@ -47,7 +47,16 @@ static id _instance;
     NSString *dataPath = [[NSBundle mainBundle] resourcePath];
     const char *dataPathNative = [dataPath UTF8String];
 
-    // TODO: Add more dicts from config
+    // Add more dicts from config
+    NSString *dicts = [[LibpinyinConfig sharedConfig] dictionaries];
+    if (dicts && [dicts length] > 0) {
+        NSArray<NSString *> *dictIndices = [dicts componentsSeparatedByString:@";"];
+        for (NSString *dictIndex in dictIndices) {
+            int i = [dictIndex intValue];
+            if (i <= 1) continue;
+            pinyin_load_addon_phrase_library (context, (guint8)i);
+        }
+    }
 
     // Get user data dir
     NSArray *applicationSupportPaths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
