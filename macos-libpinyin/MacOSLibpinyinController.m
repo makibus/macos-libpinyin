@@ -11,6 +11,9 @@
 
 @implementation MacOSLibpinyinController {
     LibpinyinFullPinyinEditor *_fullpinyinEditor;
+    BOOL chineseMode;
+    BOOL traditionMode;
+    BOOL fullPunct;
 }
 
 - (BOOL)inputText:(NSString*)string client:(id)sender
@@ -25,8 +28,11 @@
         NSLog(@"No editor can handle this");
         return NO;
     }
-    
-    
+    LibpinyinConfig *config = [LibpinyinConfig sharedConfig];
+    if (chineseMode != [config initChinese]) chineseMode = [config initChinese];
+    if (fullPunct != [config initFullPunct]) fullPunct = [config initFullPunct];
+    if (traditionMode != ![config initSimpChinese]) traditionMode = ![config initSimpChinese];
+
     int keyCode;
     int keyValue;
     BOOL handled = NO;
@@ -74,8 +80,15 @@
 }
 
 - (void)createFullpinyinEditor {
+    LibpinyinConfig *config = [LibpinyinConfig sharedConfig];
+
+    // Init modes
+    chineseMode = [config initChinese];
+    fullPunct = [config initFullPunct];
+    traditionMode = ![config initSimpChinese];
+
     // LibpinyinFullPinyinEditor
-    _fullpinyinEditor = [[LibpinyinFullPinyinEditor alloc] initWithConfig:[LibpinyinConfig sharedConfig]];
+    _fullpinyinEditor = [[LibpinyinFullPinyinEditor alloc] initWithConfig:config];
 }
 
 - (NSMenu *)menu {
