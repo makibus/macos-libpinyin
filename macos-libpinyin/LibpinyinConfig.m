@@ -220,7 +220,7 @@ NSString *CONFIG_CLOUD_REQUEST_DELAY_TIME  = @"cloud-request-delay-time";
     if (v == nil) {
         v = value;
     }
-    return value;
+    return v;
 }
 
 - (BOOL)writeBool:(NSString *)name withValue:(BOOL)value {
