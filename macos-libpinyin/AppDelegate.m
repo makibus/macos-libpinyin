@@ -237,9 +237,9 @@
 - (IBAction)correctPinyin:(id)sender {
     NSButton *cell = sender;
     if ([cell intValue]) {
-        [m_config setCorrectOption:PINYIN_CORRECT_ALL];
+        [m_config setCorrectEnableState:YES];
     } else {
-        [m_config removeCorrectOption:PINYIN_CORRECT_ALL];
+        [m_config setCorrectEnableState:NO];
     }
     [self resetCorrectStates];
 }
@@ -311,9 +311,9 @@
 - (IBAction)fuzzySyllable:(id)sender {
     NSButton *cell = sender;
     if ([cell intValue]) {
-        [m_config setFuzzyOption:PINYIN_AMB_ALL];
+        [m_config setFuzzyEnableState:YES];
     } else {
-        [m_config removeFuzzyOption:PINYIN_AMB_ALL];
+        [m_config setFuzzyEnableState:NO];
     }
     [self resetFuzzyStates];
 }
@@ -495,7 +495,7 @@
     [_m_correctPinyinONONG setState:(correctOption & PINYIN_CORRECT_ON_ONG) ? NSControlStateValueOn : NSControlStateValueOff];
     [_m_correctPinyinUEVE setState:(correctOption & PINYIN_CORRECT_UE_VE) ? NSControlStateValueOn : NSControlStateValueOff];
     [_m_correctPinyinIOUIU setState:(correctOption & PINYIN_CORRECT_IOU_IU) ? NSControlStateValueOn : NSControlStateValueOff];
-    if (correctOption) {
+    if ([m_config correctEnableState]) {
         [_m_correctPinyin setState: NSControlStateValueOn];
 
         // Set each options
@@ -524,17 +524,17 @@
 
 - (void)resetFuzzyStates {
     NSUInteger fuzzyOption = [m_config fuzzyOption];
-    [_m_fuzzySyllableFH setState:(fuzzyOption | PINYIN_AMB_F_H) ? NSControlStateValueOn : NSControlStateValueOff];
-    [_m_fuzzySyllableGK setState:(fuzzyOption | PINYIN_AMB_G_K) ? NSControlStateValueOn : NSControlStateValueOff];
-    [_m_fuzzySyllableLN setState:(fuzzyOption | PINYIN_AMB_L_N) ? NSControlStateValueOn : NSControlStateValueOff];
-    [_m_fuzzySyllableLR setState:(fuzzyOption | PINYIN_AMB_L_R) ? NSControlStateValueOn : NSControlStateValueOff];
-    [_m_fuzzySyllableCCH setState:(fuzzyOption | PINYIN_AMB_C_CH) ? NSControlStateValueOn : NSControlStateValueOff];
-    [_m_fuzzySyllableSSH setState:(fuzzyOption | PINYIN_AMB_S_SH) ? NSControlStateValueOn : NSControlStateValueOff];
-    [_m_fuzzySyllableZZH setState:(fuzzyOption | PINYIN_AMB_Z_ZH) ? NSControlStateValueOn : NSControlStateValueOff];
-    [_m_fuzzySyllableANANG setState:(fuzzyOption | PINYIN_AMB_AN_ANG) ? NSControlStateValueOn : NSControlStateValueOff];
-    [_m_fuzzySyllableENENG setState:(fuzzyOption | PINYIN_AMB_EN_ENG) ? NSControlStateValueOn : NSControlStateValueOff];
-    [_m_fuzzySyllableINING setState:(fuzzyOption | PINYIN_AMB_IN_ING) ? NSControlStateValueOn : NSControlStateValueOff];
-    if (fuzzyOption & PINYIN_AMB_ALL) {
+    [_m_fuzzySyllableFH setState:(fuzzyOption & PINYIN_AMB_F_H) ? NSControlStateValueOn : NSControlStateValueOff];
+    [_m_fuzzySyllableGK setState:(fuzzyOption & PINYIN_AMB_G_K) ? NSControlStateValueOn : NSControlStateValueOff];
+    [_m_fuzzySyllableLN setState:(fuzzyOption & PINYIN_AMB_L_N) ? NSControlStateValueOn : NSControlStateValueOff];
+    [_m_fuzzySyllableLR setState:(fuzzyOption & PINYIN_AMB_L_R) ? NSControlStateValueOn : NSControlStateValueOff];
+    [_m_fuzzySyllableCCH setState:(fuzzyOption & PINYIN_AMB_C_CH) ? NSControlStateValueOn : NSControlStateValueOff];
+    [_m_fuzzySyllableSSH setState:(fuzzyOption & PINYIN_AMB_S_SH) ? NSControlStateValueOn : NSControlStateValueOff];
+    [_m_fuzzySyllableZZH setState:(fuzzyOption & PINYIN_AMB_Z_ZH) ? NSControlStateValueOn : NSControlStateValueOff];
+    [_m_fuzzySyllableANANG setState:(fuzzyOption & PINYIN_AMB_AN_ANG) ? NSControlStateValueOn : NSControlStateValueOff];
+    [_m_fuzzySyllableENENG setState:(fuzzyOption & PINYIN_AMB_EN_ENG) ? NSControlStateValueOn : NSControlStateValueOff];
+    [_m_fuzzySyllableINING setState:(fuzzyOption & PINYIN_AMB_IN_ING) ? NSControlStateValueOn : NSControlStateValueOff];
+    if ([m_config fuzzyEnableState]) {
         [_m_fuzzySyllable setState: NSControlStateValueOn];
 
         // Set each options
