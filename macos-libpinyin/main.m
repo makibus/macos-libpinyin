@@ -17,7 +17,19 @@ MacOSLibpinyinController *controller;
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        // Setup code that might create autoreleased objects goes here.
+        // Pre-init Application Support folders
+        NSArray *applicationSupportPaths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
+        NSString *applicationSupportDirectory = [[applicationSupportPaths firstObject] stringByAppendingPathComponent:
+                                                 [[NSBundle mainBundle] bundleIdentifier]];
+        if (![[NSFileManager defaultManager] fileExistsAtPath:applicationSupportDirectory]) {
+            // Create the folder
+            [[NSFileManager defaultManager] createDirectoryAtPath:applicationSupportDirectory withIntermediateDirectories:YES attributes:nil error:nil];
+        }
+        NSString *userDataDirectory = [applicationSupportDirectory stringByAppendingPathComponent:@"data"];
+        if (![[NSFileManager defaultManager] fileExistsAtPath:userDataDirectory]) {
+            // Create the folder
+            [[NSFileManager defaultManager] createDirectoryAtPath:userDataDirectory withIntermediateDirectories:YES attributes:nil error:nil];
+        }
 
         // Pre-init libpinyin config
         [LibpinyinConfig sharedConfig];

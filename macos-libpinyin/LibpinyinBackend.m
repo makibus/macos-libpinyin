@@ -49,9 +49,15 @@ static id _instance;
 
     // TODO: Add more dicts from config
 
+    // Get user data dir
+    NSArray *applicationSupportPaths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
+    NSString *applicationSupportDirectory = [[applicationSupportPaths firstObject] stringByAppendingPathComponent:
+                                             [[NSBundle mainBundle] bundleIdentifier]];
+    NSString *userDataDirectory = [applicationSupportDirectory stringByAppendingPathComponent:@"data"];
+    const char *userDataPath = [userDataDirectory UTF8String];
+
     // Load system and user config
-    // TODO: Get user dict path
-    context = pinyin_init (dataPathNative, "");
+    context = pinyin_init (dataPathNative, userDataPath);
     return context;
 }
 
