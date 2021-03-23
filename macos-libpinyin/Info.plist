@@ -26,8 +26,12 @@
 	<string>MacOSLibpinyinController</string>
 	<key>LSBackgroundOnly</key>
 	<false/>
+	<key>TISIntendedLanguage</key>
+	<string>zh</string>
 	<key>tsInputMethodCharacterRepertoireKey</key>
 	<array>
+		<string>zh-Hans</string>
+		<string>zh-Hant</string>
 		<string>Latn</string>
 	</array>
 	<key>LSMinimumSystemVersion</key>
