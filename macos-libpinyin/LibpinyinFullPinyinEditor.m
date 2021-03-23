@@ -9,6 +9,7 @@
 #import "LibpinyinConfig.h"
 #import "LibpinyinBackend.h"
 #import "AppDelegate.h"
+#import "Utils.h"
 
 #include <pinyin.h>
 
@@ -199,7 +200,7 @@
     [self updateCandidates];
     [self fillLookupTable];
 
-    // TODO: check the size of lookup table
+    // Check the size of lookup table
     if ([m_candidates count] >= 0) {
         [self showLookupTable];
     } else {
@@ -257,40 +258,43 @@
 }
 
 - (BOOL)processPinyinWithKeyValue:(int)keyval keyCode:(int)keycode modifiers:(int)modifiers {
-    // TODO: check modifier
+    // Check modifier
+    if (filter_modifier_without_shift(modifiers)) {
+        return [m_text length] ? YES : NO;
+    }
+
     return [self insertCharacter:(char)keyval];
 }
 
 - (BOOL)processNumberWithKeyValue:(int)keyval keyCode:(int)keycode modifiers:(int)modifiers {
     if ([m_text length] == 0) return NO;
 
-    NSUInteger i;
+    NSUInteger i = 0;
     switch (keyval) {
         case '0' ... '9':
             i = (keyval >= '1' ? keyval - '1' : 9);
-            [self selectCandidateInPage:i];
             break;
         default:
             break;
     }
 
     if (modifiers == 0) {
-        // TODO: select candidate in page
+        // Select candidate in page
+        [self selectCandidateInPage:i];
     }
-    // FIXME: necessary?
+
     [self update];
     return YES;
 }
 
 - (BOOL)processPunctWithKeyValue:(int)keyval keyCode:(int)keycode modifiers:(int)modifiers {
     if ([m_text length] == 0) return NO;
-
-    // TODO: modifier?
+    if (filter_modifier_without_shift(modifiers)) return YES;
 
     switch (keyval) {
         case 0x27:
             // Apostrophe: insert
-            return YES;
+            return [self insertCharacter:(char)keyval];
         case 0x2c:
             // Comma
             if ([m_config commaPeriodPage]) {
@@ -364,12 +368,13 @@
         return NO;
     }
 
-    // TODO: detect modifiers
+    // Detect modifiers
+    if (filter_modifier_without_shift(modifiers)) return YES;
 
     if ([m_candidates count] != 0) {
         // Commit the current candidate
         [self selectCandidate:[m_lookupTable cursorPos]];
-        // TODO: update to check the rest of pinyin
+        [self update];
     } else {
         // Commit the raw input
         [self commit:m_text];
@@ -379,6 +384,15 @@
 }
 
 - (BOOL)processFunctionKeyWithKeyValue:(int)keyval keyCode:(int)keycode modifiers:(int)modifiers {
+    if ([m_text length] == 0) return NO;
+
+    // Check modifiers
+    modifiers = filter_modifier_without_shift(modifiers);
+    if (modifiers != 0 && modifiers != NSEventModifierFlagCommand && modifiers != NSEventModifierFlagControl) {
+        // Need command OR control
+        return YES;
+    }
+
     if (modifiers == 0) {
         switch (keycode) {
             case kVK_Return:
@@ -428,7 +442,7 @@
             default:
                 return YES;
         }
-    } else if (modifiers & NSEventModifierFlagControl) {
+    } else if ((modifiers & NSEventModifierFlagControl) || (modifiers & NSEventModifierFlagCommand)) {
         // Ctrl key is pressed
         switch (keyval) {
             case kVK_Delete:
