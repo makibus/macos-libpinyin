@@ -170,6 +170,7 @@ enum EditorMode {
 }
 
 - (NSMenu *)menu {
+    [[AppDelegate getDelegate] updateMenu];
     return [AppDelegate getDelegate].menu;
 }
 

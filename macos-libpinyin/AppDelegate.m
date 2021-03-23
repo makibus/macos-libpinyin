@@ -551,9 +551,7 @@
     }
 
     // Menu
-    [_m_menuInitChinese setState:[m_config initChinese] ? NSControlStateValueOn : NSControlStateValueOff];
-    [_m_menuInitFull setState:[m_config initFull] ? NSControlStateValueOn : NSControlStateValueOff];
-    [_m_menuInitFullPunct setState:[m_config initFullPunct] ? NSControlStateValueOn : NSControlStateValueOff];
+    [self updateMenu];
 }
 
 - (void)resetCorrectStates {
@@ -740,6 +738,13 @@
         }
     }
     [m_config setDictionaries:dicts];
+}
+
+- (void)updateMenu {
+    // Menu
+    [_m_menuInitChinese setState:[m_config initChinese] ? NSControlStateValueOn : NSControlStateValueOff];
+    [_m_menuInitFull setState:[m_config initFull] ? NSControlStateValueOn : NSControlStateValueOff];
+    [_m_menuInitFullPunct setState:[m_config initFullPunct] ? NSControlStateValueOn : NSControlStateValueOff];
 }
 
 @end
