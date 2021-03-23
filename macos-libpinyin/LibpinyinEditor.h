@@ -88,3 +88,12 @@
 - (void)cursorDown;
 
 @end
+
+@interface LookupTable : NSObject<LookupTableProtocol> {
+    NSUInteger m_size;
+    NSUInteger m_pageSize;
+    NSUInteger m_pos;
+    NSUInteger m_cursor;
+    NSUInteger m_pageNumber;
+}
+@end

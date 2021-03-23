@@ -17,15 +17,6 @@
 #import <AppKit/NSEvent.h>
 #import <Carbon/Carbon.h>
 
-@interface LookupTable : NSObject<LookupTableProtocol> {
-    NSUInteger m_size;
-    NSUInteger m_pageSize;
-    NSUInteger m_pos;
-    NSUInteger m_cursor;
-    NSUInteger m_pageNumber;
-}
-@end
-
 @implementation LookupTable
 
 - (id)initWithPageSize:(NSUInteger)size {
@@ -99,30 +90,6 @@
 @end
 
 @implementation LibpinyinFullPinyinEditor {
-    NSMutableString *m_buffer;
-    NSMutableString *m_text;
-    NSUInteger m_pinyin_len;
-
-    LookupTable *m_lookupTable;
-
-    NSMutableString *m_preeditText;
-    NSMutableString *m_commitString;
-
-    NSMutableArray *m_candidates;
-
-    NSUInteger m_cursor;
-
-    // Libpinyin backend instance
-    pinyin_instance_t *m_instance;
-
-    BOOL m_shouldShowLookupTable;
-    BOOL m_shouldPreeditText;
-    BOOL m_shouldCommitString;
-
-    LibpinyinConfig *m_config;
-
-    MacOSIMEPanelPayload *m_panelPayload;
-
     /* Candidates */
     LibpinyinCandidates *m_libpinyinCandidates;
 }
