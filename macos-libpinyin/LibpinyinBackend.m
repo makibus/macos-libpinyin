@@ -47,6 +47,16 @@ static id _instance;
     NSString *dataPath = [[NSBundle mainBundle] resourcePath];
     const char *dataPathNative = [dataPath UTF8String];
 
+    // Get user data dir
+    NSArray *applicationSupportPaths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
+    NSString *applicationSupportDirectory = [[applicationSupportPaths firstObject] stringByAppendingPathComponent:
+                                             [[NSBundle mainBundle] bundleIdentifier]];
+    NSString *userDataDirectory = [applicationSupportDirectory stringByAppendingPathComponent:@"data"];
+    const char *userDataPath = [userDataDirectory UTF8String];
+
+    // Load system and user config
+    context = pinyin_init (dataPathNative, userDataPath);
+
     // Add more dicts from config
     NSString *dicts = [[LibpinyinConfig sharedConfig] dictionaries];
     if (dicts && [dicts length] > 0) {
@@ -58,15 +68,6 @@ static id _instance;
         }
     }
 
-    // Get user data dir
-    NSArray *applicationSupportPaths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
-    NSString *applicationSupportDirectory = [[applicationSupportPaths firstObject] stringByAppendingPathComponent:
-                                             [[NSBundle mainBundle] bundleIdentifier]];
-    NSString *userDataDirectory = [applicationSupportDirectory stringByAppendingPathComponent:@"data"];
-    const char *userDataPath = [userDataDirectory UTF8String];
-
-    // Load system and user config
-    context = pinyin_init (dataPathNative, userDataPath);
     return context;
 }
 
