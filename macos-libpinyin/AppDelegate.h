@@ -20,6 +20,7 @@
 - (IBAction)menuChineseClicked:(id)sender;
 - (IBAction)menuFullClicked:(id)sender;
 - (IBAction)menuFullPunctClicked:(id)sender;
+- (void)updateMenu;
 
 @end
 

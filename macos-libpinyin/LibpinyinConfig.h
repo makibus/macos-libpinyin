@@ -63,6 +63,8 @@ typedef enum {
 - (NSString *)openccConfig;
 - (NSUInteger)fuzzyOption;
 - (NSUInteger)correctOption;
+- (BOOL)fuzzyEnableState;
+- (BOOL)correctEnableState;
 
 - (void)setDictionaries:(NSString *)dict;
 - (void)setLuaConverter:(NSString *)convertor;
@@ -100,4 +102,7 @@ typedef enum {
 - (void)removeFuzzyOption:(NSUInteger)option;
 - (void)setCorrectOption:(NSUInteger)option;
 - (void)removeCorrectOption:(NSUInteger)option;
+
+- (void)setFuzzyEnableState:(BOOL)enable;
+- (void)setCorrectEnableState:(BOOL)enable;
 @end

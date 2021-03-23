@@ -47,6 +47,7 @@
 		14D0135A25F3AAE3004C36F8 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D0135825F3AADA004C36F8 /* libc++.tbd */; };
 		14D0135B25F3AAE3004C36F8 /* libc.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D0135925F3AADA004C36F8 /* libc.tbd */; };
 		14D0135E25F3AAEC004C36F8 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 14D0135D25F3AAE8004C36F8 /* libiconv.tbd */; };
+		14D2F046260A01E9005C21A9 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D2F045260A01E9005C21A9 /* Utils.m */; };
 		14E6DC6C2607590B00CB1834 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 14E6DC642607590B00CB1834 /* LICENSE */; };
 		14E6DC6D2607590B00CB1834 /* MacOSIMEPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E6DC652607590B00CB1834 /* MacOSIMEPanel.m */; };
 		14E6DC6E2607590B00CB1834 /* highlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 14E6DC662607590B00CB1834 /* highlight.png */; };
@@ -109,6 +110,8 @@
 		14D0135825F3AADA004C36F8 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		14D0135925F3AADA004C36F8 /* libc.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libc.tbd; path = usr/lib/libc.tbd; sourceTree = SDKROOT; };
 		14D0135D25F3AAE8004C36F8 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		14D2F044260A01E9005C21A9 /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		14D2F045260A01E9005C21A9 /* Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		14E6DC632607590B00CB1834 /* MacOSIMETheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacOSIMETheme.h; sourceTree = "<group>"; };
 		14E6DC642607590B00CB1834 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		14E6DC652607590B00CB1834 /* MacOSIMEPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MacOSIMEPanel.m; sourceTree = "<group>"; };
@@ -190,6 +193,8 @@
 				14E6DC7626077E4F00CB1834 /* LibpinyinCandidates.m */,
 				14E6DC7926077E6600CB1834 /* Candidates.h */,
 				14E6DC7B26078D1800CB1834 /* Candidates.m */,
+				14D2F044260A01E9005C21A9 /* Utils.h */,
+				14D2F045260A01E9005C21A9 /* Utils.m */,
 			);
 			path = "macos-libpinyin";
 			sourceTree = "<group>";
@@ -360,6 +365,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14E6DC7726077E4F00CB1834 /* LibpinyinCandidates.m in Sources */,
+				14D2F046260A01E9005C21A9 /* Utils.m in Sources */,
 				14E6DC6D2607590B00CB1834 /* MacOSIMEPanel.m in Sources */,
 				14D0131425F3AA74004C36F8 /* main.m in Sources */,
 				1412251025F8B3CB006D6BB2 /* LibpinyinConfig.m in Sources */,

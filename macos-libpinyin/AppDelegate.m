@@ -11,6 +11,7 @@
 
 @interface AppDelegate () {
     LibpinyinConfig *m_config;
+    BOOL dictionaries[20];
 }
 
 @property (strong) IBOutlet NSWindow *window;
@@ -67,7 +68,7 @@
 @property (weak) IBOutlet NSButton *m_dictNature;
 @property (weak) IBOutlet NSButton *m_dictPeople;
 @property (weak) IBOutlet NSButton *m_dictScience;
-@property (weak) IBOutlet NSButton *Society;
+@property (weak) IBOutlet NSButton *m_dictSociety;
 @property (weak) IBOutlet NSButton *m_dictSport;
 @property (weak) IBOutlet NSButton *m_dictTechnology;
 
@@ -237,9 +238,9 @@
 - (IBAction)correctPinyin:(id)sender {
     NSButton *cell = sender;
     if ([cell intValue]) {
-        [m_config setCorrectOption:PINYIN_CORRECT_ALL];
+        [m_config setCorrectEnableState:YES];
     } else {
-        [m_config removeCorrectOption:PINYIN_CORRECT_ALL];
+        [m_config setCorrectEnableState:NO];
     }
     [self resetCorrectStates];
 }
@@ -311,9 +312,9 @@
 - (IBAction)fuzzySyllable:(id)sender {
     NSButton *cell = sender;
     if ([cell intValue]) {
-        [m_config setFuzzyOption:PINYIN_AMB_ALL];
+        [m_config setFuzzyEnableState:YES];
     } else {
-        [m_config removeFuzzyOption:PINYIN_AMB_ALL];
+        [m_config setFuzzyEnableState:NO];
     }
     [self resetFuzzyStates];
 }
@@ -400,51 +401,111 @@
 
 - (IBAction)dictArt:(id)sender {
     NSButton *cell = sender;
-    NSLog(@"Value changed to %d", [cell intValue]);
+    if ([cell intValue]) {
+        dictionaries[4] = YES;
+    } else {
+        dictionaries[4] = NO;
+    }
+    [self syncDictToConfig];
 }
 - (IBAction)dictCulture:(id)sender {
     NSButton *cell = sender;
-    NSLog(@"Value changed to %d", [cell intValue]);
+    if ([cell intValue]) {
+        dictionaries[5] = YES;
+    } else {
+        dictionaries[5] = NO;
+    }
+    [self syncDictToConfig];
 }
 - (IBAction)dictEconomy:(id)sender {
     NSButton *cell = sender;
-    NSLog(@"Value changed to %d", [cell intValue]);
+    if ([cell intValue]) {
+        dictionaries[6] = YES;
+    } else {
+        dictionaries[6] = NO;
+    }
+    [self syncDictToConfig];
 }
 - (IBAction)dictGeology:(id)sender {
     NSButton *cell = sender;
-    NSLog(@"Value changed to %d", [cell intValue]);
+    if ([cell intValue]) {
+        dictionaries[7] = YES;
+    } else {
+        dictionaries[7] = NO;
+    }
+    [self syncDictToConfig];
 }
 - (IBAction)dictHistory:(id)sender {
     NSButton *cell = sender;
-    NSLog(@"Value changed to %d", [cell intValue]);
+    if ([cell intValue]) {
+        dictionaries[8] = YES;
+    } else {
+        dictionaries[8] = NO;
+    }
+    [self syncDictToConfig];
 }
 - (IBAction)dictLife:(id)sender {
     NSButton *cell = sender;
-    NSLog(@"Value changed to %d", [cell intValue]);
+    if ([cell intValue]) {
+        dictionaries[9] = YES;
+    } else {
+        dictionaries[9] = NO;
+    }
+    [self syncDictToConfig];
 }
 - (IBAction)dictNature:(id)sender {
     NSButton *cell = sender;
-    NSLog(@"Value changed to %d", [cell intValue]);
+    if ([cell intValue]) {
+        dictionaries[10] = YES;
+    } else {
+        dictionaries[10] = NO;
+    }
+    [self syncDictToConfig];
 }
 - (IBAction)dictPeople:(id)sender {
     NSButton *cell = sender;
-    NSLog(@"Value changed to %d", [cell intValue]);
+    if ([cell intValue]) {
+        dictionaries[11] = YES;
+    } else {
+        dictionaries[11] = NO;
+    }
+    [self syncDictToConfig];
 }
 - (IBAction)dictScience:(id)sender {
     NSButton *cell = sender;
-    NSLog(@"Value changed to %d", [cell intValue]);
+    if ([cell intValue]) {
+        dictionaries[12] = YES;
+    } else {
+        dictionaries[12] = NO;
+    }
+    [self syncDictToConfig];
 }
 - (IBAction)dictSociety:(id)sender {
     NSButton *cell = sender;
-    NSLog(@"Value changed to %d", [cell intValue]);
+    if ([cell intValue]) {
+        dictionaries[13] = YES;
+    } else {
+        dictionaries[13] = NO;
+    }
+    [self syncDictToConfig];
 }
 - (IBAction)dictSport:(id)sender {
     NSButton *cell = sender;
-    NSLog(@"Value changed to %d", [cell intValue]);
+    if ([cell intValue]) {
+        dictionaries[14] = YES;
+    } else {
+        dictionaries[14] = NO;
+    }
+    [self syncDictToConfig];
 }
 - (IBAction)dictTechnology:(id)sender {
     NSButton *cell = sender;
-    NSLog(@"Value changed to %d", [cell intValue]);
+    if ([cell intValue]) {
+        dictionaries[15] = YES;
+    } else {
+        dictionaries[15] = NO;
+    }
+    [self syncDictToConfig];
 }
 
 
@@ -478,12 +539,19 @@
     [self resetFuzzyStates];
 
     // Dict
-    // TODO
+    NSString *dicts = [m_config dictionaries];
+    if (dicts && [dicts length] > 0) {
+        NSArray<NSString *> *dictIndices = [dicts componentsSeparatedByString:@";"];
+        for (NSString *dictIndex in dictIndices) {
+            int i = [dictIndex intValue];
+            if (i <= 1) continue;
+            dictionaries[i] = YES;
+            [self updateDict:i withState:YES];
+        }
+    }
 
     // Menu
-    [_m_menuInitChinese setState:[m_config initChinese] ? NSControlStateValueOn : NSControlStateValueOff];
-    [_m_menuInitFull setState:[m_config initFull] ? NSControlStateValueOn : NSControlStateValueOff];
-    [_m_menuInitFullPunct setState:[m_config initFullPunct] ? NSControlStateValueOn : NSControlStateValueOff];
+    [self updateMenu];
 }
 
 - (void)resetCorrectStates {
@@ -495,7 +563,7 @@
     [_m_correctPinyinONONG setState:(correctOption & PINYIN_CORRECT_ON_ONG) ? NSControlStateValueOn : NSControlStateValueOff];
     [_m_correctPinyinUEVE setState:(correctOption & PINYIN_CORRECT_UE_VE) ? NSControlStateValueOn : NSControlStateValueOff];
     [_m_correctPinyinIOUIU setState:(correctOption & PINYIN_CORRECT_IOU_IU) ? NSControlStateValueOn : NSControlStateValueOff];
-    if (correctOption) {
+    if ([m_config correctEnableState]) {
         [_m_correctPinyin setState: NSControlStateValueOn];
 
         // Set each options
@@ -524,17 +592,17 @@
 
 - (void)resetFuzzyStates {
     NSUInteger fuzzyOption = [m_config fuzzyOption];
-    [_m_fuzzySyllableFH setState:(fuzzyOption | PINYIN_AMB_F_H) ? NSControlStateValueOn : NSControlStateValueOff];
-    [_m_fuzzySyllableGK setState:(fuzzyOption | PINYIN_AMB_G_K) ? NSControlStateValueOn : NSControlStateValueOff];
-    [_m_fuzzySyllableLN setState:(fuzzyOption | PINYIN_AMB_L_N) ? NSControlStateValueOn : NSControlStateValueOff];
-    [_m_fuzzySyllableLR setState:(fuzzyOption | PINYIN_AMB_L_R) ? NSControlStateValueOn : NSControlStateValueOff];
-    [_m_fuzzySyllableCCH setState:(fuzzyOption | PINYIN_AMB_C_CH) ? NSControlStateValueOn : NSControlStateValueOff];
-    [_m_fuzzySyllableSSH setState:(fuzzyOption | PINYIN_AMB_S_SH) ? NSControlStateValueOn : NSControlStateValueOff];
-    [_m_fuzzySyllableZZH setState:(fuzzyOption | PINYIN_AMB_Z_ZH) ? NSControlStateValueOn : NSControlStateValueOff];
-    [_m_fuzzySyllableANANG setState:(fuzzyOption | PINYIN_AMB_AN_ANG) ? NSControlStateValueOn : NSControlStateValueOff];
-    [_m_fuzzySyllableENENG setState:(fuzzyOption | PINYIN_AMB_EN_ENG) ? NSControlStateValueOn : NSControlStateValueOff];
-    [_m_fuzzySyllableINING setState:(fuzzyOption | PINYIN_AMB_IN_ING) ? NSControlStateValueOn : NSControlStateValueOff];
-    if (fuzzyOption & PINYIN_AMB_ALL) {
+    [_m_fuzzySyllableFH setState:(fuzzyOption & PINYIN_AMB_F_H) ? NSControlStateValueOn : NSControlStateValueOff];
+    [_m_fuzzySyllableGK setState:(fuzzyOption & PINYIN_AMB_G_K) ? NSControlStateValueOn : NSControlStateValueOff];
+    [_m_fuzzySyllableLN setState:(fuzzyOption & PINYIN_AMB_L_N) ? NSControlStateValueOn : NSControlStateValueOff];
+    [_m_fuzzySyllableLR setState:(fuzzyOption & PINYIN_AMB_L_R) ? NSControlStateValueOn : NSControlStateValueOff];
+    [_m_fuzzySyllableCCH setState:(fuzzyOption & PINYIN_AMB_C_CH) ? NSControlStateValueOn : NSControlStateValueOff];
+    [_m_fuzzySyllableSSH setState:(fuzzyOption & PINYIN_AMB_S_SH) ? NSControlStateValueOn : NSControlStateValueOff];
+    [_m_fuzzySyllableZZH setState:(fuzzyOption & PINYIN_AMB_Z_ZH) ? NSControlStateValueOn : NSControlStateValueOff];
+    [_m_fuzzySyllableANANG setState:(fuzzyOption & PINYIN_AMB_AN_ANG) ? NSControlStateValueOn : NSControlStateValueOff];
+    [_m_fuzzySyllableENENG setState:(fuzzyOption & PINYIN_AMB_EN_ENG) ? NSControlStateValueOn : NSControlStateValueOff];
+    [_m_fuzzySyllableINING setState:(fuzzyOption & PINYIN_AMB_IN_ING) ? NSControlStateValueOn : NSControlStateValueOff];
+    if ([m_config fuzzyEnableState]) {
         [_m_fuzzySyllable setState: NSControlStateValueOn];
 
         // Set each options
@@ -612,6 +680,71 @@
 
     [_m_menuInitFullPunct setState:current ? NSControlStateValueOn : NSControlStateValueOff];
     [_m_initFullPunct selectItemAtIndex:[m_config initFullPunct] ? 0 : 1];
+}
+
+- (void)updateDict:(int)i withState:(BOOL)state {
+    switch (i) {
+        case 4:
+            [_m_dictArt setState:state ? NSControlStateValueOn : NSControlStateValueOff];
+            break;
+        case 5:
+            [_m_dictCulture setState:state ? NSControlStateValueOn : NSControlStateValueOff];
+            break;
+        case 6:
+            [_m_dictEconomy setState:state ? NSControlStateValueOn : NSControlStateValueOff];
+            break;
+        case 7:
+            [_m_dictGeology setState:state ? NSControlStateValueOn : NSControlStateValueOff];
+            break;
+        case 8:
+            [_m_dictHistory setState:state ? NSControlStateValueOn : NSControlStateValueOff];
+            break;
+        case 9:
+            [_m_dictLife setState:state ? NSControlStateValueOn : NSControlStateValueOff];
+            break;
+        case 10:
+            [_m_dictNature setState:state ? NSControlStateValueOn : NSControlStateValueOff];
+            break;
+        case 11:
+            [_m_dictPeople setState:state ? NSControlStateValueOn : NSControlStateValueOff];
+            break;
+        case 12:
+            [_m_dictScience setState:state ? NSControlStateValueOn : NSControlStateValueOff];
+            break;
+        case 13:
+            [_m_dictSociety setState:state ? NSControlStateValueOn : NSControlStateValueOff];
+            break;
+        case 14:
+            [_m_dictSport setState:state ? NSControlStateValueOn : NSControlStateValueOff];
+            break;
+        case 15:
+            [_m_dictTechnology setState:state ? NSControlStateValueOn : NSControlStateValueOff];
+            break;
+        default:
+            break;
+    }
+}
+
+- (void)syncDictToConfig {
+    NSMutableString *dicts = [[NSMutableString alloc] initWithString:@""];
+    for (NSUInteger i = 0; i < 20; i++) {
+        if (dictionaries[i]) {
+            if ([dicts length] > 0) {
+                [dicts appendFormat:@";%lu", (unsigned long)i];
+            } else {
+                // The first one
+                [dicts appendFormat:@"%lu", (unsigned long)i];
+            }
+        }
+    }
+    [m_config setDictionaries:dicts];
+}
+
+- (void)updateMenu {
+    // Menu
+    [_m_menuInitChinese setState:[m_config initChinese] ? NSControlStateValueOn : NSControlStateValueOff];
+    [_m_menuInitFull setState:[m_config initFull] ? NSControlStateValueOn : NSControlStateValueOff];
+    [_m_menuInitFullPunct setState:[m_config initFullPunct] ? NSControlStateValueOn : NSControlStateValueOff];
 }
 
 @end

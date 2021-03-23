@@ -9,6 +9,9 @@
 
 static LibpinyinConfig *_config = nil;
 
+const pinyin_option_t PINYIN_DEFAULT_OPTION =
+    PINYIN_INCOMPLETE | ZHUYIN_INCOMPLETE | PINYIN_CORRECT_ALL;
+
 static const struct{
     gint cloud_input_source_index;
     enum CloudInputSource cloud_input_source;
@@ -18,6 +21,8 @@ static const struct{
     {2, CLOUD_INPUT_SOURCE_GOOGLE_CN}
 };
 
+NSString *CONFIG_ENABLE_CORRECT_PINYIN     = @"enable-correct-pinyin";
+NSString *CONFIG_ENABLE_FUZZY_PINYIN       = @"enable-fuzzy-pinyin";
 NSString *CONFIG_CORRECT_PINYIN            = @"correct-pinyin";
 NSString *CONFIG_FUZZY_PINYIN              = @"fuzzy-pinyin";
 NSString *CONFIG_ORIENTATION               = @"lookup-table-orientation";
@@ -71,7 +76,9 @@ NSString *CONFIG_CLOUD_REQUEST_DELAY_TIME  = @"cloud-request-delay-time";
     pinyin_option_t m_option;
     pinyin_option_t m_option_mask;
 
+    BOOL m_enableFuzzyOption;
     pinyin_fuzzy_option_t m_fuzzyOption;
+    BOOL m_enableCorrectOption;
     pinyin_correct_option_t m_correctOption;
 
     NSInteger m_orientation;
@@ -140,7 +147,20 @@ NSString *CONFIG_CLOUD_REQUEST_DELAY_TIME  = @"cloud-request-delay-time";
     [m_prefs registerDefaults:defaultConfig];
     NSLog(@"Default config set from %@", defaultPlist);
 
+    // Init option
+    m_option = PINYIN_DEFAULT_OPTION;
+    // Init option mask
+    m_option_mask = PINYIN_DEFAULT_OPTION | DYNAMIC_ADJUST | PINYIN_INCOMPLETE | ZHUYIN_INCOMPLETE;
+
+    m_enableCorrectOption = [self readBool:CONFIG_ENABLE_CORRECT_PINYIN orDefault:YES];
+    if (m_enableCorrectOption) {
+        m_option_mask |= (PINYIN_CORRECT_ALL | ZHUYIN_CORRECT_ALL);
+    }
     m_correctOption = (pinyin_correct_option_t)[self readInt:CONFIG_CORRECT_PINYIN orDefault:PINYIN_CORRECT_ALL];
+    m_enableFuzzyOption = [self readBool:CONFIG_ENABLE_FUZZY_PINYIN orDefault:YES];
+    if (m_enableFuzzyOption) {
+        m_option_mask |= PINYIN_AMB_ALL;
+    }
     m_fuzzyOption = (pinyin_fuzzy_option_t)[self readInt:CONFIG_FUZZY_PINYIN orDefault:PINYIN_AMB_ALL];
 
     m_orientation = [self readInt:CONFIG_ORIENTATION orDefault:PINYIN_PANEL_ORIENTATION_HORIZONTAL];
@@ -200,7 +220,7 @@ NSString *CONFIG_CLOUD_REQUEST_DELAY_TIME  = @"cloud-request-delay-time";
     if (v == nil) {
         v = value;
     }
-    return value;
+    return v;
 }
 
 - (BOOL)writeBool:(NSString *)name withValue:(BOOL)value {
@@ -221,7 +241,7 @@ NSString *CONFIG_CLOUD_REQUEST_DELAY_TIME  = @"cloud-request-delay-time";
 /* Read functions */
 - (NSString *)dictionaries { return m_dictionaries; }
 - (NSString *)luaConverter { return m_lua_converter; }
-- (pinyin_option_t)option { return m_option & m_option_mask; }
+- (pinyin_option_t)option { return (m_option | m_fuzzyOption | m_correctOption) & m_option_mask; }
 - (NSUInteger)orientation { return m_orientation; }
 - (NSUInteger)pageSize { return m_page_size; }
 - (DisplayStyle)displayStyle { return m_display_style; }
@@ -252,6 +272,8 @@ NSString *CONFIG_CLOUD_REQUEST_DELAY_TIME  = @"cloud-request-delay-time";
 - (NSString *)openccConfig { return m_opencc_config; }
 - (NSUInteger)fuzzyOption { return m_fuzzyOption; }
 - (NSUInteger)correctOption { return m_correctOption; }
+- (BOOL)fuzzyEnableState { return m_enableFuzzyOption; }
+- (BOOL)correctEnableState { return m_enableCorrectOption; }
 
 /* Write functions */
 - (void)setDictionaries:(NSString *)dict {
@@ -394,6 +416,26 @@ NSString *CONFIG_CLOUD_REQUEST_DELAY_TIME  = @"cloud-request-delay-time";
 - (void)removeCorrectOption:(NSUInteger)option {
     m_correctOption &= ~option;
     [self writeInt:CONFIG_CORRECT_PINYIN withValue:m_correctOption];
+}
+
+- (void)setFuzzyEnableState:(BOOL)enable {
+    m_enableFuzzyOption = enable;
+    [self writeBool:CONFIG_ENABLE_FUZZY_PINYIN withValue:enable];
+    if (m_enableFuzzyOption) {
+        m_option_mask |= PINYIN_AMB_ALL;
+    } else {
+        m_option_mask &= (~PINYIN_AMB_ALL);
+    }
+}
+
+- (void)setCorrectEnableState:(BOOL)enable {
+    m_enableCorrectOption = enable;
+    [self writeBool:CONFIG_ENABLE_CORRECT_PINYIN withValue:enable];
+    if (m_enableCorrectOption) {
+        m_option_mask |= (PINYIN_CORRECT_ALL | ZHUYIN_CORRECT_ALL);
+    } else {
+        m_option_mask &= ~(PINYIN_CORRECT_ALL | ZHUYIN_CORRECT_ALL);
+    }
 }
 
 @end
