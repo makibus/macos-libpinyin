@@ -7,6 +7,7 @@
 
 #import "MacOSLibpinyinController.h"
 #import "LibpinyinFullPinyinEditor.h"
+#import "LibpinyinDoublePinyinEditor.h"
 #import "AppDelegate.h"
 
 enum EditorMode {
@@ -20,9 +21,12 @@ enum EditorMode {
     enum EditorMode mode;
     NSMutableArray *editors;
     LibpinyinFullPinyinEditor *_fullpinyinEditor;
+    LibpinyinDoublePinyinEditor *_doublepinyinEditor;
     BOOL chineseMode;
     BOOL traditionMode;
     BOOL fullPunct;
+
+    BOOL doublePinyinMode;
 
     // Language switch
     BOOL hasInputBetweenShift;
@@ -136,6 +140,7 @@ enum EditorMode {
     if (self = [super initWithServer:server delegate:delegate client:inputClient]) {
         NSLog(@"Server init ok for %@", [inputClient bundleIdentifier]);
         editors = [[NSMutableArray alloc] init];
+        doublePinyinMode = [[LibpinyinConfig sharedConfig] doublePinyin];
         [self createFullpinyinEditor];
     }
 
@@ -155,9 +160,15 @@ enum EditorMode {
     fullPunct = [config initFullPunct];
     traditionMode = ![config initSimpChinese];
 
-    // LibpinyinFullPinyinEditor
-    _fullpinyinEditor = [[LibpinyinFullPinyinEditor alloc] initWithConfig:config];
-    [editors addObject:_fullpinyinEditor];
+    if (!doublePinyinMode) {
+        // LibpinyinFullPinyinEditor
+        _fullpinyinEditor = [[LibpinyinFullPinyinEditor alloc] initWithConfig:config];
+        [editors addObject:_fullpinyinEditor];
+    } else {
+        // LibpinyinDoublePinyinEditor
+        _doublepinyinEditor = [[LibpinyinDoublePinyinEditor alloc] initWithConfig:config];
+        [editors addObject:_doublepinyinEditor];
+    }
     // TODO: Punct
     // [editors addObject:nil];
     // TODO: Raw
